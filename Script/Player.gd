@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
-const speed = 100
+var enemy_inattack_range = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+
+const speed = 125
 var current_dir = "none"
 
 func _physics_process(delta):
@@ -62,3 +67,18 @@ func play_anim(movement):
 			anim.play("Walk_Front")
 		elif movement == 0:
 			anim.play("Idle_Front")
+
+func player():
+	pass
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = true
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = false
+		
+
+func enemy_attack():
+	pass
