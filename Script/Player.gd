@@ -8,8 +8,17 @@ var player_alive = true
 const speed = 125
 var current_dir = "none"
 
+var attack_ip = false
+
 func _physics_process(delta):
 	player_movement(delta)
+	enemy_attack()
+	
+	if health <= 0:
+		player_alive = false
+		health = 0
+		print("player has been killed")
+		self.queue_free()
 
 func player_movement(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -81,4 +90,12 @@ func _on_player_hitbox_body_exited(body):
 		
 
 func enemy_attack():
-	pass
+	if enemy_inattack_range and enemy_attack_cooldown:
+		health -= 20
+		enemy_attack_cooldown = false
+		$AttackCooldown.start()
+		print(health)
+
+
+func _on_attack_cooldown_timeout():
+	enemy_attack_cooldown = true
