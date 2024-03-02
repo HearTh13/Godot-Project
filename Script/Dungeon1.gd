@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	$Player/Dungeon1Camera.limit_left = 100
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 

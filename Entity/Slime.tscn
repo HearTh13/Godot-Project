@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6cfmhsxbk5r3"]
+[gd_scene load_steps=26 format=3 uid="uid://c6cfmhsxbk5r3"]
 
 [ext_resource type="Texture2D" uid="uid://cmmlc8ubg26eq" path="res://Assets/slime-Sheet.png" id="1_m3qm2"]
 [ext_resource type="Script" path="res://Script/Slime.gd" id="1_mb4il"]
+[ext_resource type="PackedScene" uid="uid://dstjc70s6j4n5" path="res://Interface/Healthbar.tscn" id="3_yrc52"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yust"]
 atlas = ExtResource("1_m3qm2")
@@ -191,6 +192,14 @@ shape = SubResource("CircleShape2D_1fff1")
 
 [node name="DamageCooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Healthbar" parent="." instance=ExtResource("3_yrc52")]
+offset_left = -14.0
+offset_top = -18.0
+offset_right = 15.0
+offset_bottom = -16.0
+
+[node name="MoveCooldown" type="Timer" parent="."]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

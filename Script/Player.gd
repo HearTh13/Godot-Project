@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
-var health = 160
+var max_health = 160
+var health = max_health
 var player_alive = true
 
 const speed = 125
@@ -15,6 +16,7 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	current_camera()
+	update_health()
 	
 	if health <= 0:
 		player_alive = false
@@ -23,44 +25,45 @@ func _physics_process(delta):
 		self.queue_free()
 
 func player_movement(delta):
-	if Input.is_action_pressed("ui_right"):
-		current_dir = "right"
-		play_anim(1)
-		if Input.is_action_pressed("Run"):
-			velocity.x = speed*2
+	if !attack_ip:
+		if Input.is_action_pressed("ui_right"):
+			current_dir = "right"
+			play_anim(1)
+			if Input.is_action_pressed("Run"):
+				velocity.x = speed*2
+			else:
+				velocity.x = speed
+			velocity.y = 0
+		elif Input.is_action_pressed("ui_left"):
+			current_dir = "left"
+			play_anim(1)
+			if Input.is_action_pressed("Run"):
+				velocity.x = -(speed*2)
+			else:
+				velocity.x = -speed
+			velocity.y = 0
+		elif Input.is_action_pressed("ui_up"):
+			current_dir = "up"
+			play_anim(1)
+			if Input.is_action_pressed("Run"):
+				velocity.y = -(speed*2)
+			else:
+				velocity.y = -speed
+			velocity.x = 0
+		elif Input.is_action_pressed("ui_down"):
+			current_dir = "down"
+			play_anim(1)
+			if Input.is_action_pressed("Run"):
+				velocity.y = speed*2
+			else:
+				velocity.y = speed
+			velocity.x = 0
 		else:
-			velocity.x = speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_left"):
-		current_dir = "left"
-		play_anim(1)
-		if Input.is_action_pressed("Run"):
-			velocity.x = -(speed*2)
-		else:
-			velocity.x = -speed
-		velocity.y = 0
-	elif Input.is_action_pressed("ui_up"):
-		current_dir = "up"
-		play_anim(1)
-		if Input.is_action_pressed("Run"):
-			velocity.y = -(speed*2)
-		else:
-			velocity.y = -speed
-		velocity.x = 0
-	elif Input.is_action_pressed("ui_down"):
-		current_dir = "down"
-		play_anim(1)
-		if Input.is_action_pressed("Run"):
-			velocity.y = speed*2
-		else:
-			velocity.y = speed
-		velocity.x = 0
-	else:
-		play_anim(0)
-		velocity.x = 0
-		velocity.y = 0
-	
-	move_and_slide()
+			play_anim(0)
+			velocity.x = 0
+			velocity.y = 0
+		
+		move_and_slide()
 	
 func play_anim(movement):
 	var dir = current_dir
@@ -158,3 +161,25 @@ func current_camera():
 	elif Global.current_scene == "Dungeon2":
 		$Dungeon1Camera.enabled = false
 		$Dungeon2Camera.enabled = true
+
+func update_health():
+	var healthbar = $Healthbar
+	var damagebar = $Healthbar/Damagebar
+	
+	healthbar.value = health
+	damagebar.value = health
+	
+	if health >= max_health:
+		healthbar.visible = false
+		damagebar.visible = false
+	else:
+		healthbar.visible = true
+		damagebar.visible = true
+
+func _on_regen_time_timeout():
+	if health < max_health:
+		health += 20
+		if health >= max_health:
+			health = max_health
+		elif health <= 0:
+			health = 0
