@@ -13,6 +13,7 @@ var attack_ip = false
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
+	attack()
 	
 	if health <= 0:
 		player_alive = false
@@ -57,25 +58,30 @@ func play_anim(movement):
 		if movement == 1:
 			anim.play("Walk_Side")
 		elif movement == 0:
-			anim.play("Idle_Side")
+			if !attack_ip:
+				anim.play("Idle_Side")
+			
 	if dir == "left":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("Walk_Side")
 		elif movement == 0:
-			anim.play("Idle_Side")
+			if !attack_ip:
+				anim.play("Idle_Side")
 	if dir == "up":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("Walk_Back")
 		elif movement == 0:
-			anim.play("Idle_Back")
+			if !attack_ip:
+				anim.play("Idle_Back")
 	if dir == "down":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("Walk_Front")
 		elif movement == 0:
-			anim.play("Idle_Front")
+			if !attack_ip:
+				anim.play("Idle_Front")
 
 func player():
 	pass
@@ -93,9 +99,41 @@ func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
 		health -= 20
 		enemy_attack_cooldown = false
-		$AttackCooldown.start()
+		$DamageCooldown.start()
 		print(health)
 
 
 func _on_attack_cooldown_timeout():
 	enemy_attack_cooldown = true
+
+func attack():
+	var dir = current_dir
+	var anim = $AnimatedSprite2D
+	var counter = $AttackCounter
+	
+	if Input.is_action_just_pressed("Attack"):
+		Global.player_current_attack = true
+		attack_ip = true
+		if dir == "right":
+			anim.flip_h = true
+			anim.play("Attack_Side")
+			counter.start()
+		if dir == "left":
+			anim.flip_h = false
+			anim.play("Attack_Side")
+			counter.start()
+		if dir == "down":
+			anim.flip_h = false
+			anim.play("Attack_Front")
+			counter.start()
+		if dir == "up":
+			anim.flip_h = false
+			anim.play("Attack_Back")
+			counter.start()
+
+
+func _on_attack_counter_timeout():
+	$AttackCounter.stop()
+	Global.player_current_attack = false
+	attack_ip = false
+

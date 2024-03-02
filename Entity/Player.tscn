@@ -1,7 +1,55 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=42 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx27b"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(256, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtwu3"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(288, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a105h"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(320, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sau0"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w55uv"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysrrl"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshkd"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhi5q"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe63l"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(256, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6hnk"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(288, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr66g"]
+atlas = ExtResource("1_lk2m0")
+region = Rect2(320, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfpu3"]
 atlas = ExtResource("1_lk2m0")
@@ -101,6 +149,57 @@ region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bt0ix"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmsl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx27b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtwu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a105h")
+}],
+"loop": true,
+"name": &"Attack_Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sau0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w55uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysrrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oshkd")
+}],
+"loop": true,
+"name": &"Attack_Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhi5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe63l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6hnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr66g")
+}],
+"loop": true,
+"name": &"Attack_Side",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jfpu3")
@@ -219,6 +318,7 @@ script = ExtResource("2_7mqvl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bt0ix")
 animation = &"Idle_Front"
+frame_progress = 0.936288
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -231,9 +331,12 @@ shape = SubResource("CapsuleShape2D_on814")
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_i2t02")
 
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
+[node name="DamageCooldown" type="Timer" parent="."]
+
+[node name="AttackCounter" type="Timer" parent="."]
+wait_time = 0.6
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="AttackCounter" to="." method="_on_attack_counter_timeout"]
