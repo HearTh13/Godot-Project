@@ -843,5 +843,15 @@ shape = SubResource("RectangleShape2D_ccy6x")
 [node name="Player" parent="." instance=ExtResource("5_r05gc")]
 position = Vector2(319, 303)
 
+[node name="Dungeon1Camera" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 310
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
 [connection signal="body_entered" from="Dungeon1_Transfer" to="." method="_on_dungeon_1_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon1_Transfer" to="." method="_on_dungeon_1_transfer_body_exited"]

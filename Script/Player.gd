@@ -1,11 +1,16 @@
 extends CharacterBody2D
 
+@export var inv: Inv
+
+var enemy = null
+
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var max_health = 160
 var health = max_health
 var player_alive = true
-
+var str = 20
+var def = 10
 const speed = 125
 var current_dir = "none"
 
@@ -26,7 +31,7 @@ func _physics_process(delta):
 
 func player_movement(delta):
 	if !attack_ip:
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("Right"):
 			current_dir = "right"
 			play_anim(1)
 			if Input.is_action_pressed("Run"):
@@ -34,7 +39,7 @@ func player_movement(delta):
 			else:
 				velocity.x = speed
 			velocity.y = 0
-		elif Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("Left"):
 			current_dir = "left"
 			play_anim(1)
 			if Input.is_action_pressed("Run"):
@@ -42,7 +47,7 @@ func player_movement(delta):
 			else:
 				velocity.x = -speed
 			velocity.y = 0
-		elif Input.is_action_pressed("ui_up"):
+		elif Input.is_action_pressed("Up"):
 			current_dir = "up"
 			play_anim(1)
 			if Input.is_action_pressed("Run"):
@@ -50,7 +55,7 @@ func player_movement(delta):
 			else:
 				velocity.y = -speed
 			velocity.x = 0
-		elif Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed("Down"):
 			current_dir = "down"
 			play_anim(1)
 			if Input.is_action_pressed("Run"):
@@ -103,17 +108,19 @@ func player():
 	pass
 
 func _on_player_hitbox_body_entered(body):
+	enemy = body
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
 
 func _on_player_hitbox_body_exited(body):
+	enemy = null
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
 		
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
-		health -= 20
+		health -= enemy.str
 		enemy_attack_cooldown = false
 		$DamageCooldown.start()
 		print(health)
@@ -127,7 +134,7 @@ func attack():
 	var anim = $AnimatedSprite2D
 	var counter = $AttackCounter
 	
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack-OK"):
 		Global.player_current_attack = true
 		attack_ip = true
 		if dir == "right":
