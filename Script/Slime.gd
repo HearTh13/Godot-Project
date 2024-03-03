@@ -26,31 +26,8 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_h = true
 			else:
 				$AnimatedSprite2D.flip_h = false
-			
 		else:
-			var rng = RandomNumberGenerator.new()
-			var my_random_number = rng.randi_range(0, 4)
-			if my_random_number == 0:
-				$AnimatedSprite2D.play("Walk")
-				$AnimatedSprite2D.flip_h = false
-				position.x -= (speed-100)/speed
-			elif my_random_number == 1:
-				$AnimatedSprite2D.play("Walk")
-				$AnimatedSprite2D.flip_h = true
-				position.x += (speed-100)/speed
-			elif my_random_number == 2:
-				$AnimatedSprite2D.play("Walk")
-				$AnimatedSprite2D.flip_h = false
-				position.y += (speed-100)/speed
-			elif my_random_number == 3:
-				$AnimatedSprite2D.play("Walk")
-				$AnimatedSprite2D.flip_h = false
-				position.y -= (speed-100)/speed
-			else:
-				$AnimatedSprite2D.play("Idle")
-				$AnimatedSprite2D.flip_h = false
-				position.x = 0
-				position.y = 0
+			$AnimatedSprite2D.play("Idle")
 	else:
 		$AnimatedSprite2D.play("Dead")
 			
@@ -101,5 +78,3 @@ func update_health():
 		healthbar.visible = false
 	else:
 		healthbar.visible = true
-
-

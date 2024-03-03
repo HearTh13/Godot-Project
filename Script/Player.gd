@@ -13,13 +13,13 @@ var str = 20
 var def = 10
 const speed = 125
 var current_dir = "none"
+var player_state = "none"
 
 var attack_ip = false
 
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
-	attack()
 	current_camera()
 	update_health()
 	
@@ -30,79 +30,68 @@ func _physics_process(delta):
 		self.queue_free()
 
 func player_movement(delta):
-	if !attack_ip:
-		if Input.is_action_pressed("Right"):
-			current_dir = "right"
-			play_anim(1)
-			if Input.is_action_pressed("Run"):
-				velocity.x = speed*2
-			else:
-				velocity.x = speed
-			velocity.y = 0
-		elif Input.is_action_pressed("Left"):
-			current_dir = "left"
-			play_anim(1)
-			if Input.is_action_pressed("Run"):
-				velocity.x = -(speed*2)
-			else:
-				velocity.x = -speed
-			velocity.y = 0
-		elif Input.is_action_pressed("Up"):
-			current_dir = "up"
-			play_anim(1)
-			if Input.is_action_pressed("Run"):
-				velocity.y = -(speed*2)
-			else:
-				velocity.y = -speed
-			velocity.x = 0
-		elif Input.is_action_pressed("Down"):
-			current_dir = "down"
-			play_anim(1)
-			if Input.is_action_pressed("Run"):
-				velocity.y = speed*2
-			else:
-				velocity.y = speed
-			velocity.x = 0
-		else:
-			play_anim(0)
-			velocity.x = 0
-			velocity.y = 0
-		
-		move_and_slide()
+	var movement = Input.get_vector("Left", "Right", "Up", "Down")
+	if velocity.x == 0 and velocity.y == 0:
+		player_state = "idle"
+	elif velocity.x != 0 or velocity.y != 0:
+		player_state = "walk"
 	
+	if !attack_ip:
+		if Input.is_action_pressed("Run"):
+			velocity = movement * speed * 1.5
+		else:
+			velocity = movement * speed
+		move_and_slide()
+		play_anim(movement)
+	
+	attack()
+
 func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
-	if dir == "right":
-		anim.flip_h = true
-		if movement == 1:
-			anim.play("Walk_Side")
-		elif movement == 0:
-			if !attack_ip:
-				anim.play("Idle_Side")
-			
-	if dir == "left":
-		anim.flip_h = false
-		if movement == 1:
-			anim.play("Walk_Side")
-		elif movement == 0:
-			if !attack_ip:
-				anim.play("Idle_Side")
-	if dir == "up":
-		anim.flip_h = false
-		if movement == 1:
-			anim.play("Walk_Back")
-		elif movement == 0:
-			if !attack_ip:
+	if player_state == "idle":
+		if !attack_ip:
+			if current_dir == "Walk_Back":
 				anim.play("Idle_Back")
-	if dir == "down":
-		anim.flip_h = false
-		if movement == 1:
-			anim.play("Walk_Front")
-		elif movement == 0:
-			if !attack_ip:
+			if current_dir == "Walk_Front":
 				anim.play("Idle_Front")
+			if current_dir == "Walk_Side":
+				anim.play("Idle_Side")
+	elif player_state == "walk":
+		if movement.y == -1:
+			current_dir = "Walk_Back"
+			anim.flip_h = false
+			anim.play(current_dir)
+		if movement.x == 1:
+			current_dir = "Walk_Side"
+			anim.flip_h = true
+			anim.play(current_dir)
+		if movement.y == 1:
+			current_dir = "Walk_Front"
+			anim.flip_h = true
+			anim.play(current_dir)
+		if movement.x == -1:
+			current_dir = "Walk_Side"
+			anim.flip_h = false
+			anim.play(current_dir)
+		
+		if movement.x > 0.5 and movement.y < -0.5:
+			current_dir = "Walk_Side"
+			anim.flip_h = true
+			anim.play(current_dir)
+		if movement.x > 0.5 and movement.y > 0.5:
+			current_dir = "Walk_Side"
+			anim.flip_h = true
+			anim.play(current_dir)
+		if movement.x < -0.5 and movement.y > 0.5:
+			current_dir = "Walk_Side"
+			anim.flip_h = false
+			anim.play(current_dir)
+		if movement.x < -0.5 and movement.y < -0.5:
+			current_dir = "Walk_Side"
+			anim.flip_h = false
+			anim.play(current_dir)
 
 func player():
 	pass
@@ -137,20 +126,13 @@ func attack():
 	if Input.is_action_just_pressed("Attack-OK"):
 		Global.player_current_attack = true
 		attack_ip = true
-		if dir == "right":
-			anim.flip_h = true
+		if dir == "Walk_Side":
 			anim.play("Attack_Side")
 			counter.start()
-		if dir == "left":
-			anim.flip_h = false
-			anim.play("Attack_Side")
-			counter.start()
-		if dir == "down":
-			anim.flip_h = false
+		if dir == "Walk_Front":
 			anim.play("Attack_Front")
 			counter.start()
-		if dir == "up":
-			anim.flip_h = false
+		if dir == "Walk_Back":
 			anim.play("Attack_Back")
 			counter.start()
 
