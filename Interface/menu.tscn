@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://crimhc1albpre"]
+[gd_scene load_steps=5 format=3 uid="uid://crimhc1albpre"]
 
 [ext_resource type="Script" path="res://Script/Menu.gd" id="1_cpxrv"]
+[ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="2_4xx7f"]
+[ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="3_kxg8e"]
+[ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="4_jho7j"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -22,14 +25,17 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
+icon = ExtResource("2_4xx7f")
 
 [node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Continue"
+text = "  Continue"
+icon = ExtResource("3_kxg8e")
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+icon = ExtResource("4_jho7j")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
