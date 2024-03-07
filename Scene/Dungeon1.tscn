@@ -837,16 +837,6 @@ position = Vector2(276, 154)
 position = Vector2(320, -7)
 shape = SubResource("RectangleShape2D_74iid")
 
-[node name="Dungeon1Camera" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-limit_left = 0
-limit_top = 0
-limit_right = 640
-limit_bottom = 310
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-
 [node name="Slime" parent="." instance=ExtResource("5_j3dhu")]
 position = Vector2(392, 210)
 
