@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://ctjml2py1rijd"
+path="res://.godot/imported/font.fnt-38eb1f8edb5d75c57cd98192187af681.fontdata"
+
+[deps]
+
+source_file="res://Assets/font/font.fnt"
+dest_files=["res://.godot/imported/font.fnt-38eb1f8edb5d75c57cd98192187af681.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2
