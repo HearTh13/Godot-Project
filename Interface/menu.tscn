@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://crimhc1albpre"]
+[gd_scene load_steps=7 format=3 uid="uid://crimhc1albpre"]
 
 [ext_resource type="Script" path="res://Script/Menu.gd" id="1_cpxrv"]
 [ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="2_4xx7f"]
+[ext_resource type="Texture2D" uid="uid://bqiu2ytjs1fw3" path="res://Assets/DreamDiver Logo.png" id="2_mys5f"]
+[ext_resource type="Texture2D" uid="uid://b18ipt1racfst" path="res://Assets/Title Background.jpg" id="2_v046e"]
 [ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="3_kxg8e"]
 [ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="4_jho7j"]
 
@@ -14,29 +16,56 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cpxrv")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = -65.0
+offset_top = -42.0
+offset_right = 1269.0
+offset_bottom = 736.0
+texture = ExtResource("2_v046e")
+
+[node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 1032.0
+offset_bottom = 568.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Logo" type="TextureRect" parent="Menu"]
 layout_mode = 2
+texture = ExtResource("2_mys5f")
+stretch_mode = 3
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Center Row" type="HBoxContainer" parent="Menu"]
 layout_mode = 2
-text = "Play"
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/Center Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Play" type="Button" parent="Menu/Center Row/Buttons"]
+layout_mode = 2
+text = "  Play"
 icon = ExtResource("2_4xx7f")
+flat = true
+alignment = 0
 
-[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="Menu/Center Row/Buttons"]
 layout_mode = 2
 text = "  Continue"
 icon = ExtResource("3_kxg8e")
+flat = true
+alignment = 0
 
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="Menu/Center Row/Buttons"]
 layout_mode = 2
-text = "Exit"
+text = "  Exit"
 icon = ExtResource("4_jho7j")
+flat = true
+alignment = 0
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Menu/Center Row/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Center Row/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Menu/Center Row/Buttons/Exit" to="." method="_on_exit_pressed"]
