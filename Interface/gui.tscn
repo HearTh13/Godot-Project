@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpmk0uy484kjw"]
+
+[ext_resource type="PackedScene" uid="uid://c40auife1o6y1" path="res://Interface/HPBar.tscn" id="1_xqn7r"]
+[ext_resource type="PackedScene" uid="uid://ch7kveso4jqbc" path="res://Interface/MPBar.tscn" id="2_1lu1p"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBar" parent="VBoxContainer" instance=ExtResource("1_xqn7r")]
+layout_mode = 2
+
+[node name="MPBar" parent="VBoxContainer" instance=ExtResource("2_1lu1p")]
+layout_mode = 2
