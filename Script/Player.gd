@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var inv: Inv
-
 var enemy = null
 
 var enemy_inattack_range = false
@@ -96,14 +94,14 @@ func player():
 	pass
 
 func _on_player_hitbox_body_entered(body):
-	enemy = body
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
+		enemy = body
 
 func _on_player_hitbox_body_exited(body):
-	enemy = null
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
+		enemy = null
 		
 
 func enemy_attack():
@@ -174,5 +172,3 @@ func _on_regen_time_timeout():
 		elif Global.health <= 0:
 			Global.health = 0
 
-func collect(Item):
-	inv.insert(Item)

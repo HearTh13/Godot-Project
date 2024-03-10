@@ -1,9 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=43 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
-[ext_resource type="Resource" uid="uid://dl0bc30vb40q5" path="res://Inventory/PlayerInventory.tres" id="2_x54qu"]
-[ext_resource type="PackedScene" uid="uid://dhs1uj7lj5qci" path="res://Inventory/inv_ui.tscn" id="5_qfo7m"]
 [ext_resource type="PackedScene" uid="uid://bpmk0uy484kjw" path="res://Interface/gui.tscn" id="6_w0vg4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
@@ -311,7 +309,7 @@ radius = 12.0
 height = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2t02"]
-radius = 25.0
+radius = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -319,7 +317,6 @@ collision_layer = 3
 platform_floor_layers = 4294967042
 platform_wall_layers = 1
 script = ExtResource("2_7mqvl")
-inv = ExtResource("2_x54qu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bt0ix")
@@ -371,18 +368,6 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_w0vg4")]
-
-[node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("5_qfo7m")]
-z_index = 10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -60.0
-offset_right = 81.5
-offset_bottom = 60.0
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

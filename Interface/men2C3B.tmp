@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crimhc1albpre"]
+[gd_scene load_steps=9 format=3 uid="uid://crimhc1albpre"]
 
 [ext_resource type="Script" path="res://Script/Menu.gd" id="1_cpxrv"]
 [ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="2_4xx7f"]
@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="3_kxg8e"]
 [ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="4_jho7j"]
 [ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="4_rvx7i"]
-[ext_resource type="Texture2D" uid="uid://cv0kkbjfxf5qi" path="res://Assets/TitleBar.png" id="4_xhbei"]
-[ext_resource type="Texture2D" uid="uid://clgexky7cgn1s" path="res://Assets/TitleBarClicked.png" id="5_3my2g"]
-[ext_resource type="Texture2D" uid="uid://i0yg23b71sg4" path="res://Assets/TitleBarHover.png" id="5_k7uln"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5iuqi"]
 font = ExtResource("4_rvx7i")
@@ -45,96 +42,63 @@ texture = ExtResource("2_mys5f")
 stretch_mode = 3
 
 [node name="MenuButton" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = 353.0
-offset_right = 758.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 574.0
+offset_top = 360.0
+offset_right = 1339.0
+offset_bottom = 641.0
 
 [node name="CenterRow" type="HBoxContainer" parent="MenuButton"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="MenuButton/CenterRow"]
-custom_minimum_size = Vector2(0, 101)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-size_flags_stretch_ratio = 0.0
 
-[node name="Play" type="TextureButton" parent="MenuButton/CenterRow/Buttons"]
+[node name="Play" type="Button" parent="MenuButton/CenterRow/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("4_xhbei")
-texture_pressed = ExtResource("5_3my2g")
-texture_hover = ExtResource("5_k7uln")
-texture_focused = ExtResource("5_k7uln")
+text = "  "
+icon = ExtResource("2_4xx7f")
+alignment = 0
 
 [node name="PlayLabel" type="Label" parent="MenuButton/CenterRow/Buttons/Play"]
 layout_mode = 0
 offset_right = 962.0
-offset_bottom = 31.0
+offset_bottom = 33.0
 text = "      Play"
 label_settings = SubResource("LabelSettings_5iuqi")
 vertical_alignment = 1
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="MenuButton/CenterRow/Buttons/Play"]
-layout_mode = 0
-offset_right = 31.0
-offset_bottom = 31.0
-texture = ExtResource("2_4xx7f")
-
-[node name="Continue" type="TextureButton" parent="MenuButton/CenterRow/Buttons"]
+[node name="Continue" type="Button" parent="MenuButton/CenterRow/Buttons"]
 layout_mode = 2
-texture_normal = ExtResource("4_xhbei")
-texture_pressed = ExtResource("5_3my2g")
-texture_hover = ExtResource("5_k7uln")
-texture_focused = ExtResource("5_k7uln")
+text = "
+"
+icon = ExtResource("3_kxg8e")
+alignment = 0
 
 [node name="ContinueLabel" type="Label" parent="MenuButton/CenterRow/Buttons/Continue"]
 layout_mode = 0
 offset_right = 962.0
-offset_bottom = 31.0
+offset_bottom = 33.0
 text = "      Continue"
 label_settings = SubResource("LabelSettings_5iuqi")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MenuButton/CenterRow/Buttons/Continue"]
-layout_mode = 0
-offset_right = 31.0
-offset_bottom = 31.0
-texture = ExtResource("3_kxg8e")
-
-[node name="Button" type="Button" parent="MenuButton/CenterRow/Buttons"]
-custom_minimum_size = Vector2(0, 31)
+[node name="Exit" type="Button" parent="MenuButton/CenterRow/Buttons"]
 layout_mode = 2
-flat = true
-
-[node name="Exit" type="TextureButton" parent="MenuButton/CenterRow/Buttons"]
-layout_mode = 2
-texture_normal = ExtResource("4_xhbei")
-texture_pressed = ExtResource("5_3my2g")
-texture_hover = ExtResource("5_k7uln")
-texture_focused = ExtResource("5_k7uln")
+icon = ExtResource("4_jho7j")
+alignment = 0
 
 [node name="ExitLabel" type="Label" parent="MenuButton/CenterRow/Buttons/Exit"]
 layout_mode = 0
 offset_right = 962.0
-offset_bottom = 31.0
+offset_bottom = 33.0
 text = "      Exit"
 label_settings = SubResource("LabelSettings_5iuqi")
 vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MenuButton/CenterRow/Buttons/Exit"]
-layout_mode = 0
-offset_right = 31.0
-offset_bottom = 31.0
-texture = ExtResource("4_jho7j")
 
 [connection signal="pressed" from="MenuButton/CenterRow/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButton/CenterRow/Buttons/Continue" to="." method="_on_continue_pressed"]

@@ -27,12 +27,12 @@ func finish_change():
 		if current_scene == "Dungeon2":
 			current_scene = "Dungeon1"
 
-func pause_menu(menu):
+func pause_menu(dim):
 	if Input.is_action_just_pressed("Pause"):
 		if paused:
-			menu.hide()
 			Engine.time_scale = 1
+			dim.visible = false
 		else:
-			menu.show()
 			Engine.time_scale = 0
+			dim.visible = true
 		paused = !paused

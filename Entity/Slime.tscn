@@ -160,7 +160,7 @@ radius = 69.0
 radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fff1"]
-radius = 15.0333
+radius = 16.0
 
 [node name="Slime" type="CharacterBody2D"]
 light_mask = 2
@@ -204,8 +204,12 @@ offset_top = -18.0
 offset_right = 15.0
 offset_bottom = -16.0
 
+[node name="Run" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_exited"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="Run" to="." method="_on_run_timeout"]
