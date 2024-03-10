@@ -8,28 +8,33 @@ var speed = 45
 var str = 20
 var def = 2
 
+var attack_state = false
 var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
 
 func _physics_process(delta):
-	deal_with_damage()
-	update_health()
-	
-	if !take_damage:
-		if player_chase:
-			position += (player.position - position)/speed
-			
-			$AnimatedSprite2D.play("Walk")
-			
-			if(player.position.x - position.x):
-				$AnimatedSprite2D.flip_h = true
+	if !Global.paused:
+		deal_with_damage()
+		update_health()
+		
+		if !take_damage:
+			if player_chase:
+				velocity = (player.get_global_position() - position).normalized() * speed * delta
+				
+				$AnimatedSprite2D.play("Walk")
+				
+				if(player.position.x - position.x):
+					$AnimatedSprite2D.flip_h = false
+				else:
+					$AnimatedSprite2D.flip_h = true
+				
 			else:
-				$AnimatedSprite2D.flip_h = false
+				velocity = lerp(velocity, Vector2.ZERO, 0.07)
+				$AnimatedSprite2D.play("Idle")
+			move_and_collide(velocity)
 		else:
-			$AnimatedSprite2D.play("Idle")
-	else:
-		$AnimatedSprite2D.play("Dead")
+			$AnimatedSprite2D.play("Dead")
 			
 
 
@@ -57,14 +62,16 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and Global.player_current_attack:
 		if !take_damage:
-			health -= player.str
-			$DamageCooldown.start()
-			take_damage = true
-			print("slime health = ", health)
+			if player != null:
+				health -= Global.str
+				$DamageCooldown.start()
+				take_damage = true
+				modulate.a8 = 100
 			if health <= 0:
 				self.queue_free()
 
 func _on_damage_cooldown_timeout():
+	modulate.a8 = 255
 	take_damage = false
 	
 func update_health():

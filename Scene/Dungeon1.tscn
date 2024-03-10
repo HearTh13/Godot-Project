@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dah5dphfgkh72"]
+[gd_scene load_steps=11 format=3 uid="uid://dah5dphfgkh72"]
 
 [ext_resource type="Texture2D" uid="uid://p0lqtdvdpr5n" path="res://Assets/Dungeon_Tileset.png" id="1_fuds2"]
 [ext_resource type="Script" path="res://Script/Dungeon1.gd" id="1_v6nm1"]
 [ext_resource type="Texture2D" uid="uid://bn6mklwjs1ocx" path="res://Assets/RPG Nature Tileset.png" id="2_82lw8"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_f3uq5"]
+[ext_resource type="Script" path="res://Scene/TileMap.gd" id="4_4l7sw"]
 [ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="5_j3dhu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wvda"]
@@ -827,6 +828,7 @@ layer_1/tile_data = PackedInt32Array(0, 3, 0, 1, 65539, 0, 2, 131075, 0, 3, 1966
 layer_2/name = "YSort"
 layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(196616, 131076, 0, 262156, 65540, 0, 196620, 4, 0)
+script = ExtResource("4_4l7sw")
 
 [node name="Player" parent="." instance=ExtResource("3_f3uq5")]
 position = Vector2(276, 154)

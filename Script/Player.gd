@@ -6,28 +6,27 @@ var enemy = null
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
-var max_health = 160
-var health = max_health
 var player_alive = true
-var str = 20
-var def = 10
-const speed = 125
+
 var current_dir = "none"
 var player_state = "none"
+
+const speed = 125
 
 var attack_ip = false
 
 func _physics_process(delta):
-	player_movement(delta)
-	enemy_attack()
-	current_camera()
-	update_health()
+	if !Global.paused:
+		player_movement(delta)
+		enemy_attack()
+		current_camera()
+		update_health()
 	
-	if health <= 0:
-		player_alive = false
-		health = 0
-		print("player has been killed")
-		self.queue_free()
+		if Global.health <= 0:
+			player_alive = false
+			Global.health = 0
+			print("player has been killed")
+			self.queue_free()
 
 func player_movement(delta):
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -109,13 +108,14 @@ func _on_player_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
-		health -= enemy.str
-		enemy_attack_cooldown = false
-		$DamageCooldown.start()
-		print(health)
-
+		if enemy != null:
+			Global.health -= enemy.str
+			enemy_attack_cooldown = false
+			modulate.a8 = 100
+			$DamageCooldown.start()
 
 func _on_attack_cooldown_timeout():
+	modulate.a8 = 255
 	enemy_attack_cooldown = true
 
 func attack():
@@ -152,23 +152,27 @@ func current_camera():
 		$Dungeon2Camera.enabled = true
 
 func update_health():
-	var healthbar = $Healthbar
-	var damagebar = $Healthbar/Damagebar
+	var healthbar = $CanvasLayer/GUI/VBoxContainer/HPBar/Counter/TextureProgressBar
+	var manabar = $CanvasLayer/GUI/VBoxContainer/MPBar/Counter/TextureProgressBar
+	var healthCounter = $CanvasLayer/GUI/VBoxContainer/HPBar/Counter/Label
+	var manaCounter = $CanvasLayer/GUI/VBoxContainer/MPBar/Counter/Label
 	
-	healthbar.value = health
-	damagebar.value = health
+	healthbar.max_value = Global.max_health
+	healthbar.value = Global.health
+	manabar.max_value = Global.max_mana
+	manabar.value = Global.mana
 	
-	if health >= max_health:
-		healthbar.visible = false
-		damagebar.visible = false
-	else:
-		healthbar.visible = true
-		damagebar.visible = true
+	healthCounter.text = str(Global.health)+"/"+str(Global.max_health)
+	manaCounter.text = str(Global.mana)+"/"+str(Global.max_mana)
+	
 
 func _on_regen_time_timeout():
-	if health < max_health:
-		health += 20
-		if health >= max_health:
-			health = max_health
-		elif health <= 0:
-			health = 0
+	if Global.health < Global.max_health:
+		Global.health += 20
+		if Global.health >= Global.max_health:
+			Global.health = Global.max_health
+		elif Global.health <= 0:
+			Global.health = 0
+
+func collect(Item):
+	inv.insert(Item)

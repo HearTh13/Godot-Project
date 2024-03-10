@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
 [ext_resource type="Resource" uid="uid://dl0bc30vb40q5" path="res://Inventory/PlayerInventory.tres" id="2_x54qu"]
-[ext_resource type="PackedScene" uid="uid://dstjc70s6j4n5" path="res://Interface/Healthbar.tscn" id="3_m6etg"]
 [ext_resource type="PackedScene" uid="uid://dhs1uj7lj5qci" path="res://Inventory/inv_ui.tscn" id="5_qfo7m"]
+[ext_resource type="PackedScene" uid="uid://bpmk0uy484kjw" path="res://Interface/gui.tscn" id="6_w0vg4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
 atlas = ExtResource("1_lk2m0")
@@ -316,6 +316,8 @@ radius = 25.0
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 3
+platform_floor_layers = 4294967042
+platform_wall_layers = 1
 script = ExtResource("2_7mqvl")
 inv = ExtResource("2_x54qu")
 
@@ -329,6 +331,9 @@ position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_on814")
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
+visibility_layer = 3
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
 position = Vector2(0, -14)
@@ -359,23 +364,25 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Healthbar" parent="." instance=ExtResource("3_m6etg")]
-z_index = 9
-offset_left = -14.0
-offset_top = -37.0
-offset_right = 15.0
-offset_bottom = -35.0
-
-[node name="Inv_UI" parent="." instance=ExtResource("5_qfo7m")]
-z_index = 10
-offset_left = -82.0
-offset_top = -154.0
-offset_right = 81.0
-offset_bottom = -34.0
-
 [node name="RegenTime" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("6_w0vg4")]
+
+[node name="Inv_UI" parent="CanvasLayer" instance=ExtResource("5_qfo7m")]
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -60.0
+offset_right = 81.5
+offset_bottom = 60.0
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

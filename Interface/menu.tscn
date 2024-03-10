@@ -52,6 +52,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 
 [node name="Menu2" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 574.0
 offset_top = 360.0
 offset_right = 1339.0
@@ -89,6 +90,7 @@ icon = ExtResource("3_kxg8e")
 alignment = 0
 
 [node name="ContinueLabel" type="Label" parent="Menu2/Center Row/Buttons/Continue"]
+layout_mode = 0
 offset_right = 962.0
 offset_bottom = 33.0
 text = "      Continue"
@@ -101,6 +103,7 @@ icon = ExtResource("4_jho7j")
 alignment = 0
 
 [node name="ExitLabel" type="Label" parent="Menu2/Center Row/Buttons/Exit"]
+layout_mode = 0
 offset_right = 962.0
 offset_bottom = 33.0
 text = "      Exit"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhs1uj7lj5qci"]
 
 [ext_resource type="Script" path="res://Script/inv_ui.gd" id="1_ev3x1"]
-[ext_resource type="Texture2D" uid="uid://creoyt5o8yx45" path="res://Assets/Inventory Slot.png" id="2_q4hlv"]
+[ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="2_6sgv0"]
 [ext_resource type="PackedScene" uid="uid://w5j5dj7pchca" path="res://Inventory/inventory_ui_slot.tscn" id="3_r6877"]
 
 [node name="Inv_UI" type="Control"]
@@ -20,10 +20,8 @@ script = ExtResource("1_ev3x1")
 layout_mode = 0
 offset_right = 163.0
 offset_bottom = 120.0
-texture = ExtResource("2_q4hlv")
-patch_margin_left = 1
+texture = ExtResource("2_6sgv0")
 patch_margin_top = 1
-patch_margin_right = 1
 patch_margin_bottom = 1
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
