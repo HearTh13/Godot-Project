@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=46 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
@@ -311,6 +311,66 @@ height = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2t02"]
 radius = 18.0
 
+[sub_resource type="Animation" id="Animation_pt038"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/Dim:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animation/Dim:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_864tj"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/Dim:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animation/Dim:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuilw"]
+_data = {
+"fade_in": SubResource("Animation_864tj"),
+"fade_out": SubResource("Animation_pt038")
+}
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 3
@@ -368,6 +428,26 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_w0vg4")]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tuilw")
+}
+
+[node name="Dim" type="ColorRect" parent="Animation"]
+visible = false
+self_modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]

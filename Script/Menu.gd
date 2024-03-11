@@ -1,11 +1,16 @@
 extends Control
 
 var pos = 0
+var fading = false
 @onready var play = $MenuButton/CenterRow/Buttons/Play
 @onready var con = $MenuButton/CenterRow/Buttons/Continue
 @onready var exit = $MenuButton/CenterRow/Buttons/Exit
 
 func _process(delta):
+	if fading:
+		$MainMusic.volume_db -= 0.5
+	if !$MainMusic.playing:
+		$MainMusic.play()
 	if Input.is_action_just_pressed("Down"):
 		pos += 1
 		if pos == 4:
@@ -17,7 +22,9 @@ func _process(delta):
 	menu()
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")
+	$ButtonPressedSFX.play(1)
+	fading = true
+	$Animation.play("fade")
 
 func _on_continue_pressed():
 	pass # Replace with function body.
@@ -38,3 +45,6 @@ func menu():
 		exit.grab_focus()
 		con.release_focus()
 		play.release_focus()
+
+func _on_animation_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")

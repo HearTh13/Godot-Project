@@ -14,6 +14,7 @@ const speed = 125
 var attack_ip = false
 
 func _physics_process(delta):
+	play_bgm()
 	if !Global.paused:
 		player_movement(delta)
 		enemy_attack()
@@ -122,6 +123,7 @@ func attack():
 	var counter = $AttackCounter
 	
 	if Input.is_action_just_pressed("Attack-OK"):
+		play_sfx("res://Assets/Music/swordStrike.wav")
 		Global.player_current_attack = true
 		attack_ip = true
 		if dir == "Walk_Side":
@@ -172,3 +174,10 @@ func _on_regen_time_timeout():
 		elif Global.health <= 0:
 			Global.health = 0
 
+func play_bgm():
+	if !$BGM.playing:
+		$BGM.play() 
+
+func play_sfx(path):
+	$SFX.stream = load(path)
+	$SFX.play()

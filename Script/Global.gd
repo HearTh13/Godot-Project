@@ -2,7 +2,7 @@ extends Node
 
 var player_current_attack = false
 
-var current_scene
+var current_scene = "Dungeon1"
 var transition = false
 var paused = false
 
@@ -17,6 +17,8 @@ var str = 20
 var def = 10
 
 var init_pos = true
+
+var dialogue = 0
 
 func finish_change():
 	if transition == true:

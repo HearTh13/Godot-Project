@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bc4e78fqts5aq"
+path="res://.godot/imported/Twinklerock Cave.ogg-e9b4c383fd18384cd03f64318b8b1726.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Twinklerock Cave.ogg"
+dest_files=["res://.godot/imported/Twinklerock Cave.ogg-e9b4c383fd18384cd03f64318b8b1726.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

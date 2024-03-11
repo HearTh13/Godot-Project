@@ -8,7 +8,7 @@ var speed = 45
 var str = 20
 var def = 2
 
-var running = false
+var running = true
 var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
@@ -21,8 +21,6 @@ func _physics_process(delta):
 		if !take_damage:
 			if player_chase:
 				if running:
-					velocity = (player.get_global_position() + position).normalized() * speed * delta
-				elif !running:
 					velocity = (player.get_global_position() - position).normalized() * speed * delta
 				
 				$AnimatedSprite2D.play("Walk")
@@ -69,11 +67,14 @@ func deal_with_damage():
 				health -= Global.str
 				$DamageCooldown.start()
 				$Run.start()
-				running = true
+				running = false
 				take_damage = true
 				modulate.a8 = 100
+				play_sfx
 			if health <= 0:
+				$AnimatedSprite2D.play("Dead")
 				self.queue_free()
+				
 
 func _on_damage_cooldown_timeout():
 	modulate.a8 = 255
@@ -92,4 +93,7 @@ func update_health():
 		healthbar.visible = true
 
 func _on_run_timeout():
-	running = false
+	running = true
+
+func play_sfx():
+	$SFX.play()

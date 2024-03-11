@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp4u2gobv7uiq"]
+
+[ext_resource type="Texture2D" uid="uid://blja3yfetc3ci" path="res://Assets/TextBox.png" id="1_2tsxn"]
+[ext_resource type="Script" path="res://Script/dialogue_gui.gd" id="1_bn7qx"]
+[ext_resource type="Texture2D" uid="uid://epmcm8wy6c66" path="res://Assets/SampleCharacter.png" id="1_m3w6u"]
+[ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="2_hwjba"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_skx6h"]
+font = ExtResource("2_hwjba")
+font_size = 12
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dt8a1"]
+font = ExtResource("2_hwjba")
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DialogueGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bn7qx")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterB" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 559.0
+offset_top = -24.0
+offset_right = 1152.36
+offset_bottom = 648.0
+texture = ExtResource("1_m3w6u")
+expand_mode = 3
+
+[node name="CharacterA" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 593.0
+offset_bottom = 648.0
+texture = ExtResource("1_m3w6u")
+expand_mode = 3
+
+[node name="Dialogue Box" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -194.0
+offset_right = 445.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_2tsxn")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="Dialogue Box"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 68.0
+offset_right = 194.0
+offset_bottom = 98.0
+text = "Name"
+label_settings = SubResource("LabelSettings_skx6h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="Dialogue Box"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 50.0
+offset_right = 790.0
+offset_bottom = 135.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in accumsan dui. Pellentesque et dapibus mi, ut viverra erat. "
+label_settings = SubResource("LabelSettings_dt8a1")
+autowrap_mode = 3

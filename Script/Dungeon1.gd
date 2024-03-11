@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	$Player/BGM.stream = load("res://Assets/Music/Twinklerock Cave.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 
