@@ -7,7 +7,9 @@ var health = max_health
 var speed = 45
 var str = 20
 var def = 2
+var exp = 5
 
+var alive = true
 var running = true
 var player_chase = false
 var player_inattack_zone = false
@@ -64,16 +66,17 @@ func deal_with_damage():
 	if player_inattack_zone and Global.player_current_attack:
 		if !take_damage:
 			if player != null:
-				health -= Global.str
+				health = health - Global.str
 				$DamageCooldown.start()
 				$Run.start()
 				running = false
 				take_damage = true
 				modulate.a8 = 100
-				play_sfx
-			if health <= 0:
-				$AnimatedSprite2D.play("Dead")
-				self.queue_free()
+				play_sfx()
+				if health <= 0:
+					player.transfer_exp(exp)
+					$Dead.start()
+					
 				
 
 func _on_damage_cooldown_timeout():
@@ -94,6 +97,10 @@ func update_health():
 
 func _on_run_timeout():
 	running = true
+	
 
 func play_sfx():
 	$SFX.play()
+
+func _on_dead_timeout():
+	self.queue_free()

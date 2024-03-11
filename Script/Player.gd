@@ -6,17 +6,17 @@ var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
 
-var current_dir = "none"
-var player_state = "none"
+var current_dir = "Walk_Front"
+var player_state = "idle"
 
 const speed = 125
 
 var attack_ip = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	play_bgm()
 	if !Global.paused:
-		player_movement(delta)
+		player_movement()
 		enemy_attack()
 		current_camera()
 		update_health()
@@ -27,7 +27,7 @@ func _physics_process(delta):
 			print("player has been killed")
 			self.queue_free()
 
-func player_movement(delta):
+func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
 	if velocity.x == 0 and velocity.y == 0:
 		player_state = "idle"
@@ -45,7 +45,6 @@ func player_movement(delta):
 	attack()
 
 func play_anim(movement):
-	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
 	if player_state == "idle":
@@ -108,7 +107,7 @@ func _on_player_hitbox_body_exited(body):
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
 		if enemy != null:
-			Global.health -= enemy.str
+			Global.health = Global.health - (enemy.str/Global.def)
 			enemy_attack_cooldown = false
 			modulate.a8 = 100
 			$DamageCooldown.start()
@@ -128,13 +127,11 @@ func attack():
 		attack_ip = true
 		if dir == "Walk_Side":
 			anim.play("Attack_Side")
-			counter.start()
 		if dir == "Walk_Front":
 			anim.play("Attack_Front")
-			counter.start()
 		if dir == "Walk_Back":
 			anim.play("Attack_Back")
-			counter.start()
+		counter.start()
 
 
 func _on_attack_counter_timeout():
@@ -144,12 +141,16 @@ func _on_attack_counter_timeout():
 	
 func current_camera():
 	if Global.current_scene == "Dungeon1":
-		$Dungeon1Camera.enabled = true
-		$Dungeon2Camera.enabled = false
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
 	
-	elif Global.current_scene == "Dungeon2":
-		$Dungeon1Camera.enabled = false
-		$Dungeon2Camera.enabled = true
+	elif Global.current_scene == "Dungeon2-1" or Global.current_scene == "Dungeon2-2":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
+	
+	elif Global.current_scene == "Dungeon3":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
 
 func update_health():
 	var healthbar = $CanvasLayer/GUI/VBoxContainer/HPBar/Counter/TextureProgressBar
@@ -181,3 +182,23 @@ func play_bgm():
 func play_sfx(path):
 	$SFX.stream = load(path)
 	$SFX.play()
+
+func transfer_exp(exp):
+	Global.exp += exp
+	print(Global.exp)
+	print(Global.next)
+	if Global.exp >= Global.next:
+		Global.level += 1
+		if (Global.level % 2) == 0:
+			Global.str += 5
+			Global.max_health += 7
+			Global.max_mana += 5
+			Global.def += 3
+			Global.next *= 5
+		else:
+			Global.str += 3
+			Global.max_health += 9
+			Global.max_mana += 6
+			Global.def += 1
+			Global.next *= 3
+		print("Level up")

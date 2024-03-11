@@ -157,11 +157,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2p6d"]
 radius = 69.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uwwdw"]
-radius = 11.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fff1"]
 radius = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64id7"]
+radius = 6.0
+height = 20.0
 
 [node name="Slime" type="CharacterBody2D"]
 light_mask = 2
@@ -183,10 +184,6 @@ collision_mask = 2
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_e2p6d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_uwwdw")
-
 [node name="EnemyHitbox" type="Area2D" parent="."]
 light_mask = 2
 visibility_layer = 2
@@ -196,6 +193,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_1fff1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_64id7")
 
 [node name="DamageCooldown" type="Timer" parent="."]
 
@@ -211,6 +213,8 @@ wait_time = 2.0
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_kkyg4")
 
+[node name="Dead" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
@@ -218,3 +222,4 @@ stream = ExtResource("4_kkyg4")
 [connection signal="body_exited" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_exited"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Run" to="." method="_on_run_timeout"]
+[connection signal="timeout" from="Dead" to="." method="_on_dead_timeout"]
