@@ -22,6 +22,7 @@ var exp = 0
 var init_pos = true
 
 var dialogue = 0
+var objective = "Cari jalan keluar"
 
 func finish_change():
 	if transition == true:

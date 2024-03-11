@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=47 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
+[ext_resource type="PackedScene" uid="uid://o278gdok2yeb" path="res://Interface/pause_menu.tscn" id="4_ooqqp"]
 [ext_resource type="PackedScene" uid="uid://bpmk0uy484kjw" path="res://Interface/gui.tscn" id="6_w0vg4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
@@ -418,6 +419,9 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_w0vg4")]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_ooqqp")]
+visible = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 autoplay = true

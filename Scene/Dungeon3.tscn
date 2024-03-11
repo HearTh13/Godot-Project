@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://36td0mchomgw"]
 
-[ext_resource type="Script" path="res://Scene/Dungeon3.gd" id="1_l24qy"]
+[ext_resource type="Script" path="res://Script/Dungeon3.gd" id="1_l24qy"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_t8hru"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_dh7f5"]
 

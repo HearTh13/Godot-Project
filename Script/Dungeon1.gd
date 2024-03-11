@@ -8,7 +8,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	change_scene()
-	Global.pause_menu($Player/CanvasLayer/GUI/Dim)
+	Global.pause_menu($Player/CanvasLayer/PauseMenu)
 
 func _on_dungeon_2_transfer_body_entered(body):
 	if body.has_method("player"):

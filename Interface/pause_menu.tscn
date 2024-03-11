@@ -1,0 +1,147 @@
+[gd_scene load_steps=13 format=3 uid="uid://o278gdok2yeb"]
+
+[ext_resource type="Texture2D" uid="uid://cv0kkbjfxf5qi" path="res://Assets/TitleBar.png" id="1_fatij"]
+[ext_resource type="Script" path="res://Script/pause_menu.gd" id="1_r6j8c"]
+[ext_resource type="Texture2D" uid="uid://clgexky7cgn1s" path="res://Assets/TitleBarClicked.png" id="2_rl8w4"]
+[ext_resource type="Texture2D" uid="uid://i0yg23b71sg4" path="res://Assets/TitleBarHover.png" id="3_umong"]
+[ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="4_ndd2j"]
+[ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="5_pn0xh"]
+[ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="6_ol4gj"]
+[ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="7_q2f6o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_21v3i"]
+font = ExtResource("4_ndd2j")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2j6p8"]
+font = ExtResource("4_ndd2j")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1e5m"]
+font = ExtResource("4_ndd2j")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gbjbt"]
+font = ExtResource("4_ndd2j")
+font_size = 30
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r6j8c")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="Horizontal" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -387.0
+offset_top = 134.0
+offset_bottom = 235.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Vertical" type="VBoxContainer" parent="Horizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Continue" type="TextureButton" parent="Horizontal/Vertical"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("1_fatij")
+texture_pressed = ExtResource("2_rl8w4")
+texture_hover = ExtResource("3_umong")
+texture_focused = ExtResource("3_umong")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="Horizontal/Vertical/Continue"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 765.0
+offset_bottom = 31.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_21v3i")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Horizontal/Vertical/Continue"]
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 31.0
+texture = ExtResource("5_pn0xh")
+
+[node name="Button" type="Button" parent="Horizontal/Vertical"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+flat = true
+
+[node name="Title" type="TextureButton" parent="Horizontal/Vertical"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("1_fatij")
+texture_pressed = ExtResource("2_rl8w4")
+texture_hover = ExtResource("3_umong")
+texture_focused = ExtResource("3_umong")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="Horizontal/Vertical/Title"]
+layout_mode = 0
+offset_left = 35.0
+offset_right = 765.0
+offset_bottom = 31.0
+text = "Exit
+"
+label_settings = SubResource("LabelSettings_2j6p8")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Horizontal/Vertical/Title"]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 31.0
+texture = ExtResource("6_ol4gj")
+expand_mode = 1
+
+[node name="Objective" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -71.0
+offset_right = 445.0
+grow_vertical = 0
+texture = ExtResource("7_q2f6o")
+
+[node name="Label" type="Label" parent="Objective"]
+layout_mode = 0
+offset_left = 15.0
+offset_right = 430.0
+offset_bottom = 71.0
+text = "Objective here"
+label_settings = SubResource("LabelSettings_f1e5m")
+vertical_alignment = 1
+
+[node name="Pause" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "-- PAUSE --"
+label_settings = SubResource("LabelSettings_gbjbt")
+vertical_alignment = 1
