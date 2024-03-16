@@ -7,6 +7,7 @@ var text
 var charA
 var charB
 var background
+var itemBox
 var textSign
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,7 @@ func _ready():
 	charA = $CharacterA
 	charB = $CharacterB
 	background = $Background
+	itemBox = $ItemBox
 	dialogue = 0
 	pos = 0
 	textSign = 0
@@ -33,18 +35,24 @@ func dialog():
 		if pos == 0:
 			background.texture = load("res://Assets/Background/cave.png")
 			charB.texture = load("")
-			chara.text = "???"
+			chara.text = "Suzy"
 			text.text = "..."
 		elif pos == 1:
-			chara.text = "???"
+			chara.text = "Suzy"
 			text.text = "Kepalaku..."
 		elif pos == 2:
-			chara.text = "???"
+			chara.text = "Suzy"
 			text.text = "Eh...?"
 		elif pos == 3:
-			chara.text = "???"
-			text.text = "D-dimana aku?"
+			chara.text = "Suzy"
+			text.text = "Aku masuk ke dunia mimpi?"
 		elif pos == 4:
+			chara.text = "Suzy"
+			text.text = "Gh... Sekarang bukan waktunya untuk bimbang...!"
+		elif pos == 5:
+			chara.text = "Suzy"
+			text.text = "Aku harus menyelamatkan mereka!"
+		elif pos == 6:
 			Global.dialogue = 0
 			pos = 0
 			get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")

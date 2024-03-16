@@ -12,7 +12,7 @@ func _process(delta):
 
 func _on_dungeon_1_transfer_body_entered(body):
 	if body.has_method("player"):
-		Global.current_scene = "Dungeon2-1"
+		Global.current_scene = "Dungeon1"
 		Global.transition = true
 		Global.player_enter_posx = 321
 		Global.player_enter_posy = 35
@@ -23,7 +23,7 @@ func _on_dungeon_1_transfer_body_exited(body):
 
 func _on_dungeon_3_transfer_body_entered(body):
 	if body.has_method("player"):
-		Global.current_scene = "Dungeon2-2"
+		Global.current_scene = "Dungeon3"
 		Global.transition = true
 		Global.player_enter_posx = 24
 		Global.player_enter_posy = 186
@@ -34,10 +34,10 @@ func _on_dungeon_3_transfer_body_exited(body):
 
 func change_scene():
 	if Global.transition:
-		if Global.current_scene == "Dungeon2-1":
+		if Global.current_scene == "Dungeon1":
 			get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")
 			Global.finish_change()
-		if Global.current_scene == "Dungeon2-2":
+		if Global.current_scene == "Dungeon3":
 			get_tree().change_scene_to_file("res://Scene/Dungeon3.tscn")
 			Global.finish_change()
 

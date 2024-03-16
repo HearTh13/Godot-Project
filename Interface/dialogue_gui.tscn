@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp4u2gobv7uiq"]
+[gd_scene load_steps=9 format=3 uid="uid://bp4u2gobv7uiq"]
 
 [ext_resource type="Texture2D" uid="uid://blja3yfetc3ci" path="res://Assets/TextBox.png" id="1_2tsxn"]
 [ext_resource type="Script" path="res://Script/dialogue_gui.gd" id="1_bn7qx"]
 [ext_resource type="Texture2D" uid="uid://epmcm8wy6c66" path="res://Assets/SampleCharacter.png" id="1_m3w6u"]
 [ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="2_hwjba"]
+[ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="3_ua3xm"]
+[ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="4_56ylw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_skx6h"]
 font = ExtResource("2_hwjba")
@@ -49,6 +51,23 @@ offset_right = 593.0
 offset_bottom = 648.0
 texture = ExtResource("1_m3w6u")
 expand_mode = 3
+
+[node name="ItemBox" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 473.0
+offset_top = 130.0
+offset_right = 671.0
+offset_bottom = 328.0
+texture = ExtResource("3_ua3xm")
+
+[node name="Item" type="TextureRect" parent="ItemBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 19.0
+offset_right = 191.0
+offset_bottom = 180.0
+texture = ExtResource("4_56ylw")
 
 [node name="Dialogue Box" type="TextureRect" parent="."]
 layout_mode = 1

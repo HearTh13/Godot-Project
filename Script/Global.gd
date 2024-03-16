@@ -28,15 +28,7 @@ var objective
 func finish_change():
 	if transition == true:
 		transition = false
-		if current_scene == "Dungeon1":
-			current_scene = "Dungeon2-1"
-		if current_scene == "Dungeon2-1":
-			current_scene = "Dungeon1"
-		if current_scene == "Dungeon2-2":
-			current_scene = "Dungeon3"
-		if current_scene == "Dungeon3":
-			current_scene = "Dungeon2-1"
-
+		
 func pause_menu(dim):
 	if Input.is_action_just_pressed("Pause"):
 		if paused:
@@ -71,7 +63,7 @@ func initial():
 	message = 0
 	
 	dialogue = 1
-	objective = "Cari jalan keluar!"
+	objective = "Selamatkan mereka!"
 
 func save_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.WRITE)

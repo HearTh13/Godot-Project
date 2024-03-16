@@ -228,7 +228,6 @@ func save():
 			print("Data saved")
 
 func mess():
-	print(signMessage)
 	if signMessage:
 		if Input.is_action_just_pressed("Attack-OK"):
 			Global.dialogue = 0
