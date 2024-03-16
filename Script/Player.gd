@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var enemy = null
+var signBoard = null
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -12,14 +13,18 @@ var player_state = "idle"
 const speed = 125
 
 var attack_ip = false
+var save_state = false
+var signMessage = false
 
 func _physics_process(_delta):
 	play_bgm()
 	if !Global.paused:
 		player_movement()
 		enemy_attack()
+		save()
 		current_camera()
 		update_health()
+		mess()
 	
 		if Global.health <= 0:
 			player_alive = false
@@ -97,11 +102,21 @@ func _on_player_hitbox_body_entered(body):
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
 		enemy = body
+	if body.has_method("save_point"):
+		save_state = true
+	if body.has_method("board"):
+		signMessage = true
+		signBoard = body
 
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
 		enemy = null
+	if body.has_method("save_point"):
+		save_state = false
+	if body.has_method("board"):
+		signMessage = false
+		signBoard = null
 		
 
 func enemy_attack():
@@ -121,17 +136,18 @@ func attack():
 	var anim = $AnimatedSprite2D
 	var counter = $AttackCounter
 	
-	if Input.is_action_just_pressed("Attack-OK"):
-		play_sfx("res://Assets/Music/swordStrike.wav")
-		Global.player_current_attack = true
-		attack_ip = true
-		if dir == "Walk_Side":
-			anim.play("Attack_Side")
-		if dir == "Walk_Front":
-			anim.play("Attack_Front")
-		if dir == "Walk_Back":
-			anim.play("Attack_Back")
-		counter.start()
+	if !save_state:
+		if Input.is_action_just_pressed("Attack-OK"):
+			play_sfx("res://Assets/Music/swordStrike.wav")
+			Global.player_current_attack = true
+			attack_ip = true
+			if dir == "Walk_Side":
+				anim.play("Attack_Side")
+			if dir == "Walk_Front":
+				anim.play("Attack_Front")
+			if dir == "Walk_Back":
+				anim.play("Attack_Back")
+			counter.start()
 
 
 func _on_attack_counter_timeout():
@@ -202,3 +218,22 @@ func transfer_exp(exp):
 			Global.def += 1
 			Global.next *= 3
 		print("Level up")
+
+func save():
+	if save_state:
+		if Input.is_action_just_pressed("Attack-OK"):
+			Global.player_enter_posx = position.x
+			Global.player_enter_posy = position.y
+			Global.save_game()
+			print("Data saved")
+
+func mess():
+	print(signMessage)
+	if signMessage:
+		if Input.is_action_just_pressed("Attack-OK"):
+			Global.dialogue = 0
+			Global.message = signBoard.text
+			Global.player_enter_posx = position.x
+			Global.player_enter_posy = position.y
+			get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
+			

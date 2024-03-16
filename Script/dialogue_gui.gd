@@ -1,43 +1,61 @@
 extends Control
 
 var dialogue
-var pos = 0
-var char
+var pos
+var chara
 var text
 var charA
 var charB
 var background
+var textSign
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	char = $"Dialogue Box/Name"
+	chara = $"Dialogue Box/Name"
 	text = $"Dialogue Box/Text"
 	charA = $CharacterA
 	charB = $CharacterB
 	background = $Background
-	dialogue = Global.dialogue
+	dialogue = 0
+	pos = 0
+	textSign = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	dialogue = Global.dialogue
+	textSign = Global.message
 	dialog()
 	if Input.is_action_just_pressed("Attack-OK"):
 		pos += 1
 
 func dialog():
-	if dialogue == 0:
+	if dialogue == 1:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/cave.png")
 			charB.texture = load("")
-			char.text = "???"
+			chara.text = "???"
 			text.text = "..."
 		elif pos == 1:
-			char.text = "???"
+			chara.text = "???"
 			text.text = "Kepalaku..."
 		elif pos == 2:
-			char.text = "???"
+			chara.text = "???"
 			text.text = "Eh...?"
 		elif pos == 3:
-			char.text = "???"
+			chara.text = "???"
 			text.text = "D-dimana aku?"
 		elif pos == 4:
+			Global.dialogue = 0
+			pos = 0
+			get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")
+
+	elif textSign == "1":
+		if pos == 0:
+			background.texture = load("res://Assets/Background/cave.png")
+			charB.texture = load("")
+			charA.texture = load("")
+			chara.text = "Tanda"
+			text.text = "Selamat datang di Dream Diver. Tempat dimana mimpi menjadi kenyataan!"
+		if pos == 1:
+			pos = 0
 			get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")

@@ -145,3 +145,6 @@ grow_vertical = 2
 text = "-- PAUSE --"
 label_settings = SubResource("LabelSettings_gbjbt")
 vertical_alignment = 1
+
+[connection signal="pressed" from="Horizontal/Vertical/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Horizontal/Vertical/Title" to="." method="_on_title_pressed"]
