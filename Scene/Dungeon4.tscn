@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dae3rt0d6um2a"]
+[gd_scene load_steps=7 format=3 uid="uid://dae3rt0d6um2a"]
 
 [ext_resource type="Script" path="res://Script/Dungeon4.gd" id="1_hovux"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="2_yfnej"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifd1g"]
 size = Vector2(38, 161)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qoncr"]
+radius = 40.0125
 
 [node name="Dungeon4" type="Node2D"]
 y_sort_enabled = true
@@ -30,10 +33,10 @@ layer_2/tile_data = PackedInt32Array(262162, 131072, 4, 524304, 4, 0, 524303, 4,
 position = Vector2(349, 147)
 
 [node name="Slime" parent="." instance=ExtResource("4_d2177")]
-position = Vector2(455, 95)
+position = Vector2(406, 98)
 
 [node name="Slime2" parent="." instance=ExtResource("4_d2177")]
-position = Vector2(518, 225)
+position = Vector2(200, 227)
 
 [node name="Dungeon3_Transfer" type="Area2D" parent="."]
 
@@ -47,9 +50,17 @@ shape = SubResource("RectangleShape2D_ifd1g")
 position = Vector2(663, 192)
 shape = SubResource("RectangleShape2D_ifd1g")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(520, 191)
+shape = SubResource("CircleShape2D_qoncr")
+
 [connection signal="body_entered" from="Dungeon3_Transfer" to="." method="_on_dungeon_3_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon3_Transfer" to="." method="_on_dungeon_3_transfer_body_exited"]
 [connection signal="body_entered" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 
 [editable path="Player"]

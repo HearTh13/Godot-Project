@@ -16,8 +16,6 @@ const speed = 125
 var attack_ip = false
 var save_state = false
 var signMessage = false
-var floorPressed = false
-var pressed = false
 
 func _physics_process(_delta):
 	play_bgm()
@@ -28,7 +26,6 @@ func _physics_process(_delta):
 		current_camera()
 		update_health()
 		mess()
-		fl()
 	
 		if Global.health <= 0:
 			player_alive = false
@@ -111,10 +108,6 @@ func _on_player_hitbox_body_entered(body):
 	if body.has_method("board"):
 		signMessage = true
 		signBoard = body
-	if body.has_method("button"):
-		floorPressed = true
-		floor = body
-		print(body)
 
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
@@ -125,19 +118,6 @@ func _on_player_hitbox_body_exited(body):
 	if body.has_method("board"):
 		signMessage = false
 		signBoard = null
-	if body.has_method("button"):
-		floorPressed = false
-		floor = null
-		pressed = false
-		var boolean = true
-		for i in Global.floor.size():
-			if !Global.floorRed[i].visible:
-				boolean = false
-		if boolean:
-			Global.doorOpen.visible = true
-			Global.doorClose.visible = false
-			Global.doorCol.shape = null
-
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
@@ -255,73 +235,4 @@ func mess():
 			Global.player_enter_posx = position.x
 			Global.player_enter_posy = position.y
 			get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
-			
-func fl():
-	if floorPressed:
-		var boolean
-		if floor.text == 1:
-			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
-				
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
-				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
-				pressed = true
-				
-		if floor.text == 2:
-			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
-				
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
-				
-				boolean = !Global.floorBlue[2].visible
-				Global.floorBlue[2].visible = boolean
-				boolean = !Global.floorRed[2].visible
-				Global.floorRed[2].visible = boolean
-				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
-				pressed = true
-			
-		if floor.text == 3:
-			if !pressed:
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
-				
-				boolean = !Global.floorBlue[2].visible
-				Global.floorBlue[2].visible = boolean
-				boolean = !Global.floorRed[2].visible
-				Global.floorRed[2].visible = boolean
-				pressed = true
-		
-		if floor.text == 4:
-			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
-				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
-				pressed = true
+

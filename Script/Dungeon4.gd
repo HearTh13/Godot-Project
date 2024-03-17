@@ -32,6 +32,12 @@ func _on_dungeon_5_transfer_body_exited(body):
 	if body.has_method("player"):
 		Global.transition = false
 
+func _on_area_2d_body_entered(body):
+	pass # Replace with function body.
+	
+func _on_area_2d_body_exited(body):
+	pass # Replace with function body.
+
 func change_scene():
 	if Global.transition:
 		if Global.current_scene == "Dungeon3":
@@ -40,3 +46,5 @@ func change_scene():
 		if Global.current_scene == "Dungeon5":
 			get_tree().change_scene_to_file("res://Scene/Dungeon5.tscn")
 			Global.finish_change()
+
+
