@@ -24,10 +24,20 @@ var init_pos
 
 var dialogue
 var objective
+var boss
+
+var floor = []
+var floorBlue = []
+var floorRed = []
+
+var doorOpen
+var doorCol
+var doorClose
 
 func finish_change():
 	if transition == true:
 		transition = false
+		floor = []
 		
 func pause_menu(dim):
 	if Input.is_action_just_pressed("Pause"):
@@ -64,6 +74,8 @@ func initial():
 	
 	dialogue = 1
 	objective = "Selamatkan mereka!"
+	
+	boss = false
 
 func save_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.WRITE)
@@ -85,6 +97,7 @@ func save_game():
 	file.store_var(init_pos)
 	file.store_var(dialogue)
 	file.store_var(objective)
+	file.store_var(boss)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -106,3 +119,4 @@ func load_game():
 	init_pos = file.get_var()
 	dialogue = file.get_var()
 	objective = file.get_var()
+	boss = file.get_var()

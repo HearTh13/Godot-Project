@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://47tu7epargv3"]
+
+[ext_resource type="Texture2D" uid="uid://bm27rdkd2w63p" path="res://Assets/Color Floor blue.png" id="1_ax0hl"]
+[ext_resource type="Script" path="res://Script/interactive_floor.gd" id="1_bcyty"]
+[ext_resource type="Texture2D" uid="uid://bxxrqeqrk4xdw" path="res://Assets/Color Floor red.png" id="2_rtqd2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjdpn"]
+size = Vector2(30, 30)
+
+[node name="Color Floor" type="CharacterBody2D"]
+script = ExtResource("1_bcyty")
+
+[node name="Blue" type="Sprite2D" parent="."]
+position = Vector2(15, 15)
+texture = ExtResource("1_ax0hl")
+
+[node name="Red" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15, 15)
+texture = ExtResource("2_rtqd2")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_wjdpn")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 30.0
+offset_bottom = 30.0
+text = "1"
+visible_characters = 0
+visible_ratio = 0.0
