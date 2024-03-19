@@ -48,7 +48,8 @@ func player_movement():
 		move_and_slide()
 		play_anim(movement)
 	
-	attack()
+	if $CanvasLayer/GUI.visible:
+		attack()
 
 func play_anim(movement):
 	var anim = $AnimatedSprite2D

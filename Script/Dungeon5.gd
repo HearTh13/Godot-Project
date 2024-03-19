@@ -29,6 +29,11 @@ func _ready():
 	Global.doorOpen = $Door/Open
 	Global.doorCol = $Door/Collision
 	
+	if Global.open:
+		Global.doorOpen.visible = true
+		Global.doorClose.visible = false
+		Global.doorCol.shape = null
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

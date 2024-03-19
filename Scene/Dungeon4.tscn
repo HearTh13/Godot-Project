@@ -61,6 +61,5 @@ shape = SubResource("CircleShape2D_qoncr")
 [connection signal="body_entered" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 
 [editable path="Player"]

@@ -36,6 +36,7 @@ func _on_body_exited(body):
 			Global.doorOpen.visible = true
 			Global.doorClose.visible = false
 			Global.doorCol.shape = null
+			Global.open = true
 
 func fl():
 	if floorPressed:

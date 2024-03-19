@@ -34,11 +34,17 @@ var doorOpen
 var doorCol
 var doorClose
 
+var open = false
+
+var story2 = false
+
 func finish_change():
 	if transition == true:
 		transition = false
 		floor = []
-		
+		floorBlue = []
+		floorRed = []
+
 func pause_menu(dim):
 	if Input.is_action_just_pressed("Pause"):
 		if paused:
@@ -98,6 +104,8 @@ func save_game():
 	file.store_var(dialogue)
 	file.store_var(objective)
 	file.store_var(boss)
+	file.store_var(open)
+	file.store_var(story2)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -120,3 +128,5 @@ func load_game():
 	dialogue = file.get_var()
 	objective = file.get_var()
 	boss = file.get_var()
+	open = file.get_var()
+	story2 = file.get_var()

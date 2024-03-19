@@ -4,6 +4,7 @@ func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Grassland Adventure.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,10 +34,12 @@ func _on_dungeon_5_transfer_body_exited(body):
 		Global.transition = false
 
 func _on_area_2d_body_entered(body):
-	pass # Replace with function body.
-	
-func _on_area_2d_body_exited(body):
-	pass # Replace with function body.
+	if body.has_method("player"):
+		if !Global.story2:
+			Global.story2 = true
+			Global.dialogue = 2
+			Global.message = 0
+			get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 
 func change_scene():
 	if Global.transition:
