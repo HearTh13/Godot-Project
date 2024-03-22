@@ -9,9 +9,13 @@ var charB
 var background
 var itemBox
 var textSign
+var animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Animation/ColorRect.visible = false
+	
+	animation = $Animation
 	chara = $"Dialogue Box/Name"
 	text = $"Dialogue Box/Text"
 	charA = $CharacterA
@@ -62,13 +66,19 @@ func dialog():
 			background.texture = load("res://Assets/Background/cave.png")
 			charB.texture = load("")
 			chara.text = "Suhi"
-			text.text = "Aku harus cepat sebelum yang lain...!"
+			text.text = "Huft... Huft..."
 		if pos == 1:
-			Global.dialogue = 0
-			pos = 0
-			Global.player_enter_posx = 80
-			Global.player_enter_posy = 302
-			get_tree().change_scene_to_file("res://Scene/Flashback1.tscn")
+			chara.text = "Suhi"
+			text.text = "Aku harus cepat sebelum dunia menjadi kacau...!"
+		if pos == 2:
+			background.texture = load("res://Assets/black.jpg")
+			charA.texture = load("")
+			chara.text = ""
+			text.text = "..."
+		if pos == 2:
+			text.text = "3 jam yang lalu."
+		if pos == 3:
+			animation.play("fade_out_white")
 
 	elif textSign == 1:
 		if pos == 0:
@@ -84,3 +94,12 @@ func dialog():
 			Global.message = 0
 			pos = 0
 			get_tree().change_scene_to_file("res://Scene/Dungeon1.tscn")
+
+
+func _on_animation_animation_finished(anim_name):
+	if anim_name == "fade_out_white":
+		Global.dialogue = 0
+		pos = 0
+		Global.player_enter_posx = 80
+		Global.player_enter_posy = 302
+		get_tree().change_scene_to_file("res://Scene/Flashback1.tscn")

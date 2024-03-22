@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c50tmpcvmxq5r"]
+[gd_scene load_steps=7 format=3 uid="uid://c50tmpcvmxq5r"]
 
 [ext_resource type="Script" path="res://Script/Flashback1.gd" id="1_ayram"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_yr65w"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="2_626s5"]
+[ext_resource type="PackedScene" uid="uid://pwml5qexebrb" path="res://Entity/teacher.tscn" id="4_hw80q"]
+[ext_resource type="PackedScene" uid="uid://dbn1tyqrv4wqw" path="res://Entity/studentA.tscn" id="5_uoyt1"]
+[ext_resource type="PackedScene" uid="uid://b683qgk41axb6" path="res://Entity/studentB.tscn" id="6_gufyp"]
 
 [node name="Flashback1" type="Node2D"]
 y_sort_enabled = true
@@ -34,3 +37,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.462745, 0.0196078, 0.423529)
+
+[node name="Teacher" parent="." instance=ExtResource("4_hw80q")]
+position = Vector2(32, 161)
+
+[node name="StudentA" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(189, 97)
+
+[node name="StudentB" parent="." instance=ExtResource("6_gufyp")]
+position = Vector2(381, 128)
+
+[node name="StudentC" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(188, 224)
+
+[node name="StudentD" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(189, 257)
+
+[node name="StudentE" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(286, 129)
+
+[node name="StudentF" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(478, 224)
+
+[node name="StudentG" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(381, 256)
+
+[node name="StudentH" parent="." instance=ExtResource("6_gufyp")]
+position = Vector2(382, 99)
+
+[node name="StudentI" parent="." instance=ExtResource("6_gufyp")]
+position = Vector2(573, 225)
+
+[node name="StudentJ" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(574, 259)
+
+[node name="StudentK" parent="." instance=ExtResource("5_uoyt1")]
+position = Vector2(477, 97)

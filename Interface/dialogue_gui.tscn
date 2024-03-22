@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp4u2gobv7uiq"]
+[gd_scene load_steps=11 format=3 uid="uid://bp4u2gobv7uiq"]
 
 [ext_resource type="Texture2D" uid="uid://blja3yfetc3ci" path="res://Assets/TextBox.png" id="1_2tsxn"]
 [ext_resource type="Script" path="res://Script/dialogue_gui.gd" id="1_bn7qx"]
@@ -17,6 +17,38 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("2_hwjba")
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_0wu8l"]
+resource_name = "fade_out_white"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animation/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pox6n"]
+_data = {
+"fade_out_white": SubResource("Animation_0wu8l")
+}
 
 [node name="DialogueGUI" type="Control"]
 layout_mode = 3
@@ -104,3 +136,18 @@ offset_bottom = 135.0
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in accumsan dui. Pellentesque et dapibus mi, ut viverra erat. "
 label_settings = SubResource("LabelSettings_dt8a1")
 autowrap_mode = 3
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pox6n")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Animation"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

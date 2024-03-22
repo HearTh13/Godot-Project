@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbn1tyqrv4wqw"]
+
+[ext_resource type="Texture2D" uid="uid://bvp1il6mog8ak" path="res://Assets/studentA.png" id="1_rc5w6"]
+[ext_resource type="Script" path="res://Script/character.gd" id="1_uiyva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bjf3"]
+atlas = ExtResource("1_rc5w6")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl8m4"]
+atlas = ExtResource("1_rc5w6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fcy2"]
+atlas = ExtResource("1_rc5w6")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6cax"]
+atlas = ExtResource("1_rc5w6")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xaspi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bjf3")
+}],
+"loop": true,
+"name": &"default_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl8m4")
+}],
+"loop": true,
+"name": &"default_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fcy2")
+}],
+"loop": true,
+"name": &"default_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6cax")
+}],
+"loop": true,
+"name": &"default_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jeag"]
+
+[node name="StudentA" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_uiyva")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_xaspi")
+animation = &"default_left"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(17, 24)
+shape = SubResource("CircleShape2D_6jeag")

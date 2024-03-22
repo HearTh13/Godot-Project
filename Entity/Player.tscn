@@ -1,8 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=51 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
 [ext_resource type="PackedScene" uid="uid://o278gdok2yeb" path="res://Interface/pause_menu.tscn" id="4_ooqqp"]
+[ext_resource type="Texture2D" uid="uid://blja3yfetc3ci" path="res://Assets/TextBox.png" id="5_ja2uk"]
+[ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="6_mq1bx"]
 [ext_resource type="PackedScene" uid="uid://bpmk0uy484kjw" path="res://Interface/gui.tscn" id="6_w0vg4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
@@ -312,6 +314,17 @@ height = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2t02"]
 radius = 18.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_pssbu"]
+font = ExtResource("6_mq1bx")
+font_size = 12
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_apn7v"]
+font = ExtResource("6_mq1bx")
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_864tj"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -421,6 +434,42 @@ autostart = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_ooqqp")]
 visible = false
+
+[node name="Dialogue Box" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -194.0
+offset_right = 445.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_ja2uk")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="CanvasLayer/Dialogue Box"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 68.0
+offset_right = 194.0
+offset_bottom = 98.0
+text = "Name"
+label_settings = SubResource("LabelSettings_pssbu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="CanvasLayer/Dialogue Box"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 50.0
+offset_right = 790.0
+offset_bottom = 135.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in accumsan dui. Pellentesque et dapibus mi, ut viverra erat. "
+label_settings = SubResource("LabelSettings_apn7v")
+autowrap_mode = 3
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 autoplay = true

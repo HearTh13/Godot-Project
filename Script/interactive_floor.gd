@@ -4,6 +4,7 @@ var text
 var player
 var floorPressed = false
 var pressed = false
+var type
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

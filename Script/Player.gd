@@ -3,6 +3,7 @@ extends CharacterBody2D
 var enemy = null
 var signBoard = null
 var floor = null
+var character = null
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -16,10 +17,13 @@ const speed = 125
 var attack_ip = false
 var save_state = false
 var signMessage = false
+var inDialogueBox = false
+
+var pos = 0
 
 func _physics_process(_delta):
 	play_bgm()
-	if !Global.paused:
+	if !Global.paused or !Global.dialogueBox:
 		player_movement()
 		enemy_attack()
 		save()
@@ -32,6 +36,10 @@ func _physics_process(_delta):
 			Global.health = 0
 			print("player has been killed")
 			self.queue_free()
+	
+	if inDialogueBox:
+		print(Global.dialogueBox)
+		chat()
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -109,6 +117,10 @@ func _on_player_hitbox_body_entered(body):
 	if body.has_method("board"):
 		signMessage = true
 		signBoard = body
+	if body.has_method("character"):
+		inDialogueBox = true
+		character = body
+		pos = 1
 
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
@@ -119,6 +131,10 @@ func _on_player_hitbox_body_exited(body):
 	if body.has_method("board"):
 		signMessage = false
 		signBoard = null
+	if body.has_method("character"):
+		inDialogueBox = false
+		character = null
+		pos = 0
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
@@ -237,3 +253,18 @@ func mess():
 			Global.player_enter_posy = position.y
 			get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 
+func chat():
+	if Input.is_action_just_pressed("Attack-OK"):
+		Global.dialogueBox = true
+		$"CanvasLayer/Dialogue Box".visible = true
+		if character.type == "teacher":
+			if pos == 1:
+				Engine.time_scale = 0
+				$"CanvasLayer/Dialogue Box/Name".text = "Guru"
+				$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
+			if pos >= 2:
+				Engine.time_scale = 1
+				Global.dialogueBox = false
+				$"CanvasLayer/Dialogue Box".visible = false
+				pos = 0
+		pos += 1

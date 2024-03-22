@@ -15,8 +15,10 @@ var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
 
+var type = "enemy"
+
 func _physics_process(delta):
-	if !Global.paused:
+	if !Global.paused or !Global.dialogueBox:
 		deal_with_damage()
 		update_health()
 		

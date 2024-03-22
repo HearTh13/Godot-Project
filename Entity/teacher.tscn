@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://pwml5qexebrb"]
+
+[ext_resource type="Texture2D" uid="uid://ncbwiy0cy6f0" path="res://Assets/Teacher.png" id="1_myi2l"]
+[ext_resource type="Script" path="res://Script/character.gd" id="1_uqury"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roruy"]
+atlas = ExtResource("1_myi2l")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhv1o"]
+atlas = ExtResource("1_myi2l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj46e"]
+atlas = ExtResource("1_myi2l")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl0if"]
+atlas = ExtResource("1_myi2l")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xaspi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roruy")
+}],
+"loop": true,
+"name": &"default_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhv1o")
+}],
+"loop": true,
+"name": &"default_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj46e")
+}],
+"loop": true,
+"name": &"default_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl0if")
+}],
+"loop": true,
+"name": &"default_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jeag"]
+
+[node name="Teacher" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_uqury")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_xaspi")
+animation = &"default_right"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(17, 24)
+shape = SubResource("CircleShape2D_6jeag")

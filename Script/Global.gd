@@ -5,7 +5,7 @@ var player_current_attack
 var current_scene 
 var transition 
 var paused 
-var message 
+var message
 
 var player_enter_posx 
 var player_enter_posy 
@@ -35,8 +35,8 @@ var doorCol
 var doorClose
 
 var open = false
-
 var story2 = false
+var dialogueBox = false
 
 func finish_change():
 	if transition == true:

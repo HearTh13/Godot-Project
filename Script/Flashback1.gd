@@ -8,6 +8,7 @@ func _ready():
 	$Player.position.y = Global.player_enter_posy
 	$Player/CanvasLayer/GUI.visible = false
 	Global.objective = "Belajar!"
+	$Teacher.type = "teacher"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,4 +18,5 @@ func _process(delta):
 	
 func change_scene():
 	pass
+
 
