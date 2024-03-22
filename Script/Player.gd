@@ -38,7 +38,6 @@ func _physics_process(_delta):
 			self.queue_free()
 	
 	if inDialogueBox:
-		print(Global.dialogueBox)
 		chat()
 
 func player_movement():

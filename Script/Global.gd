@@ -50,6 +50,7 @@ func pause_menu(dim):
 		if paused:
 			Engine.time_scale = 1
 			dim.visible = false
+			
 		else:
 			Engine.time_scale = 0
 			dim.visible = true

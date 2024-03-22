@@ -1,21 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://c50tmpcvmxq5r"]
+[gd_scene load_steps=4 format=3 uid="uid://uyoeom3ynqbi"]
 
-[ext_resource type="Script" path="res://Script/Flashback1.gd" id="1_ayram"]
-[ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_yr65w"]
-[ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="2_626s5"]
-[ext_resource type="PackedScene" uid="uid://pwml5qexebrb" path="res://Entity/teacher.tscn" id="4_hw80q"]
-[ext_resource type="PackedScene" uid="uid://dbn1tyqrv4wqw" path="res://Entity/studentA.tscn" id="5_uoyt1"]
-[ext_resource type="PackedScene" uid="uid://b683qgk41axb6" path="res://Entity/studentB.tscn" id="6_gufyp"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2slm4"]
+[ext_resource type="Script" path="res://Script/Flashback2.gd" id="1_g0kme"]
+[ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="2_dqlyc"]
+[ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_aagig"]
 
 [node name="Flashback1" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_ayram")
+script = ExtResource("1_g0kme")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1_yr65w")
+tile_set = ExtResource("2_dqlyc")
 format = 2
 layer_0/name = "Ground"
 layer_0/navigation_enabled = false
@@ -27,8 +22,8 @@ layer_2/name = "YSort"
 layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(196613, 458754, 2, 458757, 458754, 2, 196616, 458754, 2, 458760, 458754, 2, 196619, 458754, 2, 458763, 458754, 2, 196622, 458754, 2, 458766, 458754, 2, 196625, 458754, 2, 458769, 458754, 2, 196614, 196610, 9, 262150, 196610, 9, 458758, 196610, 9, 524294, 196610, 9, 196617, 196610, 9, 262153, 196610, 9, 458761, 196610, 9, 524297, 196610, 9, 196620, 196610, 9, 262156, 196610, 9, 458764, 196610, 9, 524300, 196610, 9, 262159, 196610, 9, 196623, 196610, 9, 458767, 196610, 9, 524303, 196610, 9, 458770, 196610, 9, 524306, 196610, 9, 262162, 196610, 9, 196626, 196610, 9, 65553, 196610, 0, 65542, 196610, 0, 131073, 327682, 1, 131074, 393218, 1, 131075, 327682, 1, 131076, 393218, 1)
 
-[node name="Player" parent="." instance=ExtResource("2_626s5")]
-position = Vector2(80, 302)
+[node name="Player" parent="." instance=ExtResource("3_aagig")]
+position = Vector2(585, 184)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -39,49 +34,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.462745, 0.0196078, 0.423529)
-
-[node name="Teacher" parent="." instance=ExtResource("4_hw80q")]
-position = Vector2(32, 161)
-
-[node name="StudentA" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(189, 97)
-
-[node name="StudentB" parent="." instance=ExtResource("6_gufyp")]
-position = Vector2(381, 128)
-
-[node name="StudentC" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(188, 224)
-
-[node name="StudentD" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(189, 257)
-
-[node name="StudentE" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(286, 129)
-
-[node name="StudentF" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(478, 224)
-
-[node name="StudentG" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(381, 256)
-
-[node name="StudentH" parent="." instance=ExtResource("6_gufyp")]
-position = Vector2(382, 99)
-
-[node name="StudentI" parent="." instance=ExtResource("6_gufyp")]
-position = Vector2(573, 225)
-
-[node name="StudentJ" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(574, 259)
-
-[node name="StudentK" parent="." instance=ExtResource("5_uoyt1")]
-position = Vector2(477, 97)
-
-[node name="Progress" type="Area2D" parent="."]
-position = Vector2(80, 302)
-
-[node name="Collision" type="CollisionShape2D" parent="Progress"]
-position = Vector2(512, -158)
-shape = SubResource("CircleShape2D_2slm4")
-
-[connection signal="body_entered" from="Progress" to="." method="_on_progress_body_entered"]
-[connection signal="body_exited" from="Progress" to="." method="_on_progress_body_exited"]

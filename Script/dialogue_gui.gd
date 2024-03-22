@@ -75,11 +75,58 @@ func dialog():
 			charA.texture = load("")
 			chara.text = ""
 			text.text = "..."
-		if pos == 2:
-			text.text = "3 jam yang lalu."
 		if pos == 3:
+			text.text = "3 jam yang lalu."
+		if pos == 4:
 			animation.play("fade_out_white")
-
+	
+	elif dialogue == 3:
+		if pos == 0:
+			background.texture = load("res://Assets/Background/classroom.jpg")
+			charB.texture = load("")
+			chara.text = "Pak Guru"
+			text.text = "Baik! Seperti biasa, pelajaran akan dimulai. Buka bab 3 halaman 45!"
+		if pos == 1:
+			charA.texture = load("")
+			charB.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Suhi"
+			text.text = "Hari yang membosankan seperti biasa..."
+		if pos == 2:
+			chara.text = "Suhi"
+			text.text = "..."
+		if pos == 3:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Murid A"
+			text.text = "Grrrrr...!"
+		if pos == 4:
+			chara.text = "Pak Guru"
+			text.text = "Paijo, kenapa kamu berdiri? Saya bilang pelajarannya akan dimulai!"
+		if pos == 5:
+			chara.text = "Murid A"
+			text.text = "Grrrrr!!!"
+		if pos == 6:
+			charB.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Suhi"
+			text.text = "Si Paijo kenapa...?"
+		if pos == 7:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Pak Guru"
+			text.text = "Saya bilang, duduk!"
+		if pos == 8:
+			background.texture = load("res://Assets/Background/classroom.jpg")
+			charA.texture = load("")
+			charB.texture = load("")
+			chara.text = "Murid A"
+			text.text = "Graaaaaaah!"
+		if pos == 9:
+			Global.message = 0
+			pos = 0
+			Global.player_enter_posx = 585
+			Global.player_enter_posy = 184
+			get_tree().change_scene_to_file("res://Scene/Flashback2.tscn")
+			
 	elif textSign == 1:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/cave.png")
