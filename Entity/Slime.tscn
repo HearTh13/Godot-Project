@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e2p6d"]
-radius = 69.0
+radius = 87.0057
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fff1"]
 radius = 16.0
@@ -202,6 +202,7 @@ shape = SubResource("CapsuleShape2D_64id7")
 [node name="DamageCooldown" type="Timer" parent="."]
 
 [node name="Healthbar" parent="." instance=ExtResource("3_yrc52")]
+z_index = 2
 offset_left = -14.0
 offset_top = -18.0
 offset_right = 15.0

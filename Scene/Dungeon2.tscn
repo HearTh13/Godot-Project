@@ -32,11 +32,13 @@ layer_2/tile_data = PackedInt32Array(327690, 131076, 0)
 [node name="Player" parent="." instance=ExtResource("5_r05gc")]
 position = Vector2(323, 304)
 
-[node name="Slime" parent="." instance=ExtResource("3_6bxng")]
-position = Vector2(571, 146)
+[node name="Slime" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("3_6bxng")]
+position = Vector2(574, 236)
+marker = NodePath("../Slime2EndPoint")
 
-[node name="Slime2" parent="." instance=ExtResource("3_6bxng")]
+[node name="Slime2" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("3_6bxng")]
 position = Vector2(189, 90)
+marker = NodePath("../Slime1EndPoint")
 
 [node name="Dungeon1_Transfer" type="Area2D" parent="."]
 
@@ -55,6 +57,12 @@ offset_left = 179.0
 offset_top = 93.0
 offset_right = 467.0
 offset_bottom = 254.0
+
+[node name="Slime1EndPoint" type="Marker2D" parent="."]
+position = Vector2(420, 97)
+
+[node name="Slime2EndPoint" type="Marker2D" parent="."]
+position = Vector2(590, 87)
 
 [connection signal="body_entered" from="Dungeon1_Transfer" to="." method="_on_dungeon_1_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon1_Transfer" to="." method="_on_dungeon_1_transfer_body_exited"]

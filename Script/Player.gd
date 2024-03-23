@@ -254,16 +254,17 @@ func mess():
 
 func chat():
 	if Input.is_action_just_pressed("Attack-OK"):
-		Global.dialogueBox = true
-		$"CanvasLayer/Dialogue Box".visible = true
 		if character.type == "teacher":
-			if pos == 1:
-				Engine.time_scale = 0
-				$"CanvasLayer/Dialogue Box/Name".text = "Guru"
-				$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
-			if pos >= 2:
-				Engine.time_scale = 1
-				Global.dialogueBox = false
-				$"CanvasLayer/Dialogue Box".visible = false
-				pos = 0
-		pos += 1
+			Global.dialogueBox = true
+			$"CanvasLayer/Dialogue Box".visible = true
+			if character.type == "teacher":
+				if pos == 1:
+					Engine.time_scale = 0
+					$"CanvasLayer/Dialogue Box/Name".text = "Guru"
+					$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
+				if pos >= 2:
+					Engine.time_scale = 1
+					Global.dialogueBox = false
+					$"CanvasLayer/Dialogue Box".visible = false
+					pos = 0
+			pos += 1

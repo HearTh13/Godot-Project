@@ -32,11 +32,13 @@ layer_2/tile_data = PackedInt32Array(262162, 131072, 4, 524304, 4, 0, 524303, 4,
 [node name="Player" parent="." instance=ExtResource("3_riaui")]
 position = Vector2(349, 147)
 
-[node name="Slime" parent="." instance=ExtResource("4_d2177")]
+[node name="Slime" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("4_d2177")]
 position = Vector2(406, 98)
+marker = NodePath("../Slime1EndPoint")
 
-[node name="Slime2" parent="." instance=ExtResource("4_d2177")]
-position = Vector2(200, 227)
+[node name="Slime2" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("4_d2177")]
+position = Vector2(159, 272)
+marker = NodePath("../Slime2EndPoint")
 
 [node name="Dungeon3_Transfer" type="Area2D" parent="."]
 
@@ -55,6 +57,12 @@ shape = SubResource("RectangleShape2D_ifd1g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(520, 191)
 shape = SubResource("CircleShape2D_qoncr")
+
+[node name="Slime1EndPoint" type="Marker2D" parent="."]
+position = Vector2(450, 275)
+
+[node name="Slime2EndPoint" type="Marker2D" parent="."]
+position = Vector2(191, 94)
 
 [connection signal="body_entered" from="Dungeon3_Transfer" to="." method="_on_dungeon_3_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon3_Transfer" to="." method="_on_dungeon_3_transfer_body_exited"]

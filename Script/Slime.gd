@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
+@export var limit = 0.5
+@export var marker: Marker2D
+@onready var animation = $AnimatedSprite2D
+
 var player = null
 
 var max_health = 100
 var health = max_health
-var speed = 45
+var speed = 35
 var str = 20
 var def = 2
 var exp = 5
@@ -15,7 +19,12 @@ var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
 
-var type = "enemy"
+var startPosition
+var endPosition
+
+func _ready():
+	startPosition = position
+	endPosition = marker.global_position
 
 func _physics_process(delta):
 	if !Global.paused or !Global.dialogueBox:
@@ -29,19 +38,33 @@ func _physics_process(delta):
 				
 				$AnimatedSprite2D.play("Walk")
 				
-				if(player.position.x - position.x):
+				if player.position.x < position.x :
 					$AnimatedSprite2D.flip_h = false
 				else:
 					$AnimatedSprite2D.flip_h = true
-				
+				move_and_collide(velocity)
 			else:
-				velocity = lerp(velocity, Vector2.ZERO, 0.07)
-				$AnimatedSprite2D.play("Idle")
-			move_and_collide(velocity)
+				updateVelocity()
+				move_and_slide()
+				spriteAnimation()
 		else:
 			$AnimatedSprite2D.play("Dead")
 			
+func changeDir():
+	var temp = endPosition
+	endPosition = startPosition
+	startPosition = temp
 
+func updateVelocity():
+	var moveDirection = endPosition - position
+	if moveDirection.length() < limit:
+		changeDir()
+	velocity = moveDirection.normalized() * speed
+
+func spriteAnimation():
+	animation.flip_h = false
+	if velocity.x > 0:
+		animation.flip_h = true
 
 func _on_detection_area_body_entered(body):
 	player = body
@@ -90,7 +113,9 @@ func update_health():
 	var damagebar = $Healthbar/Damagebar
 	
 	healthbar.value = health
+	healthbar.max_value = max_health
 	damagebar.value = health
+	damagebar.max_value = max_health
 	
 	if health >= max_health:
 		healthbar.visible = false

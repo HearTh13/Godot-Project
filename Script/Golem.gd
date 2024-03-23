@@ -1,13 +1,17 @@
 extends CharacterBody2D
 
+@export var limit = 0.5
+@export var marker: Marker2D
+@onready var animation = $Normal
+
 var player = null
 
-var max_health = 100
+var max_health = 200
 var health = max_health
-var speed = 45
-var str = 20
-var def = 2
-var exp = 5
+var speed = 35
+var str = 40
+var def = 4
+var exp = 35
 
 var alive = true
 var running = true
@@ -15,7 +19,14 @@ var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
 
-var type = "enemy"
+var startPosition
+var endPosition
+
+var pos
+
+func _ready():
+	startPosition = position
+	endPosition = marker.global_position
 
 func _physics_process(delta):
 	if !Global.paused or !Global.dialogueBox:
@@ -27,21 +38,33 @@ func _physics_process(delta):
 				if running:
 					velocity = (player.get_global_position() - position).normalized() * speed * delta
 				
-				$AnimatedSprite2D.play("Walk")
+				if player.position.x < position.x:
+					pos = "Walk_left"
+				if player.position.x > position.x:
+					pos = "Walk_right"
+				animation.play(pos)
 				
-				if(player.position.x - position.x):
-					$AnimatedSprite2D.flip_h = false
-				else:
-					$AnimatedSprite2D.flip_h = true
-				
+				move_and_collide(velocity)
 			else:
-				velocity = lerp(velocity, Vector2.ZERO, 0.07)
-				$AnimatedSprite2D.play("Idle")
-			move_and_collide(velocity)
+				updateVelocity()
+				move_and_slide()
+				spriteAnimation()
 		else:
-			$AnimatedSprite2D.play("Dead")
+			animation.play("Dead")
 			
+func changeDir():
+	var temp = endPosition
+	endPosition = startPosition
+	startPosition = temp
 
+func updateVelocity():
+	var moveDirection = endPosition - position
+	if moveDirection.length() < limit:
+		changeDir()
+	velocity = moveDirection.normalized() * speed
+
+func spriteAnimation():
+	animation.play("Walk")
 
 func _on_detection_area_body_entered(body):
 	player = body
@@ -78,8 +101,6 @@ func deal_with_damage():
 				if health <= 0:
 					player.transfer_exp(exp)
 					$Dead.start()
-					
-				
 
 func _on_damage_cooldown_timeout():
 	modulate.a8 = 255
@@ -90,7 +111,9 @@ func update_health():
 	var damagebar = $Healthbar/Damagebar
 	
 	healthbar.value = health
+	healthbar.max_value = max_health
 	damagebar.value = health
+	damagebar.max_value = max_health
 	
 	if health >= max_health:
 		healthbar.visible = false
@@ -99,7 +122,6 @@ func update_health():
 
 func _on_run_timeout():
 	running = true
-	
 
 func play_sfx():
 	$SFX.play()

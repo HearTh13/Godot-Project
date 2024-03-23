@@ -25,6 +25,7 @@ func _on_continue_pressed():
 
 func _on_title_pressed():
 	Global.paused = false
+	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://Interface/menu.tscn")
 
 func menu():

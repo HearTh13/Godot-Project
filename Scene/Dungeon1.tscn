@@ -838,8 +838,9 @@ position = Vector2(273, 172)
 position = Vector2(320, -7)
 shape = SubResource("RectangleShape2D_74iid")
 
-[node name="Slime" parent="." instance=ExtResource("5_j3dhu")]
-position = Vector2(392, 210)
+[node name="Slime" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("5_j3dhu")]
+position = Vector2(478, 130)
+marker = NodePath("../Slime1EndPoint")
 
 [node name="Message" parent="." instance=ExtResource("6_s37t4")]
 position = Vector2(256, 96)
@@ -850,6 +851,9 @@ offset_top = 2.0
 offset_right = 10.0
 offset_bottom = 25.0
 text = "1"
+
+[node name="Slime1EndPoint" type="Marker2D" parent="."]
+position = Vector2(383, 227)
 
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]
