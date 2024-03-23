@@ -501,7 +501,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_Back",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -527,7 +527,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_Front",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -553,7 +553,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_Left",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -579,7 +579,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Attack_Right",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atjdr"]
@@ -594,7 +594,7 @@ radius = 7.0
 height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_000w6"]
-radius = 43.0116
+radius = 26.0192
 
 [node name="Golem" type="CharacterBody2D"]
 light_mask = 2
@@ -604,14 +604,16 @@ script = ExtResource("1_244xa")
 
 [node name="Normal" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h0fui")
-animation = &"Walk_front"
+animation = &"Walk_right"
+frame_progress = 0.16387
 offset = Vector2(0, -8)
 
 [node name="Attack" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_e4588")
-animation = &"Attack_Back"
+animation = &"Attack_Right"
+frame_progress = 0.382734
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
@@ -654,11 +656,17 @@ stream = ExtResource("4_cew7a")
 
 [node name="Dead" type="Timer" parent="."]
 
+[node name="AttackAnimation" type="Timer" parent="."]
+wait_time = 1.9
+
 [connection signal="animation_finished" from="Normal" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Run" to="." method="_on_run_timeout"]
 [connection signal="timeout" from="Dead" to="." method="_on_dead_timeout"]
+[connection signal="timeout" from="AttackAnimation" to="." method="_on_attack_animation_timeout"]

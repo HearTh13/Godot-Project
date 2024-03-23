@@ -3,12 +3,13 @@ extends CharacterBody2D
 @export var limit = 0.5
 @export var marker: Marker2D
 @onready var animation = $Normal
+@onready var attackAnim = $Attack
 
 var player = null
 
 var max_health = 200
 var health = max_health
-var speed = 35
+var speed = 60
 var str = 40
 var def = 4
 var exp = 35
@@ -37,18 +38,18 @@ func _physics_process(delta):
 			if player_chase:
 				if running:
 					velocity = (player.get_global_position() - position).normalized() * speed * delta
+					if player.position.x < position.x:
+						pos = "Walk_left"
+					else:
+						pos = "Walk_right"
+					animation.play(pos)
 				
-				if player.position.x < position.x:
-					pos = "Walk_left"
-				if player.position.x > position.x:
-					pos = "Walk_right"
-				animation.play(pos)
-				
-				move_and_collide(velocity)
+				else:
+					attack_scene()
 			else:
-				updateVelocity()
-				move_and_slide()
-				spriteAnimation()
+				velocity = lerp(velocity, Vector2.ZERO, 0.07)
+				animation.play("Idle")
+			move_and_collide(velocity)
 		else:
 			animation.play("Dead")
 			
@@ -64,16 +65,21 @@ func updateVelocity():
 	velocity = moveDirection.normalized() * speed
 
 func spriteAnimation():
-	animation.play("Walk")
-
+	pos = "Walk_left"
+	if velocity.x > 0:
+		pos = "Walk_right"
+	animation.play(pos)
+	
 func _on_detection_area_body_entered(body):
-	player = body
-	player_chase = true
+	if body.has_method("player"):
+		player = body
+		player_chase = true
 
 
 func _on_detection_area_body_exited(body):
-	player = null
-	player_chase = false
+	if body.has_method("player"):
+		player = null
+		player_chase = false
 
 func enemy():
 	pass
@@ -94,7 +100,9 @@ func deal_with_damage():
 				health = health - Global.str
 				$DamageCooldown.start()
 				$Run.start()
+				print(running)
 				running = false
+				print(running)
 				take_damage = true
 				modulate.a8 = 100
 				play_sfx()
@@ -121,6 +129,8 @@ func update_health():
 		healthbar.visible = true
 
 func _on_run_timeout():
+	animation.visible = true
+	attackAnim.visible = false
 	running = true
 
 func play_sfx():
@@ -128,3 +138,31 @@ func play_sfx():
 
 func _on_dead_timeout():
 	self.queue_free()
+
+
+func _on_attack_area_body_entered(body):
+	if body.has_method("player"):
+		velocity = Vector2(0, 0)
+		running = false
+		$AttackAnimation.start()
+
+func _on_attack_area_body_exited(body):
+	if body.has_method("player"):
+		animation.visible = false
+		attackAnim.visible = true
+		running = true
+
+func attack_scene():
+	animation.visible = false
+	attackAnim.visible = true
+	var playerPos = player.position
+	if pos == "Walk_left":
+		attackAnim.play("Attack_Left")
+	elif pos == "Walk_right":
+		attackAnim.play("Attack_Right")
+	
+
+func _on_attack_animation_timeout():
+	animation.visible = true
+	attackAnim.visible = false
+	running = true

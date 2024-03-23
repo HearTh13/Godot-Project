@@ -100,6 +100,7 @@ offset_top = 19.0
 offset_right = 191.0
 offset_bottom = 180.0
 texture = ExtResource("4_56ylw")
+expand_mode = 1
 
 [node name="Dialogue Box" type="TextureRect" parent="."]
 layout_mode = 1

@@ -267,4 +267,4 @@ func chat():
 					Global.dialogueBox = false
 					$"CanvasLayer/Dialogue Box".visible = false
 					pos = 0
-			pos += 1
+				pos += 1

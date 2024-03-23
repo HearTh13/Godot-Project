@@ -8,6 +8,7 @@ var charA
 var charB
 var background
 var itemBox
+var item
 var textSign
 var animation
 
@@ -22,6 +23,7 @@ func _ready():
 	charB = $CharacterB
 	background = $Background
 	itemBox = $ItemBox
+	item = $ItemBox/Item
 	pos = 0
 	dialogue = Global.dialogue
 	textSign = Global.message
@@ -126,6 +128,58 @@ func dialog():
 			Global.player_enter_posx = 585
 			Global.player_enter_posy = 184
 			get_tree().change_scene_to_file("res://Scene/Flashback2.tscn")
+		
+	elif dialogue == 4:
+		if pos == 0:
+			background.texture = load("res://Assets/Background/hallway.jpg")
+			charB.texture = load("")
+			chara.text = "Suhi"
+			text.text = "Hah..! Hah...!"
+		if pos == 1:
+			chara.text = "Suhi"
+			text.text = "Paijo! Apa yang kamu lakukan!?"
+		if pos == 2:
+			charA.texture = load("")
+			charB.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Murid A"
+			text.text = "Groar!!!!"
+		if pos == 3:
+			charB.texture = load("")
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Suhi"
+			text.text = "Oh tidak, jalan buntu...!"
+		if pos == 4:
+			charA.texture = load("")
+			chara.text = "???"
+			text.text = "Jangan menyerah!"
+		if pos == 5:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Suhi"
+			text.text = "Huh?"
+		if pos == 6:
+			charA.texture = load("")
+			chara.text = "???"
+			text.text = "Gunakan Pedang ini!"
+		if pos == 7:
+			item.texture = load("res://Assets/katana.png")
+			itemBox.visible = true
+			chara.text = "???"
+			text.text = "Pedang ini ampuh untuk melawan para Dream Eater!"
+		if pos == 8:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "Suhi"
+			text.text = "... Dream Eater...!"
+		if pos == 9:
+			chara.text = "Suhi"
+			text.text = "T-tapi jika aku menyerangnya-!"
+		if pos == 10:
+			charA.texture = load("")
+			chara.text = "???"
+			text.text = "Tenang saja! Temanmu tidak akan mati! Percaya saja!"
+		if pos == 11:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			chara.text = "???"
+			text.text = "B-baiklah kalau begitu!"
 			
 	elif textSign == 1:
 		if pos == 0:
