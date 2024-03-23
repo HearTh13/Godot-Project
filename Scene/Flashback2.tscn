@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="2_dqlyc"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_aagig"]
 
-[node name="Flashback1" type="Node2D"]
+[node name="Flashback2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_g0kme")
 
