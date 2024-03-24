@@ -40,6 +40,7 @@ func dialog():
 	if dialogue == 1:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/cave.png")
+			charA.texture = load("res://Assets/character/player_hurt.png")
 			charB.texture = load("")
 			chara.text = "Suhi"
 			text.text = "..."
@@ -47,15 +48,18 @@ func dialog():
 			chara.text = "Suhi"
 			text.text = "Kepalaku..."
 		elif pos == 2:
+			charA.texture = load("res://Assets/character/player_surprised.png")
 			chara.text = "Suhi"
 			text.text = "Eh...?"
 		elif pos == 3:
 			chara.text = "Suhi"
 			text.text = "Aku masuk ke dunia mimpi?"
 		elif pos == 4:
+			charA.texture = load("res://Assets/character/player_hurt.png")
 			chara.text = "Suhi"
 			text.text = "Gh... Sekarang bukan waktunya untuk bimbang...!"
 		elif pos == 5:
+			charA.texture = load("res://Assets/character/player_normal.png")
 			chara.text = "Suhi"
 			text.text = "Aku harus menyelamatkan mereka!"
 		elif pos == 6:
@@ -66,6 +70,7 @@ func dialog():
 	elif dialogue == 2:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/cave.png")
+			charA.texture = load("res://Assets/character/player_normal.png")
 			charB.texture = load("")
 			chara.text = "Suhi"
 			text.text = "Huft... Huft..."
@@ -85,44 +90,50 @@ func dialog():
 	elif dialogue == 3:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/classroom.jpg")
+			charA.texture = load("res://Assets/character/teacher_normal.png")
 			charB.texture = load("")
 			chara.text = "Pak Guru"
 			text.text = "Baik! Seperti biasa, pelajaran akan dimulai. Buka bab 3 halaman 45!"
 		if pos == 1:
 			charA.texture = load("")
-			charB.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("res://Assets/character/player_normal.png")
 			chara.text = "Suhi"
 			text.text = "Hari yang membosankan seperti biasa..."
 		if pos == 2:
 			chara.text = "Suhi"
 			text.text = "..."
 		if pos == 3:
-			charA.texture = load("res://Assets/SampleCharacter.png")
-			charB.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/teacher_normal.png")
+			charB.texture = load("res://Assets/character/studentA_angry.png")
 			chara.text = "Murid A"
 			text.text = "Grrrrr...!"
 		if pos == 4:
+			charA.texture = load("res://Assets/character/teacher_normal.png")
 			chara.text = "Pak Guru"
 			text.text = "Paijo, kenapa kamu berdiri? Saya bilang pelajarannya akan dimulai!"
 		if pos == 5:
 			chara.text = "Murid A"
 			text.text = "Grrrrr!!!"
 		if pos == 6:
-			charB.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("res://Assets/character/player_surprised.png")
 			chara.text = "Suhi"
 			text.text = "Si Paijo kenapa...?"
 		if pos == 7:
-			charA.texture = load("res://Assets/SampleCharacter.png")
-			charB.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/teacher_angry.png")
+			charB.texture = load("res://Assets/character/studentA_angry.png")
 			chara.text = "Pak Guru"
 			text.text = "Saya bilang, duduk!"
 		if pos == 8:
-			background.texture = load("res://Assets/Background/classroom.jpg")
 			charA.texture = load("")
-			charB.texture = load("")
+			charB.texture = load("res://Assets/character/studentA_angry.png")
 			chara.text = "Murid A"
 			text.text = "Graaaaaaah!"
 		if pos == 9:
+			charA.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("")
+			chara.text = "Murid B"
+			text.text = "Kyaaa! Lari semuanya!!"
+		if pos == 10:
 			Global.message = 0
 			pos = 0
 			Global.player_enter_posx = 585
@@ -132,6 +143,7 @@ func dialog():
 	elif dialogue == 4:
 		if pos == 0:
 			background.texture = load("res://Assets/Background/hallway.jpg")
+			charA.texture = load("res://Assets/character/player_normal.png")
 			charB.texture = load("")
 			chara.text = "Suhi"
 			text.text = "Hah..! Hah...!"
@@ -140,12 +152,12 @@ func dialog():
 			text.text = "Paijo! Apa yang kamu lakukan!?"
 		if pos == 2:
 			charA.texture = load("")
-			charB.texture = load("res://Assets/SampleCharacter.png")
+			charB.texture = load("res://Assets/character/studentA_angry.png")
 			chara.text = "Murid A"
 			text.text = "Groar!!!!"
 		if pos == 3:
 			charB.texture = load("")
-			charA.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/player_surprised.png")
 			chara.text = "Suhi"
 			text.text = "Oh tidak, jalan buntu...!"
 		if pos == 4:
@@ -153,7 +165,7 @@ func dialog():
 			chara.text = "???"
 			text.text = "Jangan menyerah!"
 		if pos == 5:
-			charA.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/player_surprised.png")
 			chara.text = "Suhi"
 			text.text = "Huh?"
 		if pos == 6:
@@ -166,10 +178,12 @@ func dialog():
 			chara.text = "???"
 			text.text = "Pedang ini ampuh untuk melawan para Dream Eater!"
 		if pos == 8:
-			charA.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/player_normal.png")
 			chara.text = "Suhi"
 			text.text = "... Dream Eater...!"
 		if pos == 9:
+			itemBox.visible = false
+			charA.texture = load("res://Assets/character/player_hurt.png")
 			chara.text = "Suhi"
 			text.text = "T-tapi jika aku menyerangnya-!"
 		if pos == 10:
@@ -177,9 +191,15 @@ func dialog():
 			chara.text = "???"
 			text.text = "Tenang saja! Temanmu tidak akan mati! Percaya saja!"
 		if pos == 11:
-			charA.texture = load("res://Assets/SampleCharacter.png")
+			charA.texture = load("res://Assets/character/player_normal.png")
 			chara.text = "???"
 			text.text = "B-baiklah kalau begitu!"
+		if pos == 12:
+			Global.message = 0
+			pos = 0
+			Global.player_enter_posx = 113
+			Global.player_enter_posy = 201
+			get_tree().change_scene_to_file("res://Scene/Flashback3.tscn")
 			
 	elif textSign == 1:
 		if pos == 0:
