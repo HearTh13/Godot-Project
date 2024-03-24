@@ -124,16 +124,25 @@ func dialog():
 			chara.text = "Pak Guru"
 			text.text = "Saya bilang, duduk!"
 		if pos == 8:
+			background.texture = load("res://Assets/red.jpg")
 			charA.texture = load("")
+			charB.texture = load("")
+			chara.text = ""
+			text.text = "*Slash*"
+		if pos == 9:
+			background.texture = load("res://Assets/Background/classroom.jpg")
 			charB.texture = load("res://Assets/character/studentA_angry.png")
 			chara.text = "Murid A"
 			text.text = "Graaaaaaah!"
-		if pos == 9:
-			charA.texture = load("res://Assets/SampleCharacter.png")
+		if pos == 10:
+			charA.texture = load("res://Assets/character/studentB_normal.png")
 			charB.texture = load("")
 			chara.text = "Murid B"
+			text.text = "P-Paijo berubah menjadi monster!!"
+		if pos == 11:
+			chara.text = "Murid B"
 			text.text = "Kyaaa! Lari semuanya!!"
-		if pos == 10:
+		if pos == 12:
 			Global.message = 0
 			pos = 0
 			Global.player_enter_posx = 585
@@ -200,6 +209,14 @@ func dialog():
 			Global.player_enter_posx = 113
 			Global.player_enter_posy = 201
 			get_tree().change_scene_to_file("res://Scene/Flashback3.tscn")
+	
+	elif dialogue == 5:
+		if pos == 0:
+			background.texture = load("res://Assets/Background/hallway.jpg")
+			charA.texture = load("res://Assets/character/player_normal.png")
+			charB.texture = load("")
+			chara.text = "Suhi"
+			text.text = "Hah..! Hah...!"
 			
 	elif textSign == 1:
 		if pos == 0:

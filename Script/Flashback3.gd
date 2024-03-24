@@ -16,15 +16,15 @@ func _process(delta):
 	Global.pause_menu($Player/CanvasLayer/PauseMenu)
 	
 func change_scene():
-	pass
+	if !self.has_node("Golem"):
+		Global.dialogue = 5
+		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("player"):
 		Global.dialogue = 4
 		Global.message = 0
 		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
-
-			
 
 func _on_area_2d_body_exited(body):
 	if body.has_method("player"):

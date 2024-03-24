@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b683qgk41axb6" path="res://Entity/studentB.tscn" id="6_gufyp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2slm4"]
+radius = 30.0
 
 [node name="Flashback1" type="Node2D"]
 y_sort_enabled = true
@@ -77,10 +78,10 @@ position = Vector2(574, 259)
 position = Vector2(477, 97)
 
 [node name="Progress" type="Area2D" parent="."]
-position = Vector2(80, 302)
+position = Vector2(-366, 330)
 
 [node name="Collision" type="CollisionShape2D" parent="Progress"]
-position = Vector2(512, -158)
+position = Vector2(573, -156)
 shape = SubResource("CircleShape2D_2slm4")
 
 [connection signal="body_entered" from="Progress" to="." method="_on_progress_body_entered"]
