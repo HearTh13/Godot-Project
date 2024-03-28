@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cif0avskjbjjd"]
+
+[ext_resource type="Texture2D" uid="uid://dmsophtbptfiy" path="res://Assets/katana.png" id="1_hyvp1"]
+[ext_resource type="Script" path="res://Script/Katana.gd" id="2_cma41"]
+
+[node name="Item" type="Sprite2D"]
+texture = ExtResource("1_hyvp1")
+script = ExtResource("2_cma41")

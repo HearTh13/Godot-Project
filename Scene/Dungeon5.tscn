@@ -57,10 +57,7 @@ position = Vector2(575, 128)
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_sc15h")]
-position = Vector2(333, 167)
-
-[node name="GUI" parent="Player/CanvasLayer" index="0"]
-visible = false
+position = Vector2(36, 174)
 
 [connection signal="body_entered" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_exited"]
@@ -68,4 +65,3 @@ visible = false
 [connection signal="body_exited" from="Dungeon6_Transfer" to="." method="_on_dungeon_6_transfer_body_exited"]
 
 [editable path="Door"]
-[editable path="Player"]

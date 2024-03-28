@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var text = 0
+var type = "sign"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,5 +12,5 @@ func _ready():
 func _process(delta):
 	text = int($Label.text)
 
-func board():
+func character():
 	pass

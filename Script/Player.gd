@@ -16,7 +16,6 @@ const speed = 125
 
 var attack_ip = false
 var save_state = false
-var signMessage = false
 var inDialogueBox = false
 
 var pos = 0
@@ -29,7 +28,6 @@ func _physics_process(_delta):
 		save()
 		current_camera()
 		update_health()
-		mess()
 	
 		if Global.health <= 0:
 			player_alive = false
@@ -113,9 +111,6 @@ func _on_player_hitbox_body_entered(body):
 		enemy = body
 	if body.has_method("save_point"):
 		save_state = true
-	if body.has_method("board"):
-		signMessage = true
-		signBoard = body
 	if body.has_method("character"):
 		inDialogueBox = true
 		character = body
@@ -127,9 +122,6 @@ func _on_player_hitbox_body_exited(body):
 		enemy = null
 	if body.has_method("save_point"):
 		save_state = false
-	if body.has_method("board"):
-		signMessage = false
-		signBoard = null
 	if body.has_method("character"):
 		inDialogueBox = false
 		character = null
@@ -243,28 +235,31 @@ func save():
 			Global.save_game()
 			print("Data saved")
 
-func mess():
-	if signMessage:
-		if Input.is_action_just_pressed("Attack-OK"):
-			Global.dialogue = 0
-			Global.message = signBoard.text
-			Global.player_enter_posx = position.x
-			Global.player_enter_posy = position.y
-			get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
-
 func chat():
 	if Input.is_action_just_pressed("Attack-OK"):
+		Global.dialogueBox = true
+		$"CanvasLayer/Dialogue Box".visible = true
 		if character.type == "teacher":
-			Global.dialogueBox = true
-			$"CanvasLayer/Dialogue Box".visible = true
-			if character.type == "teacher":
+			if pos == 1:
+				Engine.time_scale = 0
+				$"CanvasLayer/Dialogue Box/Name".text = "Guru"
+				$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
+			if pos >= 2:
+				Engine.time_scale = 1
+				Global.dialogueBox = false
+				$"CanvasLayer/Dialogue Box".visible = false
+		if character.type == "sign":
+			if character.text == 1:
 				if pos == 1:
 					Engine.time_scale = 0
-					$"CanvasLayer/Dialogue Box/Name".text = "Guru"
-					$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
-				if pos >= 2:
+					$"CanvasLayer/Dialogue Box/Name".text = "Papan Tutorial"
+					$"CanvasLayer/Dialogue Box/Text".text = "WASD dan Arrow Key untuk jalan, Spasi dan Enter untuk menyerang"
+				if pos == 2:
+					$"CanvasLayer/Dialogue Box/Name".text = "Papan Tutorial"
+					$"CanvasLayer/Dialogue Box/Text".text = "Tekan Shift dan berjalan untuk lari"
+				if pos == 3:
 					Engine.time_scale = 1
 					Global.dialogueBox = false
 					$"CanvasLayer/Dialogue Box".visible = false
-					pos = 0
-				pos += 1
+		pos += 1
+
