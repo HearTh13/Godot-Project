@@ -281,7 +281,7 @@ func dialog():
 			chara.text = "Suhi"
 			text.text = "A-apa aku bisa?"
 		if pos == 18:
-			charB.texture = load("res://Assets/character/player_normal.png")
+			charB.texture = load("res://Assets/character/starfruit_normal.png")
 			chara.text = "Starfruit"
 			text.text = "Percaya dirilah. Kalau kamu tidak percaya diri mulai dari sekarang, sampai kapanpun kamu tidak akan pernah bisa menjadi orang hebat."
 		if pos == 19:

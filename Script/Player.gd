@@ -7,7 +7,6 @@ var character = null
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
-var player_alive = true
 
 var current_dir = "Walk_Front"
 var player_state = "idle"
@@ -20,23 +19,28 @@ var inDialogueBox = false
 
 var pos = 0
 
+func _ready():
+	Global.player_current_attack = false
+	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
+	$Animation/Dim.visible = false
+
 func _physics_process(_delta):
-	play_bgm()
-	if !Global.paused or !Global.dialogueBox:
-		player_movement()
-		enemy_attack()
-		save()
-		current_camera()
-		update_health()
-	
-		if Global.health <= 0:
-			player_alive = false
-			Global.health = 0
-			print("player has been killed")
-			self.queue_free()
-	
-	if inDialogueBox:
-		chat()
+	if !$CanvasLayer/PauseMenu.visible:
+		play_bgm()
+		if !Global.paused or !Global.dialogueBox or Global.alive:
+			player_movement()
+			enemy_attack()
+			save()
+			current_camera()
+			update_health()
+		
+			if Global.health <= 0:
+				Global.alive = false
+				Global.health = 0
+				get_tree().change_scene_to_file("res://Interface/pause_menu.tscn")
+		
+		if inDialogueBox:
+			chat()
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -263,3 +267,5 @@ func chat():
 					$"CanvasLayer/Dialogue Box".visible = false
 		pos += 1
 
+func _on_animation_animation_finished(anim_name):
+	Global.paused = true

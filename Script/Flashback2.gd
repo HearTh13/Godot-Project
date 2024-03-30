@@ -5,6 +5,7 @@ func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Ursulian March.mp3")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
+	Global.current_scene = "Flashback2"
 	$Player/CanvasLayer/GUI.visible = false
 	Global.objective = "Lari dari Paijo!"
 

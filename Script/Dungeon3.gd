@@ -5,6 +5,7 @@ func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Grassland Adventure.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
+	Global.current_scene = "Dungeon3"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

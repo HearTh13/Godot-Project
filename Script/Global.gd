@@ -19,6 +19,7 @@ var str
 var def 
 var next 
 var exp 
+var alive
 
 var init_pos 
 
@@ -35,8 +36,12 @@ var doorCol
 var doorClose
 
 var open = false
+var open2 = false
 var story2 = false
+var story3 = false
 var dialogueBox = false
+
+var scene
 
 func finish_change():
 	if transition == true:
@@ -50,7 +55,6 @@ func pause_menu(dim):
 		if paused:
 			Engine.time_scale = 1
 			dim.visible = false
-			
 		else:
 			Engine.time_scale = 0
 			dim.visible = true
@@ -66,6 +70,7 @@ func initial():
 	def = 10
 	next = 10
 	exp = 0
+	alive = true
 	
 	player_enter_posx = 276
 	player_enter_posy = 154
@@ -106,7 +111,9 @@ func save_game():
 	file.store_var(objective)
 	file.store_var(boss)
 	file.store_var(open)
+	file.store_var(open2)
 	file.store_var(story2)
+	file.store_var(story3)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -130,4 +137,6 @@ func load_game():
 	objective = file.get_var()
 	boss = file.get_var()
 	open = file.get_var()
+	open2 = file.get_var()
 	story2 = file.get_var()
+	story3 = file.get_var()

@@ -4,6 +4,7 @@ func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Grassland Adventure.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
+	Global.current_scene = "Dungeon5"
 	
 	Global.floor.append($"Color Floor1")
 	Global.floorBlue.append($"Color Floor1/Blue")
@@ -55,8 +56,8 @@ func _on_dungeon_6_transfer_body_entered(body):
 	if body.has_method("player"):
 		Global.current_scene = "Dungeon6"
 		Global.transition = true
-		Global.player_enter_posx = 618
-		Global.player_enter_posy = 95
+		Global.player_enter_posx = 36
+		Global.player_enter_posy = 174
 	
 func _on_dungeon_6_transfer_body_exited(body):
 	if body.has_method("player"):

@@ -27,7 +27,7 @@ func _ready():
 	endPosition = marker.global_position
 
 func _physics_process(delta):
-	if !Global.paused or !Global.dialogueBox:
+	if !Global.paused or !Global.dialogueBox or Global.alive:
 		deal_with_damage()
 		update_health()
 		
