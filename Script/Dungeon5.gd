@@ -1,5 +1,9 @@
 extends Node2D
 
+var doorClose
+var doorOpen
+var doorCol
+
 func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Twinklerock Cave.ogg")
 	$Player.position.x = Global.player_enter_posx
@@ -26,21 +30,18 @@ func _ready():
 	Global.floorRed.append($"Color Floor4/Red")
 	$"Color Floor4/Label".text = "4"
 	
-	Global.doorClose = $Door/Closed
-	Global.doorOpen = $Door/Open
-	Global.doorCol = $Door/Collision
-	
-	if Global.open:
-		Global.doorOpen.visible = true
-		Global.doorClose.visible = false
-		Global.doorCol.shape = null
-	
+	doorClose = $Door/Closed
+	doorOpen = $Door/Open
+	doorCol = $Door/Collision
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	change_scene()
-	camera_limit()
 	Global.pause_menu($Player/CanvasLayer/PauseMenu)
+	if Global.open:
+		doorOpen.visible = true
+		doorClose.visible = false
+		doorCol.disabled = true
 		
 func _on_dungeon_4_transfer_body_entered(body):
 	if body.has_method("player"):
@@ -72,7 +73,3 @@ func change_scene():
 		if Global.current_scene == "Dungeon6":
 			get_tree().change_scene_to_file("res://Scene/Dungeon6.tscn")
 			Global.finish_change()
-
-func camera_limit():
-	$Player/Camera.limit_right = 640
-	$Player/Camera.limit_bottom = 310

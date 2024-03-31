@@ -22,9 +22,6 @@ var pos = 0
 func _ready():
 	Global.player_current_attack = false
 	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
-	if Global.current_limit_camerax != null || Global.current_limit_cameray != null:
-		$Camera.limit_right = Global.current_limit_camerax
-		$Camera.limit_bottom = Global.current_limit_cameray
 	$Animation/Dim.visible = false
 
 func _physics_process(_delta):
@@ -175,13 +172,25 @@ func current_camera():
 		$Camera.limit_right = 640
 		$Camera.limit_bottom = 310
 	
-	elif Global.current_scene == "Dungeon2-1" or Global.current_scene == "Dungeon2-2":
+	elif Global.current_scene == "Dungeon2":
 		$Camera.limit_right = 640
 		$Camera.limit_bottom = 310
 	
 	elif Global.current_scene == "Dungeon3":
 		$Camera.limit_right = 640
 		$Camera.limit_bottom = 310
+		
+	elif Global.current_scene == "Dungeon4":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
+		
+	elif Global.current_scene == "Dungeon5":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
+		
+	elif Global.current_scene == "Dungeon6":
+		$Camera.limit_right = 1408
+		$Camera.limit_bottom = 1312
 
 func update_health():
 	var healthbar = $CanvasLayer/GUI/VBoxContainer/HPBar/Counter/TextureProgressBar
@@ -244,21 +253,24 @@ func save():
 
 func chat():
 	if Input.is_action_just_pressed("Attack-OK"):
-		Global.dialogueBox = true
-		$"CanvasLayer/Dialogue Box".visible = true
 		if character.type == "teacher":
+			Global.dialogueBox = true
+			$"CanvasLayer/Dialogue Box".visible = true
 			if pos == 1:
 				Engine.time_scale = 0
 				$"CanvasLayer/Dialogue Box/Name".text = "Guru"
 				$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
 			if pos >= 2:
 				Engine.time_scale = 1
+				pos = 0
 				Global.dialogueBox = false
 				$"CanvasLayer/Dialogue Box".visible = false
 		if character.type == "sign":
 			if character.text == 1:
+				Global.dialogueBox = true
+				$"CanvasLayer/Dialogue Box".visible = true
+				Engine.time_scale = 0
 				if pos == 1:
-					Engine.time_scale = 0
 					$"CanvasLayer/Dialogue Box/Name".text = "Papan Tutorial"
 					$"CanvasLayer/Dialogue Box/Text".text = "WASD dan Arrow Key untuk jalan, Spasi dan Enter untuk menyerang"
 				if pos == 2:
@@ -266,8 +278,50 @@ func chat():
 					$"CanvasLayer/Dialogue Box/Text".text = "Tekan Shift dan berjalan untuk lari"
 				if pos == 3:
 					Engine.time_scale = 1
+					pos = 0
 					Global.dialogueBox = false
 					$"CanvasLayer/Dialogue Box".visible = false
+			if character.text == 2:
+				Global.dialogueBox = true
+				$"CanvasLayer/Dialogue Box".visible = true
+				Engine.time_scale = 0
+				if pos == 1:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Untuk membuka pintu, pergi ke tengkorak."
+				if pos == 2:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Pergi ke selatan 3 petak."
+				if pos == 3:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Pergi ke barat 1 petak."
+				if pos == 4:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Pergi ke selatan 4 petak."
+				if pos == 5:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Pergi ke barat 5 petak."
+				if pos == 6:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Pergi ke utara 6 petak."
+				if pos == 7:
+					Engine.time_scale = 1
+					pos = 0
+					Global.dialogueBox = false
+					$"CanvasLayer/Dialogue Box".visible = false
+			if character.text == 3:
+				if !Global.open2:
+					Global.dialogueBox = true
+					$"CanvasLayer/Dialogue Box".visible = true
+					Engine.time_scale = 0
+					if pos == 1:
+						$"CanvasLayer/Dialogue Box/Name".text = ""
+						$"CanvasLayer/Dialogue Box/Text".text = "Kamu menekan sebuah tombol."
+					if pos == 2:
+						Engine.time_scale = 1
+						pos = 0
+						Global.dialogueBox = false
+						Global.open2 = true
+						$"CanvasLayer/Dialogue Box".visible = false
 		pos += 1
 
 func _on_animation_animation_finished(anim_name):

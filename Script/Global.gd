@@ -9,8 +9,6 @@ var message
 
 var player_enter_posx 
 var player_enter_posy 
-var current_limit_camerax
-var current_limit_cameray
 
 var level 
 var max_health 
@@ -32,10 +30,6 @@ var boss
 var floor = []
 var floorBlue = []
 var floorRed = []
-
-var doorOpen
-var doorCol
-var doorClose
 
 var open = false
 var open2 = false
@@ -99,8 +93,6 @@ func save_game():
 	file.store_var(message)
 	file.store_var(player_enter_posx)
 	file.store_var(player_enter_posy)
-	file.store_var(current_limit_camerax)
-	file.store_var(current_limit_cameray)
 	file.store_var(level)
 	file.store_var(max_health)
 	file.store_var(health)
@@ -127,8 +119,6 @@ func load_game():
 	message = file.get_var()
 	player_enter_posx = file.get_var()
 	player_enter_posy = file.get_var()
-	current_limit_camerax = file.get_var()
-	current_limit_cameray = file.get_var()
 	level = file.get_var()
 	max_health = file.get_var()
 	health = file.get_var()
