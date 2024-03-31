@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	$Player/BGM.stream = load("res://Assets/Music/Grassland Adventure.ogg")
+	$Player/BGM.stream = load("res://Assets/Music/Twinklerock Cave.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon5"
@@ -39,6 +39,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	change_scene()
+	camera_limit()
 	Global.pause_menu($Player/CanvasLayer/PauseMenu)
 		
 func _on_dungeon_4_transfer_body_entered(body):
@@ -71,3 +72,7 @@ func change_scene():
 		if Global.current_scene == "Dungeon6":
 			get_tree().change_scene_to_file("res://Scene/Dungeon6.tscn")
 			Global.finish_change()
+
+func camera_limit():
+	$Player/Camera.limit_right = 640
+	$Player/Camera.limit_bottom = 310

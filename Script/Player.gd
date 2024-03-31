@@ -22,6 +22,9 @@ var pos = 0
 func _ready():
 	Global.player_current_attack = false
 	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
+	if Global.current_limit_camerax != null || Global.current_limit_cameray != null:
+		$Camera.limit_right = Global.current_limit_camerax
+		$Camera.limit_bottom = Global.current_limit_cameray
 	$Animation/Dim.visible = false
 
 func _physics_process(_delta):

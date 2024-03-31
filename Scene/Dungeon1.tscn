@@ -858,4 +858,5 @@ position = Vector2(383, 227)
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]
 
+[editable path="Player"]
 [editable path="Message"]

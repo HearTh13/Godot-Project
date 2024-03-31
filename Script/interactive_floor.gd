@@ -44,68 +44,79 @@ func fl():
 		var boolean
 		if text == 1:
 			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
+				if Global.floorBlue[0] != null:
+					boolean = !Global.floorBlue[0].visible
+					Global.floorBlue[0].visible = boolean
+					boolean = !Global.floorRed[0].visible
+					Global.floorRed[0].visible = boolean
 				
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
+				if Global.floorBlue[1] != null:
+					boolean = !Global.floorBlue[1].visible
+					Global.floorBlue[1].visible = boolean
+					boolean = !Global.floorRed[1].visible
+					Global.floorRed[1].visible = boolean
 				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
+				if Global.floorBlue[3] != null:
+					boolean = !Global.floorBlue[3].visible
+					Global.floorBlue[3].visible = boolean
+					boolean = !Global.floorRed[3].visible
+					Global.floorRed[3].visible = boolean
 				pressed = true
 				
 		if text == 2:
 			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
+				if Global.floorBlue[0] != null:
+					boolean = !Global.floorBlue[0].visible
+					Global.floorBlue[0].visible = boolean
+					boolean = !Global.floorRed[0].visible
+					Global.floorRed[0].visible = boolean
 				
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
+				if Global.floorBlue[1] != null:
+					boolean = !Global.floorBlue[1].visible
+					Global.floorBlue[1].visible = boolean
+					boolean = !Global.floorRed[1].visible
+					Global.floorRed[1].visible = boolean
 				
-				boolean = !Global.floorBlue[2].visible
-				Global.floorBlue[2].visible = boolean
-				boolean = !Global.floorRed[2].visible
-				Global.floorRed[2].visible = boolean
+				if Global.floorBlue[2] != null:
+					boolean = !Global.floorBlue[2].visible
+					Global.floorBlue[2].visible = boolean
+					boolean = !Global.floorRed[2].visible
+					Global.floorRed[2].visible = boolean
 				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
+				if Global.floorBlue[3] != null:
+					boolean = !Global.floorBlue[3].visible
+					Global.floorBlue[3].visible = boolean
+					boolean = !Global.floorRed[3].visible
+					Global.floorRed[3].visible = boolean
 				pressed = true
 			
 		if text == 3:
 			if !pressed:
-				boolean = !Global.floorBlue[1].visible
-				Global.floorBlue[1].visible = boolean
-				boolean = !Global.floorRed[1].visible
-				Global.floorRed[1].visible = boolean
-				
-				boolean = !Global.floorBlue[2].visible
-				Global.floorBlue[2].visible = boolean
-				boolean = !Global.floorRed[2].visible
-				Global.floorRed[2].visible = boolean
+				if Global.floorBlue[1] != null:
+					boolean = !Global.floorBlue[1].visible
+					Global.floorBlue[1].visible = boolean
+					boolean = !Global.floorRed[1].visible
+					Global.floorRed[1].visible = boolean
+					
+				if Global.floorBlue[2] != null:
+					boolean = !Global.floorBlue[2].visible
+					Global.floorBlue[2].visible = boolean
+					boolean = !Global.floorRed[2].visible
+					Global.floorRed[2].visible = boolean
 				pressed = true
 		
 		if text == 4:
 			if !pressed:
-				boolean = !Global.floorBlue[0].visible
-				Global.floorBlue[0].visible = boolean
-				boolean = !Global.floorRed[0].visible
-				Global.floorRed[0].visible = boolean
+				if Global.floorBlue[0] != null:
+					boolean = !Global.floorBlue[0].visible
+					Global.floorBlue[0].visible = boolean
+					boolean = !Global.floorRed[0].visible
+					Global.floorRed[0].visible = boolean
 				
-				boolean = !Global.floorBlue[3].visible
-				Global.floorBlue[3].visible = boolean
-				boolean = !Global.floorRed[3].visible
-				Global.floorRed[3].visible = boolean
+				if Global.floorBlue[3] != null:
+					boolean = !Global.floorBlue[3].visible
+					Global.floorBlue[3].visible = boolean
+					boolean = !Global.floorRed[3].visible
+					Global.floorRed[3].visible = boolean
 				pressed = true
 
