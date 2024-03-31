@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://peyuhohqafkk"]
+[gd_scene load_steps=12 format=3 uid="uid://peyuhohqafkk"]
 
 [ext_resource type="Script" path="res://Script/Dungeon6.gd" id="1_24vlt"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_mvjbc"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dgsoe7ra0e4qd" path="res://Entity/door.tscn" id="5_7kfqi"]
 [ext_resource type="Texture2D" uid="uid://ctu6rh5kgcfhp" path="res://Assets/Door2.png" id="6_vv4tt"]
 [ext_resource type="Texture2D" uid="uid://bwb8lsg1pk53r" path="res://Assets/Door2_op.png" id="7_p6wlt"]
+[ext_resource type="PackedScene" uid="uid://c8gmddnh2pir6" path="res://Entity/golem.tscn" id="8_c5f0d"]
+[ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="9_4winu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp7cd"]
 size = Vector2(38, 76)
@@ -32,15 +34,11 @@ layer_2/name = "YSort"
 layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(262183, 131076, 0, 131114, 458755, 7)
 
-[node name="Dungeon4_Transfer" type="Area2D" parent="."]
+[node name="Dungeon5_Transfer" type="Area2D" parent="."]
 
-[node name="Collision" type="CollisionShape2D" parent="Dungeon4_Transfer"]
+[node name="Collision" type="CollisionShape2D" parent="Dungeon5_Transfer"]
 position = Vector2(-22, 160)
 shape = SubResource("RectangleShape2D_sp7cd")
-
-[node name="Dungeon6_Transfer" type="Area2D" parent="."]
-
-[node name="Collision" type="CollisionShape2D" parent="Dungeon6_Transfer"]
 
 [node name="Player" parent="." instance=ExtResource("2_6e2qy")]
 position = Vector2(36, 174)
@@ -89,6 +87,79 @@ disabled = true
 visible = false
 offset_right = 1408.0
 offset_bottom = 1312.0
+
+[node name="Golem" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("8_c5f0d")]
+position = Vector2(1332, 916)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Golem"]
+position = Vector2(2, -278)
+
+[node name="Golem2" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("8_c5f0d")]
+position = Vector2(1138, 656)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Golem2"]
+position = Vector2(-5, 253)
+
+[node name="Slime" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("9_4winu")]
+position = Vector2(413, 229)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime"]
+position = Vector2(-124, -71)
+
+[node name="Slime2" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("9_4winu")]
+position = Vector2(190, 240)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime2"]
+position = Vector2(-136, -3)
+
+[node name="Golem3" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("8_c5f0d")]
+position = Vector2(413, 111)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Golem3"]
+position = Vector2(-338, -9)
+
+[node name="Slime3" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("9_4winu")]
+position = Vector2(716, 670)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime3"]
+position = Vector2(278, 89)
+
+[node name="Golem4" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("8_c5f0d")]
+position = Vector2(326, 932)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Golem4"]
+position = Vector2(108, 320)
+
+[node name="Golem5" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("8_c5f0d")]
+position = Vector2(743, 1067)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Golem5"]
+position = Vector2(-59, -192)
+
+[node name="Slime4" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("9_4winu")]
+position = Vector2(1123, 1170)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime4"]
+position = Vector2(211, 58)
+
+[node name="Slime5" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("9_4winu")]
+position = Vector2(976, 1088)
+marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Slime5"]
+position = Vector2(-134, 41)
+
+[connection signal="body_entered" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_entered"]
+[connection signal="body_exited" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_exited"]
 
 [editable path="Player"]
 [editable path="Message"]

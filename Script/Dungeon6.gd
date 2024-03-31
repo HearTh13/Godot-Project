@@ -29,34 +29,20 @@ func _process(delta):
 		doorCol2.disabled = false
 		doorCol3.disabled = false
 		$Message2/CollisionShape2D.disabled = true
-	
-func _on_dungeon_2_transfer_body_entered(body):
-	if body.has_method("player"):
-		Global.current_scene = "Dungeon2"
-		Global.transition = true
-		Global.player_enter_posx = 618
-		Global.player_enter_posy = 95
 		
-func _on_dungeon_2_transfer_body_exited(body):
+func _on_dungeon_5_transfer_body_entered(body):
 	if body.has_method("player"):
-		Global.transition = false
-		
-func _on_dungeon_4_transfer_body_entered(body):
-	if body.has_method("player"):
-		Global.current_scene = "Dungeon4"
+		Global.current_scene = "Dungeon5"
 		Global.transition = true
 		Global.player_enter_posx = 24
 		Global.player_enter_posy = 186
 
-func _on_dungeon_4_transfer_body_exited(body):
+func _on_dungeon_5_transfer_body_exited(body):
 	if body.has_method("player"):
 		Global.transition = false
 
 func change_scene():
 	if Global.transition:
-		if Global.current_scene == "Dungeon2":
-			get_tree().change_scene_to_file("res://Scene/Dungeon2.tscn")
-			Global.finish_change()
-		if Global.current_scene == "Dungeon4":
-			get_tree().change_scene_to_file("res://Scene/Dungeon4.tscn")
+		if Global.current_scene == "Dungeon5":
+			get_tree().change_scene_to_file("res://Scene/Dungeon5.tscn")
 			Global.finish_change()

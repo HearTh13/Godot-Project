@@ -241,15 +241,17 @@ func transfer_exp(exp):
 			Global.max_mana += 6
 			Global.def += 1
 			Global.next *= 3
-		print("Level up")
+		$Animation.play("text_level_up")
 
 func save():
 	if save_state:
 		if Input.is_action_just_pressed("Attack-OK"):
+			Global.health = Global.max_health
+			Global.mana = Global.max_mana
 			Global.player_enter_posx = position.x
 			Global.player_enter_posy = position.y
 			Global.save_game()
-			print("Data saved")
+			$Animation.play("text_saved")
 
 func chat():
 	if Input.is_action_just_pressed("Attack-OK"):
@@ -322,6 +324,32 @@ func chat():
 						Global.dialogueBox = false
 						Global.open2 = true
 						$"CanvasLayer/Dialogue Box".visible = false
+			if character.text == 4:
+				Global.dialogueBox = true
+				$"CanvasLayer/Dialogue Box".visible = true
+				Engine.time_scale = 0
+				if pos == 1:
+					$"CanvasLayer/Dialogue Box/Name".text = "Hint"
+					$"CanvasLayer/Dialogue Box/Text".text = "Tekan 4 tombol di pojokan untuk membuka pintu."
+				if pos == 2:
+					Engine.time_scale = 1
+					pos = 0
+					Global.dialogueBox = false
+					Global.open2 = true
+					$"CanvasLayer/Dialogue Box".visible = false
+			if character.text == 5:
+				Global.dialogueBox = true
+				$"CanvasLayer/Dialogue Box".visible = true
+				Engine.time_scale = 0
+				if pos == 1:
+					$"CanvasLayer/Dialogue Box/Name".text = "Papan Tutorial"
+					$"CanvasLayer/Dialogue Box/Text".text = "Tekan Enter atau Spasi untuk menyimpan data."
+				if pos == 2:
+					Engine.time_scale = 1
+					pos = 0
+					Global.dialogueBox = false
+					Global.open2 = true
+					$"CanvasLayer/Dialogue Box".visible = false
 		pos += 1
 
 func _on_animation_animation_finished(anim_name):

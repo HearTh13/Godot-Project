@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm58o30brwpag"]
+[gd_scene load_steps=9 format=3 uid="uid://dm58o30brwpag"]
 
 [ext_resource type="Script" path="res://Script/Dungeon5.gd" id="1_auxff"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_eva3s"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="2_sc15h"]
 [ext_resource type="PackedScene" uid="uid://47tu7epargv3" path="res://Entity/color_floor.tscn" id="3_nn5kl"]
 [ext_resource type="PackedScene" uid="uid://dgsoe7ra0e4qd" path="res://Entity/door.tscn" id="4_ce0g4"]
+[ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="6_58vu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_depdr"]
 size = Vector2(38, 76)
@@ -28,7 +29,7 @@ layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(393216, 262144, 2, 131072, 262144, 4, 196608, 65536, 1, 0, 0, 0, 65536, 0, 2, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 65536, 0, 13, 65536, 0, 14, 65536, 0, 15, 65536, 0, 16, 65536, 0, 17, 65536, 0, 18, 131072, 0, 19, 196608, 4, 65555, 196608, 4, 131091, 196608, 4, 393235, 65536, 3, 458771, 196608, 4, 524307, 196608, 4, 589843, 196608, 4, 589842, 131072, 3, 589841, 65536, 3, 589840, 65536, 3, 589839, 65536, 3, 589838, 65536, 3, 589837, 65536, 3, 589836, 65536, 3, 589835, 65536, 3, 589834, 65536, 3, 589833, 65536, 3, 589832, 65536, 3, 589831, 65536, 3, 589830, 65536, 3, 589829, 65536, 3, 589828, 65536, 3, 589827, 65536, 3, 589826, 65536, 3, 589825, 65536, 3, 458752, 0, 1, 524288, 0, 2, 589824, 0, 3, 196627, 65536, 0, 65537, 65536, 1, 65538, 65536, 1, 65539, 65536, 1, 65540, 65536, 1, 65541, 65536, 1, 65542, 65536, 1, 65543, 65536, 1, 65544, 65536, 1, 65545, 65536, 1, 65546, 65536, 1, 65547, 65536, 1, 65548, 65536, 1, 65549, 65536, 1, 65550, 65536, 1, 65551, 65536, 1, 65552, 65536, 1, 65553, 65536, 1, 65554, 131072, 1, 262163, 65536, 1, 131090, 131072, 2, 196626, 262144, 3, 262162, 65536, 1, 393234, 262144, 1, 458770, 131072, 1, 524306, 131072, 2)
 layer_2/name = "YSort"
 layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array(65546, 131072, 4, 65537, 196608, 3, 65553, 196608, 3)
+layer_2/tile_data = PackedInt32Array(65546, 131072, 4, 65537, 196608, 3, 65553, 196608, 3, 327684, 131076, 0)
 
 [node name="Color Floor1" parent="." instance=ExtResource("3_nn5kl")]
 position = Vector2(33, 64)
@@ -64,9 +65,17 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("2_sc15h")]
 position = Vector2(36, 174)
 
+[node name="Message" parent="." instance=ExtResource("6_58vu7")]
+y_sort_enabled = true
+position = Vector2(128, 160)
+
+[node name="Label" parent="Message" index="2"]
+text = "4"
+
 [connection signal="body_entered" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_exited"]
 [connection signal="body_entered" from="Dungeon6_Transfer" to="." method="_on_dungeon_6_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon6_Transfer" to="." method="_on_dungeon_6_transfer_body_exited"]
 
 [editable path="Door"]
+[editable path="Message"]

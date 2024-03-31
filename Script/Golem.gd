@@ -43,13 +43,13 @@ func _physics_process(delta):
 					else:
 						pos = "Walk_right"
 					animation.play(pos)
-				
 				else:
 					attack_scene()
+				move_and_collide(velocity)
 			else:
-				velocity = lerp(velocity, Vector2.ZERO, 0.07)
-				animation.play("Idle")
-			move_and_collide(velocity)
+				updateVelocity()
+				move_and_slide()
+				spriteAnimation()
 		else:
 			animation.play("Dead")
 			
