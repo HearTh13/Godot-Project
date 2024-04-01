@@ -18,4 +18,13 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body):
+	if body.has_method("player"):
+		Global.health -= (get_parent().find_child("GolemBoss").str/Global.def)
+		player.enemy_attack_cooldown = false
+		player.modulate.a8 = 100
+		player.find_child("DamageCooldown").start()
+	queue_free()
+
+
+func _on_free_timeout():
 	queue_free()

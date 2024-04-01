@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 var direction: Vector2
 
-var max_health = 1
+var max_health = 200
 var health = max_health
 var speed = 60
 var str = 250
@@ -17,8 +17,12 @@ var exp = 200
 var player_inattack_zone = false
 var take_damage = false
 
+func enemy():
+	pass
+
 func _ready():
 	set_physics_process(false)
+	$Debug.visible = false
 
 func _process(_delta):
 	direction = player.position - position
@@ -44,7 +48,8 @@ func update_health():
 		healthbar_with_image.visible = false
 		find_child("FiniteStateMachine").change_state("Death")
 		$Collision.disabled = true
-	elif health <= healthbar.max_value / 2 and def == 4:
+	elif health <= max_health / 2 and def == 4:
+		health = max_health / 2
 		def += 6
 		find_child("FiniteStateMachine").change_state("ArmorBuff")
 
@@ -66,7 +71,14 @@ func _on_damage_cooldown_timeout():
 	take_damage = false
 
 func player_take_damage():
-	Global.health = Global.health - (str/Global.def)
-	player.enemy_attack_cooldown = false
-	player.modulate.a8 = 100
-	player.find_child("DamageCooldown").start()
+	if player.enemy_attack_cooldown:
+		print("damage")
+		Global.health = Global.health - (str/Global.def)
+		player.enemy_attack_cooldown = false
+		player.modulate.a8 = 100
+		player.find_child("DamageCooldown").start()
+
+func _on_area_2d_body_entered(body):
+	if body.has_method("player"):
+		player.enemy_attack_cooldown = true
+		player_take_damage()

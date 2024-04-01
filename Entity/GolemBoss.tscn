@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bl1l7lachdq0v"]
+[gd_scene load_steps=36 format=3 uid="uid://bl1l7lachdq0v"]
 
 [ext_resource type="Script" path="res://Script/golem_boss.gd" id="1_evcho"]
 [ext_resource type="Texture2D" uid="uid://fc0dfh2j4tcq" path="res://Assets/boss_golem/Character_sheet.png" id="1_pj7oi"]
@@ -20,6 +20,10 @@
 [ext_resource type="Script" path="res://Script/death.gd" id="18_icq5r"]
 [ext_resource type="AudioStream" uid="uid://djwivwd5boy3m" path="res://Assets/Music/SlimeAttack.wav" id="20_biqgs"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lttxy"]
+radius = 7.0
+height = 258.0
+
 [sub_resource type="Animation" id="Animation_pki7c"]
 resource_name = "laser"
 length = 1.87501
@@ -31,10 +35,10 @@ tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -43,11 +47,17 @@ tracks/1/path = NodePath("FiniteStateMachine/LaserBeam")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.875),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.875, 1.125, 1.875),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"set_target"
+}, {
+"args": [],
+"method": &"turn_on_laser"
+}, {
+"args": [],
+"method": &"turn_off_laser"
 }]
 }
 
@@ -352,7 +362,6 @@ position = Vector2(0, -16)
 texture = ExtResource("1_pj7oi")
 hframes = 10
 vframes = 10
-frame = 80
 
 [node name="Pivot" type="Node2D" parent="."]
 position = Vector2(2, -33)
@@ -361,6 +370,15 @@ position = Vector2(2, -33)
 position = Vector2(98, 17)
 texture = ExtResource("2_keery")
 vframes = 15
+frame = 14
+
+[node name="Area2D" type="Area2D" parent="Pivot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D"]
+position = Vector2(119, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_lttxy")
+disabled = true
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -494,5 +512,6 @@ stream = ExtResource("20_biqgs")
 
 [node name="DamageCooldown" type="Timer" parent="."]
 
+[connection signal="body_entered" from="Pivot/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]

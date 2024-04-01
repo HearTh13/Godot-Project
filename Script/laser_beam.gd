@@ -3,6 +3,8 @@ extends State
 @onready var pivot = $"../../Pivot"
 var can_transition: bool = false
 
+var laser = false
+
 func enter():
 	super.enter()
 	await play_animation("laser_cast")
@@ -20,3 +22,9 @@ func transition():
 	if can_transition:
 		can_transition = false
 		get_parent().change_state("Dash")
+
+func turn_on_laser():
+	$"../../Pivot/Area2D/CollisionShape2D".disabled = false
+	
+func turn_off_laser():
+	$"../../Pivot/Area2D/CollisionShape2D".disabled = true

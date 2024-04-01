@@ -63,11 +63,14 @@ script = ExtResource("1_mur6l")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lud8k")
 autoplay = "default"
-frame_progress = 0.440105
+frame_progress = 0.14978
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(28, -13)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p13qi")
 
+[node name="Free" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Free" to="." method="_on_free_timeout"]
