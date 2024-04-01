@@ -39,13 +39,6 @@ var dialogueBox = false
 
 var scene
 
-func finish_change():
-	if transition == true:
-		transition = false
-		floor = []
-		floorBlue = []
-		floorRed = []
-
 func pause_menu(dim):
 	if Input.is_action_just_pressed("Pause"):
 		if paused:
@@ -62,7 +55,7 @@ func initial():
 	health = max_health
 	max_mana = 20
 	mana = max_mana
-	str = 20
+	str = 50
 	def = 10
 	next = 10
 	exp = 0

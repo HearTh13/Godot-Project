@@ -91,7 +91,7 @@ func deal_with_damage():
 	if player_inattack_zone and Global.player_current_attack:
 		if !take_damage:
 			if player != null:
-				health = health - Global.str
+				health = health - (Global.str/def)
 				$DamageCooldown.start()
 				$Run.start()
 				running = false

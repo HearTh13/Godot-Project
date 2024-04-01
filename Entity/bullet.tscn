@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3jqse2vhvp68"]
+
+[ext_resource type="Texture2D" uid="uid://c33js7o8xa5wr" path="res://Assets/boss_golem/arm_projectile_glowing.png" id="1_a1n2k"]
+[ext_resource type="Script" path="res://Script/bullet.gd" id="1_mur6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrwyd"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjs7r"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru5yi"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0bl5"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tyec"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i70n"]
+atlas = ExtResource("1_a1n2k")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lud8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrwyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjs7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru5yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0bl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tyec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i70n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p13qi"]
+radius = 4.0
+height = 32.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_mur6l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lud8k")
+autoplay = "default"
+frame_progress = 0.440105
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, -13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p13qi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

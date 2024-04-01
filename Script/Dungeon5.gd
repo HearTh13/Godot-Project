@@ -10,6 +10,10 @@ func _ready():
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon5"
 	
+	Global.floor = []
+	Global.floorBlue = []
+	Global.floorRed = []
+	
 	Global.floor.append($"Color Floor1")
 	Global.floorBlue.append($"Color Floor1/Blue")
 	Global.floorRed.append($"Color Floor1/Red")

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#
 var enemy = null
 var signBoard = null
 var floor = null
@@ -354,3 +354,7 @@ func chat():
 
 func _on_animation_animation_finished(anim_name):
 	Global.paused = true
+
+#func _physics_process(delta):
+	#velocity = Input.get_vector("Left", "Right", "Up", "Down")
+	#move_and_slide()

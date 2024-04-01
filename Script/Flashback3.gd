@@ -28,5 +28,4 @@ func _on_area_2d_body_entered(body):
 		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 
 func _on_area_2d_body_exited(body):
-	if body.has_method("player"):
-		Global.transition = false
+	pass

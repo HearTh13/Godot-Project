@@ -26,4 +26,3 @@ func change_scene():
 	if Global.transition:
 		if Global.current_scene == "Dungeon2":
 			get_tree().change_scene_to_file("res://Scene/Dungeon2.tscn")
-			Global.finish_change()
