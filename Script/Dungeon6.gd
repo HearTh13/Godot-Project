@@ -41,8 +41,18 @@ func _on_dungeon_5_transfer_body_exited(body):
 	if body.has_method("player"):
 		Global.transition = false
 
+func _on_boss_room_transfer_body_entered(body):
+	if body.has_method("player"):
+		Global.current_scene = "BossRoom"
+		Global.transition = true
+		Global.player_enter_posx = 541
+		Global.player_enter_posy = 185
+
 func change_scene():
 	if Global.transition:
 		if Global.current_scene == "Dungeon5":
 			get_tree().change_scene_to_file("res://Scene/Dungeon5.tscn")
+			Global.finish_change()
+		if Global.current_scene == "BossRoom":
+			get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
 			Global.finish_change()

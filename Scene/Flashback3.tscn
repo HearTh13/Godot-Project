@@ -36,9 +36,8 @@ color = Color(1, 0.462745, 0.0196078, 0.423529)
 [node name="Player" parent="." instance=ExtResource("3_gagj2")]
 position = Vector2(113, 201)
 
-[node name="Golem" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("4_86mbu")]
+[node name="Golem" parent="." instance=ExtResource("4_86mbu")]
 position = Vector2(489, 199)
-marker = NodePath("../Marker")
 
 [node name="Marker" type="Marker2D" parent="."]
 position = Vector2(191, 179)

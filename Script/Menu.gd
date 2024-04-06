@@ -12,7 +12,7 @@ func _ready():
 	pos = 0
 	fading = false
 
-func _process(delta):
+func _process(_delta):
 	if fading:
 		$MainMusic.volume_db -= 0.5
 	if !$MainMusic.playing:
@@ -63,12 +63,11 @@ func menu():
 		con.release_focus()
 		play.release_focus()
 
-func _on_animation_animation_finished(anim_name):
+func _on_animation_animation_finished(_anim_name):
 	if state == 1:
 		Global.initial()
 		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 	elif state == 2:
 		if Global.current_scene == "Dungeon3":
-			#get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
 			get_tree().change_scene_to_file("res://Scene/Dungeon3.tscn")
 			

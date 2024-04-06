@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dah5dphfgkh72"]
+[gd_scene load_steps=12 format=3 uid="uid://dah5dphfgkh72"]
 
 [ext_resource type="Texture2D" uid="uid://p0lqtdvdpr5n" path="res://Assets/Dungeon_Tileset.png" id="1_fuds2"]
 [ext_resource type="Script" path="res://Script/Dungeon1.gd" id="1_v6nm1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_f3uq5"]
 [ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="5_j3dhu"]
 [ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="6_s37t4"]
+[ext_resource type="PackedScene" uid="uid://c8gmddnh2pir6" path="res://Entity/golem.tscn" id="7_xnbxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wvda"]
 texture = ExtResource("1_fuds2")
@@ -827,7 +828,7 @@ layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(0, 3, 0, 1, 65539, 0, 2, 131075, 0, 3, 196611, 0, 4, 262147, 0, 5, 65539, 0, 6, 131075, 0, 7, 65539, 0, 8, 65539, 0, 11, 262147, 0, 12, 65539, 0, 13, 131075, 0, 14, 196611, 0, 15, 65539, 0, 16, 131075, 0, 17, 196611, 0, 18, 262147, 0, 19, 327683, 0, 65555, 327683, 1, 131091, 327683, 1, 196627, 327683, 1, 262163, 327683, 2, 327699, 327683, 3, 393235, 327683, 1, 458771, 327683, 2, 524307, 327683, 4, 524303, 131075, 4, 524304, 196611, 4, 524305, 262147, 4, 524306, 262147, 4, 524302, 65539, 4, 524298, 262147, 4, 524299, 131075, 4, 524300, 196611, 4, 524301, 262147, 4, 524295, 131075, 4, 524296, 196611, 4, 524297, 262147, 4, 524294, 65539, 4, 524290, 131075, 4, 524291, 196611, 4, 524292, 262147, 4, 524293, 262147, 4, 524289, 65539, 4, 524288, 3, 4, 327680, 3, 3, 393216, 3, 2, 458752, 3, 3, 196608, 3, 3, 262144, 3, 2, 65536, 3, 1, 131072, 3, 2, 589824, 524291, 7, 589825, 524291, 7, 589826, 524291, 7, 589827, 524291, 7, 589828, 524291, 7, 589829, 524291, 7, 589830, 524291, 7, 589831, 524291, 7, 589832, 524291, 7, 589833, 524291, 7, 589834, 524291, 7, 589835, 524291, 7, 589836, 524291, 7, 589837, 524291, 7, 589838, 524291, 7, 589839, 524291, 7, 589840, 524291, 7, 589841, 524291, 7, 589842, 524291, 7, 589843, 524291, 7)
 layer_2/name = "YSort"
 layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array(196616, 131076, 0, 262156, 65540, 0, 196620, 4, 0)
+layer_2/tile_data = PackedInt32Array(196616, 131076, 0, 262156, 65540, 0, 196620, 4, 0, 18, 3, 9, 11, 3, 9, 8, 3, 9, 1, 3, 9)
 
 [node name="Player" parent="." instance=ExtResource("3_f3uq5")]
 position = Vector2(273, 172)
@@ -854,6 +855,9 @@ text = "1"
 
 [node name="Slime1EndPoint" type="Marker2D" parent="."]
 position = Vector2(383, 227)
+
+[node name="Golem" parent="." instance=ExtResource("7_xnbxm")]
+position = Vector2(104, 121)
 
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]

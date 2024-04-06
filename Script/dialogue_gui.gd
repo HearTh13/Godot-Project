@@ -300,6 +300,17 @@ func dialog():
 			text.text = "Kalau begitu, ayo!"
 		if pos == 23:
 			animation.play("fade_out_white")
+	elif dialogue == 6:
+		if pos == 0:
+			background.texture = load("res://Assets/Background/cave.png")
+			charA.texture = load("res://Assets/character/player_normal.png")
+			charB.texture = load("")
+			chara.text = "Suhi"
+			text.text = "Inikah tempatnya...?"
+		if pos == 1:
+			chara.text = "Suhi"
+			text.text = "Aku punya firasat buruk..."
+		
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "fade_out_white":

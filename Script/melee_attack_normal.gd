@@ -2,7 +2,7 @@ extends State
 
 func enter():
 	super.enter()
-	animation_player.play("attack")
+	animation_player.play("melee_attack")
 
 func transition():
 	if owner.direction.length() > 30:
