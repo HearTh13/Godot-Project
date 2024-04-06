@@ -43,7 +43,7 @@ func _on_dungeon_5_transfer_body_exited(body):
 
 func _on_boss_room_transfer_body_entered(body):
 	if body.has_method("player"):
-		Global.current_scene = "BossRoom"
+		Global.current_scene = "BossRoom1"
 		Global.transition = true
 		Global.player_enter_posx = 541
 		Global.player_enter_posy = 185
@@ -52,7 +52,20 @@ func change_scene():
 	if Global.transition:
 		if Global.current_scene == "Dungeon5":
 			get_tree().change_scene_to_file("res://Scene/Dungeon5.tscn")
-			Global.finish_change()
-		if Global.current_scene == "BossRoom":
-			get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
-			Global.finish_change()
+		if Global.current_scene == "BossRoom1":
+			get_tree().change_scene_to_file("res://Scene/BossRoom1.tscn")
+		if Global.current_scene == "Dungeon7":
+			get_tree().change_scene_to_file("res://Scene/Dungeon7.tscn")
+
+func _on_area_2d_body_entered(body):
+	if body.has_method("player"):
+		Global.dialogue = 6
+		Global.message = 0
+		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
+
+func _on_dungeon_7_body_entered(body):
+	if body.has_method("player"):
+		Global.current_scene = "Dungeon7"
+		Global.transition = true
+		Global.player_enter_posx = 34
+		Global.player_enter_posy = 143

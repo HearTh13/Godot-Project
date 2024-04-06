@@ -191,6 +191,14 @@ func current_camera():
 	elif Global.current_scene == "Dungeon6":
 		$Camera.limit_right = 1408
 		$Camera.limit_bottom = 1312
+	
+	elif Global.current_scene == "BossRoom" || Global.current_scene == "BossRoom1":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
+	
+	elif Global.current_scene == "Dungeon7":
+		$Camera.limit_right = 640
+		$Camera.limit_bottom = 310
 
 func update_health():
 	var healthbar = $CanvasLayer/GUI/VBoxContainer/HPBar/Counter/TextureProgressBar

@@ -25,6 +25,5 @@ func _on_body_entered(body):
 		player.find_child("DamageCooldown").start()
 	queue_free()
 
-
 func _on_free_timeout():
 	queue_free()

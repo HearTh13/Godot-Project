@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dah5dphfgkh72"]
+[gd_scene load_steps=11 format=3 uid="uid://dah5dphfgkh72"]
 
 [ext_resource type="Texture2D" uid="uid://p0lqtdvdpr5n" path="res://Assets/Dungeon_Tileset.png" id="1_fuds2"]
 [ext_resource type="Script" path="res://Script/Dungeon1.gd" id="1_v6nm1"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_f3uq5"]
 [ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="5_j3dhu"]
 [ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="6_s37t4"]
-[ext_resource type="PackedScene" uid="uid://c8gmddnh2pir6" path="res://Entity/golem.tscn" id="7_xnbxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wvda"]
 texture = ExtResource("1_fuds2")
@@ -855,9 +854,6 @@ text = "1"
 
 [node name="Slime1EndPoint" type="Marker2D" parent="."]
 position = Vector2(383, 227)
-
-[node name="Golem" parent="." instance=ExtResource("7_xnbxm")]
-position = Vector2(104, 121)
 
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]

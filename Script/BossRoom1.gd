@@ -5,18 +5,20 @@ func _ready():
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon6"
-
+	$Player/CanvasLayer/GUI.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	change_scene()
 	Global.pause_menu($Player/CanvasLayer/PauseMenu)
-	if !$GolemBoss.alive:
-		Global.story4 = true
-	if Global.story4:
-		Global.dialogue = 7
-		Global.message = 0
-		get_tree().change_scene_to_file("res://Interface/dialogue_gui.tscn")
 
 func change_scene():
 	if Global.transition:
-		pass
+		if Global.current_scene == "Dungeon6":
+			get_tree().change_scene_to_file("res://Scene/Dungeon6.tscn")
+
+func _on_dungeon_6_transfer_body_entered(body):
+	if body.has_method("player"):
+		Global.current_scene = "Dungeon6"
+		Global.transition = true
+		Global.player_enter_posx = 541
+		Global.player_enter_posy = 185

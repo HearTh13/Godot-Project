@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://peyuhohqafkk"]
+[gd_scene load_steps=15 format=3 uid="uid://peyuhohqafkk"]
 
 [ext_resource type="Script" path="res://Script/Dungeon6.gd" id="1_24vlt"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_mvjbc"]
@@ -15,6 +15,12 @@ size = Vector2(38, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsgc1"]
 size = Vector2(22.5, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu1cd"]
+size = Vector2(54, 200.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jwkb"]
+radius = 48.0104
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7iaax"]
 size = Vector2(12, 32)
@@ -48,6 +54,24 @@ shape = SubResource("RectangleShape2D_sp7cd")
 [node name="Collision" type="CollisionShape2D" parent="BossRoom_Transfer"]
 position = Vector2(-14.75, 1184.5)
 shape = SubResource("RectangleShape2D_bsgc1")
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="."]
+offset_left = 1366.0
+offset_top = 1179.0
+offset_right = 1406.0
+offset_bottom = 1219.0
+
+[node name="Dungeon7" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Dungeon7"]
+position = Vector2(1440, 1182.75)
+shape = SubResource("RectangleShape2D_wu1cd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-32, 1185)
+shape = SubResource("CircleShape2D_7jwkb")
 
 [node name="Player" parent="." instance=ExtResource("2_6e2qy")]
 position = Vector2(36, 174)
@@ -150,6 +174,8 @@ position = Vector2(-134, 41)
 [connection signal="body_entered" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon5_Transfer" to="." method="_on_dungeon_5_transfer_body_exited"]
 [connection signal="body_entered" from="BossRoom_Transfer" to="." method="_on_boss_room_transfer_body_entered"]
+[connection signal="body_entered" from="Dungeon7" to="." method="_on_dungeon_7_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="Player"]
 [editable path="Message"]

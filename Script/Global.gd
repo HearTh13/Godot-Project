@@ -35,6 +35,7 @@ var open = false
 var open2 = false
 var story2 = false
 var story3 = false
+var story4 = false
 var dialogueBox = false
 
 var scene
@@ -103,6 +104,7 @@ func save_game():
 	file.store_var(open2)
 	file.store_var(story2)
 	file.store_var(story3)
+	file.store_var(story4)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -129,3 +131,4 @@ func load_game():
 	open2 = file.get_var()
 	story2 = file.get_var()
 	story3 = file.get_var()
+	story4 = file.get_var()

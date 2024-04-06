@@ -22,6 +22,9 @@ var take_damage = false
 var startPosition
 var endPosition
 
+@export var recieves_knockback: bool = true
+@export var knockback_modifier: float = 0.1
+
 func _ready():
 	startPosition = position
 	endPosition = marker.global_position

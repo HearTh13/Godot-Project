@@ -310,7 +310,89 @@ func dialog():
 		if pos == 1:
 			chara.text = "Suhi"
 			text.text = "Aku punya firasat buruk..."
-		
+		if pos == 2:
+			charA.texture = load("")
+			chara.text = "???"
+			text.text = "Kalau aku jadi kau, aku tidak akan melangkah lebih jauh lagi."
+		if pos == 3:
+			charA.texture = load("res://Assets/character/player_normal.png")
+			chara.text = "Suhi"
+			text.text = "Siapa itu!?"
+		if pos == 4:
+			charB.texture = load("res://Assets/character/kambing_hitam.png")
+			chara.text = "Suhi"
+			text.text = "Siapa itu!?"
+		if pos == 5:
+			chara.text = "Suhi"
+			text.text = "K-kau...!?"
+		if pos == 6:
+			chara.text = "???"
+			text.text = "Ah, maaf kelancanganku."
+		if pos == 7:
+			chara.text = "Kambing Hitam"
+			text.text = "Namaku adalah Kambing Hitam."
+		if pos == 8:
+			chara.text = "Kambing Hitam"
+			text.text = "Aku adalah dalang dari semua ini. Yap, benar. Yang mengacaukan keseimbangan dunia nyata. Kukuku...!"
+		if pos == 9:
+			chara.text = "Suhi"
+			text.text = "Kalau begitu aku hanya perlu mengalahkanmu kan!?"
+		if pos == 10:
+			chara.text = "Kambing Hitam"
+			text.text = "Oh. Tidak perlu terburu-buru. Temanku akan menemanimu terlebih dahulu."
+		if pos == 11:
+			chara.text = "Kambing Hitam"
+			text.text = "Perkenalkan... Dia adalah Golem!"
+		if pos == 12:
+			charB.texture = load("res://Assets/character/golem.png")
+			chara.text = "Golem"
+			text.text = "Selamat siang."
+		if pos == 13:
+			charA.texture = load("res://Assets/character/player_surprised.png")
+			chara.text = "Suhi"
+			text.text = "S-selamat siang..."
+		if pos == 14:
+			charB.texture = load("res://Assets/character/kambing_hitam.png")
+			chara.text = "Kambing Hitam"
+			text.text = "Kalau begitu kuserahkan dia padamu. Ta-Ta!"
+		if pos == 15:
+			charB.texture = load("res://Assets/character/golem.png")
+			chara.text = "Suhi"
+			text.text = "Tunggu!"
+		if pos == 16:
+			chara.text = "Golem"
+			text.text = "Maaf nyonya, tapi lawan anda adalah saya."
+		if pos == 17:
+			Global.message = 0
+			pos = 0
+			Global.player_enter_posx = 541
+			Global.player_enter_posy = 185
+			get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
+			
+	elif dialogue == 7:
+		if pos == 0:
+			background.texture = load("res://Assets/Background/cave.png")
+			charA.texture = load("res://Assets/character/player_hurt.png")
+			charB.texture = load("")
+			chara.text = "Suhi"
+			text.text = "A-aku berhasil mengalahkannya...!"
+		if pos == 1:
+			charB.texture = load("res://Assets/character/kambing_hitam.png")
+			chara.text = "Kambing Hitam"
+			text.text = "Bravo! Bravo! Marvelous!"
+		if pos == 2:
+			chara.text = "Kambing Hitam"
+			text.text = "Apakah kamu masih bisa berdiri? Aku menantikan kedatanganmu di kantorku!"
+		if pos == 3:
+			chara.text = "Suhi"
+			text.text = "..."
+		if pos == 4:
+			Global.message = 0
+			pos = 0
+			Global.player_enter_posx = 541
+			Global.player_enter_posy = 185
+			Global.current_scene = "BossRoom1"
+			get_tree().change_scene_to_file("res://Scene/BossRoom1.tscn")
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "fade_out_white":

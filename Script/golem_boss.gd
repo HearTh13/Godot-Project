@@ -17,6 +17,8 @@ var exp = 200
 var player_inattack_zone = false
 var take_damage = false
 
+var alive = true
+
 func enemy():
 	pass
 

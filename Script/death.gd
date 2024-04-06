@@ -5,3 +5,4 @@ func enter():
 	animation_player.play("death")
 	await animation_player.animation_finished
 	animation_player.play("boss_slained")
+	owner.alive = false

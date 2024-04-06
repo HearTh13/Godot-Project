@@ -70,4 +70,6 @@ func _on_animation_animation_finished(_anim_name):
 	elif state == 2:
 		if Global.current_scene == "Dungeon3":
 			get_tree().change_scene_to_file("res://Scene/Dungeon3.tscn")
-			
+			#get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
+		if Global.current_scene == "BossRoom1":
+			get_tree().change_scene_to_file("res://Scene/BossRoom1.tscn")
