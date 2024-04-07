@@ -367,6 +367,7 @@ func dialog():
 			pos = 0
 			Global.player_enter_posx = 541
 			Global.player_enter_posy = 185
+			Global.current_scene = "BossRoom"
 			get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
 			
 	elif dialogue == 7:
@@ -384,6 +385,8 @@ func dialog():
 			chara.text = "Kambing Hitam"
 			text.text = "Apakah kamu masih bisa berdiri? Aku menantikan kedatanganmu di kantorku!"
 		if pos == 3:
+			charA.texture = load("res://Assets/character/player_normal.png")
+			charB.texture = load("")
 			chara.text = "Suhi"
 			text.text = "..."
 		if pos == 4:

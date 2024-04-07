@@ -15,7 +15,7 @@ var health = max_health
 var speed = 35
 var str = 60
 var def = 3
-var exp = 40
+var exp = 60
 
 func player_take_damage():
 	if player.enemy_attack_cooldown:

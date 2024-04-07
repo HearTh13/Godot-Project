@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Script/idle_normal.gd" id="4_b3eys"]
 [ext_resource type="AudioStream" uid="uid://djwivwd5boy3m" path="res://Assets/Music/SlimeAttack.wav" id="4_cew7a"]
 [ext_resource type="Script" path="res://Script/FiniteStateMachine.gd" id="5_p6qvv"]
+[ext_resource type="Script" path="res://Script/death_normal.gd" id="7_e3cwp"]
 [ext_resource type="Script" path="res://Script/melee_attack.gd" id="8_xemmo"]
-[ext_resource type="Script" path="res://Script/death.gd" id="9_wql8s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atjdr"]
 radius = 86.0
@@ -293,7 +293,7 @@ script = ExtResource("4_3tlik")
 script = ExtResource("8_xemmo")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("9_wql8s")
+script = ExtResource("7_e3cwp")
 
 [node name="DamageCooldown" type="Timer" parent="."]
 

@@ -11,6 +11,7 @@ func _ready():
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon6"
+	$Player/CanvasLayer/GUI.visible = true
 	
 	doorClose = $Door/Closed
 	doorOpen = $Door/Open
@@ -34,8 +35,8 @@ func _on_dungeon_5_transfer_body_entered(body):
 	if body.has_method("player"):
 		Global.current_scene = "Dungeon5"
 		Global.transition = true
-		Global.player_enter_posx = 24
-		Global.player_enter_posy = 186
+		Global.player_enter_posx = 611
+		Global.player_enter_posy = 166
 
 func _on_dungeon_5_transfer_body_exited(body):
 	if body.has_method("player"):

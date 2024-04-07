@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pw1y8nygig5d" path="res://Assets/Door_op.png" id="2_4nybc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfsnh"]
-size = Vector2(12, 71)
+size = Vector2(12, 63)
 
 [node name="Door" type="CharacterBody2D"]
 

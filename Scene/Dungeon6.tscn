@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://peyuhohqafkk"]
+[gd_scene load_steps=12 format=3 uid="uid://peyuhohqafkk"]
 
 [ext_resource type="Script" path="res://Script/Dungeon6.gd" id="1_24vlt"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_mvjbc"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="2_6e2qy"]
 [ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="3_q833j"]
-[ext_resource type="PackedScene" uid="uid://dgsoe7ra0e4qd" path="res://Entity/door.tscn" id="5_7kfqi"]
-[ext_resource type="Texture2D" uid="uid://ctu6rh5kgcfhp" path="res://Assets/Door2.png" id="6_vv4tt"]
-[ext_resource type="Texture2D" uid="uid://bwb8lsg1pk53r" path="res://Assets/Door2_op.png" id="7_p6wlt"]
+[ext_resource type="PackedScene" uid="uid://bneygh0monbi6" path="res://Entity/door_1.tscn" id="5_o4f0w"]
 [ext_resource type="PackedScene" uid="uid://c8gmddnh2pir6" path="res://Entity/golem.tscn" id="8_c5f0d"]
 [ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="9_4winu"]
 
@@ -21,9 +19,6 @@ size = Vector2(54, 200.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jwkb"]
 radius = 48.0104
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7iaax"]
-size = Vector2(12, 32)
 
 [node name="Dungeon6" type="Node2D"]
 y_sort_enabled = true
@@ -56,10 +51,10 @@ position = Vector2(-14.75, 1184.5)
 shape = SubResource("RectangleShape2D_bsgc1")
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="."]
-offset_left = 1366.0
-offset_top = 1179.0
-offset_right = 1406.0
-offset_bottom = 1219.0
+offset_left = 24.0
+offset_top = 1165.0
+offset_right = 64.0
+offset_bottom = 1205.0
 
 [node name="Dungeon7" type="Area2D" parent="."]
 
@@ -92,29 +87,8 @@ texture = null
 [node name="Label" parent="Message2" index="2"]
 text = "3"
 
-[node name="Door" parent="." instance=ExtResource("5_7kfqi")]
-y_sort_enabled = true
-position = Vector2(1232, 520)
-
-[node name="Closed" parent="Door" index="0"]
-texture = ExtResource("6_vv4tt")
-
-[node name="Collision" parent="Door" index="1"]
-position = Vector2(16, 40.5)
-
-[node name="Open" parent="Door" index="2"]
-visible = false
-texture = ExtResource("7_p6wlt")
-
-[node name="Collision2" type="CollisionShape2D" parent="Door"]
-position = Vector2(-10, 32)
-shape = SubResource("RectangleShape2D_7iaax")
-disabled = true
-
-[node name="Collision3" type="CollisionShape2D" parent="Door"]
-position = Vector2(42, 32)
-shape = SubResource("RectangleShape2D_7iaax")
-disabled = true
+[node name="Door" parent="." instance=ExtResource("5_o4f0w")]
+position = Vector2(1216, 527)
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 visible = false
@@ -180,4 +154,3 @@ position = Vector2(-134, 41)
 [editable path="Player"]
 [editable path="Message"]
 [editable path="Message2"]
-[editable path="Door"]

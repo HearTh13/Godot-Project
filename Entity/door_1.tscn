@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bneygh0monbi6"]
+
+[ext_resource type="Texture2D" uid="uid://ctu6rh5kgcfhp" path="res://Assets/Door2.png" id="1_xk18l"]
+[ext_resource type="Texture2D" uid="uid://bwb8lsg1pk53r" path="res://Assets/Door2_op.png" id="2_jy10o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opro4"]
+size = Vector2(64, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2au7r"]
+size = Vector2(12, 32)
+
+[node name="Door1" type="CharacterBody2D"]
+
+[node name="Closed" type="Sprite2D" parent="."]
+position = Vector2(32, 16)
+texture = ExtResource("1_xk18l")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(32, 24.5)
+shape = SubResource("RectangleShape2D_opro4")
+
+[node name="Open" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 16)
+texture = ExtResource("2_jy10o")
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(6, 16)
+shape = SubResource("RectangleShape2D_2au7r")
+disabled = true
+
+[node name="Collision3" type="CollisionShape2D" parent="."]
+position = Vector2(58, 16)
+shape = SubResource("RectangleShape2D_2au7r")
+disabled = true

@@ -59,6 +59,9 @@ shape = SubResource("RectangleShape2D_82gl7")
 y_sort_enabled = true
 position = Vector2(575, 128)
 
+[node name="Collision" parent="Door" index="1"]
+position = Vector2(26, 32.5)
+
 [node name="Open" parent="Door" index="2"]
 visible = false
 
@@ -71,6 +74,12 @@ position = Vector2(128, 160)
 
 [node name="Label" parent="Message" index="2"]
 text = "4"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = 611.0
+offset_top = 166.0
+offset_right = 637.0
+offset_bottom = 187.0
 
 [connection signal="body_entered" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon4_Transfer" to="." method="_on_dungeon_4_transfer_body_exited"]

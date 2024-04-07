@@ -37,6 +37,7 @@ func _process(_delta):
 	
 	deal_with_damage()
 	update_health()
+	print(alive)
 		
 func _physics_process(delta):
 	velocity = direction.normalized() * 40
@@ -84,3 +85,6 @@ func _on_area_2d_body_entered(body):
 	if body.has_method("player"):
 		player.enemy_attack_cooldown = true
 		player_take_damage()
+
+func global_story4():
+	Global.story4 = true

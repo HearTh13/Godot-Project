@@ -16,7 +16,6 @@ func transition():
 		owner.player_inattack_zone = true
 		get_parent().change_state("MeleeAttack")
 	elif distance > 120:
-		#get_parent().change_state("HomingMissile")
 		var chance = randi() % 2
 		match chance:
 			0:

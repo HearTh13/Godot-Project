@@ -10,7 +10,8 @@ func _ready():
 	$Player/BGM.stream = load("res://Assets/Music/Twinklerock Cave.ogg")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
-	Global.current_scene = "Dungeon6"
+	Global.current_scene = "Dungeon7"
+	$Player/CanvasLayer/GUI.visible = false
 	
 	doorClose = $Door/Closed
 	doorOpen = $Door/Open

@@ -5,6 +5,7 @@ func _ready():
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon4"
+	$Player/CanvasLayer/GUI.visible = true
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
