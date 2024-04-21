@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://4547eccmuu6"]
+[gd_scene load_steps=4 format=3 uid="uid://4547eccmuu6"]
 
-[node name="Item" type="Sprite2D"]
+[ext_resource type="Script" path="res://Script/item.gd" id="1_rr5sf"]
+[ext_resource type="Texture2D" uid="uid://c3s7pmwcpab3h" path="res://Assets/Potion.png" id="2_mnew7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wuig3"]
+radius = 10.0499
+
+[node name="Item" type="Node2D" groups=["Items"]]
+z_index = 1
+script = ExtResource("1_rr5sf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -15.5
+offset_right = 15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_mnew7")
+expand_mode = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wuig3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://o278gdok2yeb"]
+[gd_scene load_steps=14 format=3 uid="uid://o278gdok2yeb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0kkbjfxf5qi" path="res://Assets/TitleBar.png" id="1_fatij"]
 [ext_resource type="Script" path="res://Script/pause_menu.gd" id="1_r6j8c"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="5_pn0xh"]
 [ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="6_ol4gj"]
 [ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="7_q2f6o"]
+[ext_resource type="PackedScene" uid="uid://cw44ax0nytipo" path="res://Interface/inventory.tscn" id="9_an0o2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_21v3i"]
 font = ExtResource("4_ndd2j")
@@ -130,21 +131,28 @@ label_settings = SubResource("LabelSettings_f1e5m")
 vertical_alignment = 1
 
 [node name="Pause" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_right = 148.0
+offset_bottom = 34.0
+grow_horizontal = 2
+text = "-- PAUSE --"
+label_settings = SubResource("LabelSettings_gbjbt")
+vertical_alignment = 1
+
+[node name="Inventory" parent="." instance=ExtResource("9_an0o2")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "-- PAUSE --"
-label_settings = SubResource("LabelSettings_gbjbt")
-vertical_alignment = 1
 
 [connection signal="pressed" from="Horizontal/Vertical/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Horizontal/Vertical/Title" to="." method="_on_title_pressed"]

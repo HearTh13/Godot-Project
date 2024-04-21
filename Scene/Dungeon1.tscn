@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dah5dphfgkh72"]
+[gd_scene load_steps=14 format=3 uid="uid://dah5dphfgkh72"]
 
 [ext_resource type="Texture2D" uid="uid://p0lqtdvdpr5n" path="res://Assets/Dungeon_Tileset.png" id="1_fuds2"]
 [ext_resource type="Script" path="res://Script/Dungeon1.gd" id="1_v6nm1"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_f3uq5"]
 [ext_resource type="PackedScene" uid="uid://c6cfmhsxbk5r3" path="res://Entity/Slime.tscn" id="5_j3dhu"]
 [ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="6_s37t4"]
+[ext_resource type="PackedScene" uid="uid://4547eccmuu6" path="res://Items/Items.tscn" id="7_mftyw"]
+[ext_resource type="Texture2D" uid="uid://c3s7pmwcpab3h" path="res://Assets/Potion.png" id="8_fg432"]
+[ext_resource type="Texture2D" uid="uid://fc8e3e851n4u" path="res://Assets/lightning.png" id="9_2ccw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wvda"]
 texture = ExtResource("1_fuds2")
@@ -854,6 +857,20 @@ text = "1"
 
 [node name="Slime1EndPoint" type="Marker2D" parent="."]
 position = Vector2(383, 227)
+
+[node name="Item" parent="." instance=ExtResource("7_mftyw")]
+position = Vector2(76, 182)
+type = "Consumables"
+item_name = "Potion"
+texture = ExtResource("8_fg432")
+effect = "+30 HP"
+
+[node name="Item2" parent="." instance=ExtResource("7_mftyw")]
+position = Vector2(106, 229)
+type = "Skill"
+item_name = "Lightning"
+texture = ExtResource("9_2ccw1")
+effect = "+Lt Damage"
 
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]

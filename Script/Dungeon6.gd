@@ -18,6 +18,9 @@ func _ready():
 	doorCol = $Door/Collision
 	doorCol2 = $Door/Collision2
 	doorCol3 = $Door/Collision3
+	
+	if Global.story4:
+		$Area2D/Collision.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

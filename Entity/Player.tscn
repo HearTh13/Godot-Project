@@ -1,13 +1,15 @@
-[gd_scene load_steps=55 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=64 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
 [ext_resource type="PackedScene" uid="uid://o278gdok2yeb" path="res://Interface/pause_menu.tscn" id="4_ooqqp"]
 [ext_resource type="Texture2D" uid="uid://blja3yfetc3ci" path="res://Assets/TextBox.png" id="5_ja2uk"]
+[ext_resource type="Texture2D" uid="uid://creoyt5o8yx45" path="res://Assets/Inventory Slot.png" id="6_aqli7"]
 [ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="6_mq1bx"]
 [ext_resource type="PackedScene" uid="uid://bpmk0uy484kjw" path="res://Interface/gui.tscn" id="6_w0vg4"]
 [ext_resource type="Texture2D" uid="uid://dks508okcmitg" path="res://Assets/text_saved.png" id="7_o863a"]
 [ext_resource type="Texture2D" uid="uid://br28bw3xuw404" path="res://Assets/text_level_up.png" id="8_vmta0"]
+[ext_resource type="Texture2D" uid="uid://fc8e3e851n4u" path="res://Assets/lightning.png" id="9_s48hm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
 atlas = ExtResource("1_lk2m0")
@@ -316,17 +318,6 @@ height = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_i2t02"]
 radius = 18.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_pssbu"]
-font = ExtResource("6_mq1bx")
-font_size = 12
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_apn7v"]
-font = ExtResource("6_mq1bx")
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Animation" id="Animation_864tj"]
 resource_name = "fade_in"
 tracks/0/type = "value"
@@ -509,13 +500,242 @@ tracks/4/keys = {
 "values": [ExtResource("7_o863a")]
 }
 
+[sub_resource type="Animation" id="Animation_lyim3"]
+resource_name = "lightning_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionProjectileArea/CollisionProjectile:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionProjectileArea/CollisionProjectile:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ukjrc"]
+resource_name = "lightning_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-400, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionProjectileArea/CollisionProjectile:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-400, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionProjectileArea/CollisionProjectile:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_cun6t"]
+resource_name = "lightning_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionProjectileArea/CollisionProjectile:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -400)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionProjectileArea/CollisionProjectile:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_0tf0w"]
+resource_name = "lightning_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionProjectileArea/CollisionProjectile:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 400)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionProjectileArea/CollisionProjectile:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuilw"]
 _data = {
 "fade_in": SubResource("Animation_864tj"),
 "fade_out": SubResource("Animation_pt038"),
+"lightning_down": SubResource("Animation_0tf0w"),
+"lightning_left": SubResource("Animation_ukjrc"),
+"lightning_right": SubResource("Animation_lyim3"),
+"lightning_up": SubResource("Animation_cun6t"),
 "text_level_up": SubResource("Animation_oo3sk"),
 "text_saved": SubResource("Animation_w6gsu")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_1vfjx"]
+font = ExtResource("6_mq1bx")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hrmrt"]
+font = ExtResource("6_mq1bx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pssbu"]
+font = ExtResource("6_mq1bx")
+font_size = 12
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_apn7v"]
+font = ExtResource("6_mq1bx")
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hhqm"]
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -558,7 +778,25 @@ drag_vertical_enabled = true
 
 [node name="RegenTime" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tuilw")
+}
+
+[node name="Dim" type="ColorRect" parent="Animation"]
+self_modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -582,6 +820,63 @@ texture = ExtResource("8_vmta0")
 expand_mode = 1
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("6_w0vg4")]
+
+[node name="SkillBox" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -100.0
+offset_right = 25.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_aqli7")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/SkillBox"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+
+[node name="Label" type="Label" parent="CanvasLayer/SkillBox/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "99"
+label_settings = SubResource("LabelSettings_1vfjx")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="SkillText" type="Label" parent="CanvasLayer/SkillBox"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = 2.0
+offset_right = 28.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Skill"
+label_settings = SubResource("LabelSettings_hrmrt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SkillBox"]
+position = Vector2(9, 9)
+texture = ExtResource("9_s48hm")
+centered = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_ooqqp")]
 visible = false
@@ -622,24 +917,13 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in acc
 label_settings = SubResource("LabelSettings_apn7v")
 autowrap_mode = 3
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
-autoplay = true
+[node name="Projectile" type="Sprite2D" parent="."]
+texture = ExtResource("9_s48hm")
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
+[node name="CollisionProjectileArea" type="Area2D" parent="."]
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tuilw")
-}
-
-[node name="Dim" type="ColorRect" parent="Animation"]
-self_modulate = Color(0, 0, 0, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="CollisionProjectile" type="CollisionShape2D" parent="CollisionProjectileArea"]
+shape = SubResource("CircleShape2D_3hhqm")
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
@@ -647,3 +931,4 @@ mouse_filter = 2
 [connection signal="timeout" from="AttackCounter" to="." method="_on_attack_counter_timeout"]
 [connection signal="timeout" from="RegenTime" to="." method="_on_regen_time_timeout"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="body_entered" from="CollisionProjectileArea" to="." method="_on_collision_projectile_area_body_entered"]

@@ -19,6 +19,10 @@ var player_chase = false
 var player_inattack_zone = false
 var take_damage = false
 
+@onready var damageCooldown = $DamageCooldown
+@onready var run = $Run
+@onready var dead = $Dead
+
 var startPosition
 var endPosition
 

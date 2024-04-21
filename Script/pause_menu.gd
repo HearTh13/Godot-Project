@@ -19,16 +19,6 @@ func _process(_delta):
 		$Objective/Label.text = "Kamu kalah"
 		$Pause.text = "-- GAME OVER --"
 		$Dim.color = Color.from_hsv(0,0,0,1)
-	
-	if Input.is_action_just_pressed("Down"):
-		pos += 1
-		if pos > 2:
-			pos = 1
-	if Input.is_action_just_pressed("Up"):
-		pos -= 1
-		if pos < 1:
-			pos = 2
-	menu()
 
 func _on_continue_pressed():
 	if !Global.alive:
@@ -45,10 +35,3 @@ func _on_title_pressed():
 	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://Interface/menu.tscn")
 
-func menu():
-	if pos == 1:
-		con.grab_focus()
-		exit.release_focus()
-	elif pos == 2:
-		con.release_focus()
-		exit.grab_focus()

@@ -65,6 +65,8 @@ func deal_with_damage():
 				take_damage = true
 				modulate.a8 = 100
 				play_sfx()
+				if health <= 0:
+					player.transfer_exp(exp)
 
 func play_sfx():
 	$SFX.play()
@@ -75,8 +77,12 @@ func _on_damage_cooldown_timeout():
 
 func player_take_damage():
 	if player.enemy_attack_cooldown:
-		print("damage")
-		Global.health = Global.health - (str/Global.def)
+		Global.mana = Global.mana - (str/Global.def)
+		if Global.mana <= 0:
+			Global.health += Global.mana
+			if Global.health <= 0:
+				Global.health = 0
+			Global.mana = 0
 		player.enemy_attack_cooldown = false
 		player.modulate.a8 = 100
 		player.find_child("DamageCooldown").start()

@@ -1,0 +1,193 @@
+[gd_scene load_steps=15 format=3 uid="uid://bdcidtjgc0ng7"]
+
+[ext_resource type="Script" path="res://Script/slot.gd" id="1_o2r02"]
+[ext_resource type="Texture2D" uid="uid://creoyt5o8yx45" path="res://Assets/Inventory Slot.png" id="1_u0gl5"]
+[ext_resource type="Texture2D" uid="uid://c3s7pmwcpab3h" path="res://Assets/Potion.png" id="2_yd60p"]
+[ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="3_nvr2b"]
+[ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="4_4t2uf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fy8b"]
+font = ExtResource("3_nvr2b")
+font_size = 10
+font_color = Color(0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0aswh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g03bj"]
+font = ExtResource("3_nvr2b")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvbq3"]
+font = ExtResource("3_nvr2b")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_8p4q3"]
+font = ExtResource("3_nvr2b")
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qilb2"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgt8l"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkbjr"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c8g5"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="Inventory_slot" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1102.0
+offset_bottom = -598.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o2r02")
+
+[node name="OuterBorder" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_u0gl5")
+
+[node name="InnerBorder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Sprite2D" parent="InnerBorder"]
+position = Vector2(20, 20)
+texture = ExtResource("2_yd60p")
+
+[node name="Quantity" type="Label" parent="InnerBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9"
+label_settings = SubResource("LabelSettings_3fy8b")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ItemButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0aswh")
+
+[node name="DetailsPanel" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_top = 50.0
+offset_right = 148.0
+offset_bottom = 100.0
+texture = ExtResource("4_4t2uf")
+
+[node name="Name" type="Label" parent="DetailsPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 63.0
+offset_bottom = 20.0
+text = "[Potion]"
+label_settings = SubResource("LabelSettings_g03bj")
+
+[node name="Type" type="Label" parent="DetailsPanel"]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 20.0
+offset_right = 104.0
+offset_bottom = 32.0
+text = "[Consumables]"
+label_settings = SubResource("LabelSettings_gvbq3")
+
+[node name="Effact" type="Label" parent="DetailsPanel"]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 32.0
+offset_right = 62.0
+offset_bottom = 44.0
+text = "+30 HP"
+label_settings = SubResource("LabelSettings_8p4q3")
+
+[node name="UsagePanel" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_top = -50.0
+offset_right = 128.0
+texture = ExtResource("4_4t2uf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UsagePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = -4.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UseButton" type="Button" parent="UsagePanel/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_nvr2b")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_qilb2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgt8l")
+text = "Use"
+
+[node name="DropButton" type="Button" parent="UsagePanel/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_nvr2b")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_hkbjr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4c8g5")
+text = "Drop
+"
+
+[connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="UsagePanel/VBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
+[connection signal="pressed" from="UsagePanel/VBoxContainer/DropButton" to="." method="_on_drop_button_pressed"]

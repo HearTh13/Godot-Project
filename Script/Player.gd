@@ -20,6 +20,7 @@ var inDialogueBox = false
 var pos = 0
 
 func _ready():
+	Global.set_player_reference(self)
 	Global.player_current_attack = false
 	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
 	$Animation/Dim.visible = false
@@ -41,6 +42,34 @@ func _physics_process(_delta):
 		
 		if inDialogueBox:
 			chat()
+			
+	if Global.equip != null:
+		if Global.equip["quantity"] != 0:
+			$CanvasLayer/SkillBox/Sprite2D.texture = Global.equip["texture"]
+			$CanvasLayer/SkillBox/ColorRect/Label.text = str(Global.equip["quantity"])
+		elif Global.equip["quantity"] == 0:
+			Global.equip == null
+		
+	elif Global.equip == null:
+		$CanvasLayer/SkillBox/Sprite2D.texture = load("")
+		$CanvasLayer/SkillBox/ColorRect/Label.text = ""
+	
+	if Input.is_action_just_pressed("Projectile"):
+		if Global.equip != null:
+			$RegenTime.stop()
+			if Global.equip["effect"] == "+Lt Damage":
+				if Global.mana >= 3:
+					Global.mana -= 3
+					if current_dir == "Walk_Side":
+						if $AnimatedSprite2D.flip_h:
+							$Animation.play("lightning_right")
+						if !$AnimatedSprite2D.flip_h:
+							$Animation.play("lightning_left")
+					if current_dir == "Walk_Back":
+						$Animation.play("lightning_up")
+					if current_dir == "Walk_Front":
+						$Animation.play("lightning_down")
+			$RegenTime.start()
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -134,10 +163,17 @@ func _on_player_hitbox_body_exited(body):
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown:
 		if enemy != null:
-			Global.health = Global.health - (enemy.str/Global.def)
+			$RegenTime.stop()
+			Global.mana = Global.mana - (enemy.str/Global.def)
+			if Global.mana <= 0:
+				Global.health += Global.mana
+				if Global.health <= 0:
+					Global.health = 0
+				Global.mana = 0
 			enemy_attack_cooldown = false
 			modulate.a8 = 100
 			$DamageCooldown.start()
+			$RegenTime.start()
 
 func _on_attack_cooldown_timeout():
 	modulate.a8 = 255
@@ -216,12 +252,12 @@ func update_health():
 	
 
 func _on_regen_time_timeout():
-	if Global.health < Global.max_health:
-		Global.health += 20
-		if Global.health >= Global.max_health:
-			Global.health = Global.max_health
-		elif Global.health <= 0:
-			Global.health = 0
+	if Global.mana < Global.max_mana:
+		Global.mana += 20
+		if Global.mana >= Global.max_mana:
+			Global.mana = Global.max_mana
+		elif Global.mana <= 0:
+			Global.mana = 0
 
 func play_bgm():
 	if !$BGM.playing:
@@ -363,6 +399,27 @@ func chat():
 func _on_animation_animation_finished(anim_name):
 	Global.paused = true
 
-#func _physics_process(delta):
-	#velocity = Input.get_vector("Left", "Right", "Up", "Down")
-	#move_and_slide()
+func apply_item_effect(item):
+	match item["effect"]:
+		"+30 HP":
+			Global.health += 30
+			if Global.health > Global.max_health:
+				Global.health = Global.max_health
+			print("HP +30")
+		_:
+			print("Item tidak meiliki effect")
+
+func _on_collision_projectile_area_body_entered(body):
+	$Animation.stop()
+	$Projectile.visible = false
+	if body.has_method("enemy"):
+		body.health = body.health - (Global.str/body.def) + Global.equip["quantity"]
+		body.damageCooldown.start()
+		body.run.start()
+		body.running = false
+		body.take_damage = true
+		body.modulate.a8 = 100
+		body.play_sfx()
+		if body.health <= 0:
+			transfer_exp(body.exp)
+			body.dead.start()

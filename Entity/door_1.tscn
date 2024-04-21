@@ -10,6 +10,7 @@ size = Vector2(64, 15)
 size = Vector2(12, 32)
 
 [node name="Door1" type="CharacterBody2D"]
+y_sort_enabled = true
 
 [node name="Closed" type="Sprite2D" parent="."]
 position = Vector2(32, 16)

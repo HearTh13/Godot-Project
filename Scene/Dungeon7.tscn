@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://booclxuw8ahot"]
+[gd_scene load_steps=7 format=3 uid="uid://booclxuw8ahot"]
 
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_51ksf"]
 [ext_resource type="Script" path="res://Script/Dungeon7.gd" id="1_re733"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t40ny"]
 size = Vector2(20, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74m0o"]
+size = Vector2(69, 20)
 
 [node name="Dungeon7" type="Node2D"]
 y_sort_enabled = true
@@ -43,6 +46,13 @@ position = Vector2(26, 35.5)
 
 [node name="Open" parent="Door" index="2"]
 visible = false
+
+[node name="Dungeon8_Transfer" type="Area2D" parent="."]
+position = Vector2(577, 337)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon8_Transfer"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_74m0o")
 
 [connection signal="body_entered" from="Dungeon6_Transfer" to="." method="_on_dungeon_6_transfer_body_entered"]
 
