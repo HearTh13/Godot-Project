@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw44ax0nytipo"]
+[gd_scene load_steps=9 format=3 uid="uid://cw44ax0nytipo"]
 
 [ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="1_hbgul"]
 [ext_resource type="Script" path="res://Script/inventory.gd" id="1_mnvmn"]
+[ext_resource type="PackedScene" uid="uid://bdcidtjgc0ng7" path="res://Interface/inventory_slot.tscn" id="4_gqeqj"]
 [ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="5_vvi00"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yjcpi"]
@@ -93,6 +94,36 @@ grow_vertical = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 5
+
+[node name="Inventory_slot1" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot2" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot3" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot4" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot5" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot6" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot7" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot8" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot9" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
+
+[node name="Inventory_slot10" parent="TextureRect/GridContainer" instance=ExtResource("4_gqeqj")]
+layout_mode = 2
 
 [node name="SkillTexture" type="TextureRect" parent="."]
 visible = false

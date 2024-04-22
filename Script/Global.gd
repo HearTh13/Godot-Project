@@ -19,6 +19,7 @@ var str
 var def 
 var next 
 var exp 
+var money 
 var alive
 
 var init_pos 
@@ -68,6 +69,7 @@ func initial():
 	def = 10
 	next = 10
 	exp = 0
+	money = 50
 	alive = true
 	
 	player_enter_posx = 276
@@ -115,6 +117,7 @@ func save_game():
 	file.store_var(def)
 	file.store_var(next)
 	file.store_var(exp)
+	file.store_var(money)
 	file.store_var(init_pos)
 	file.store_var(dialogue)
 	file.store_var(objective)
@@ -144,6 +147,7 @@ func load_game():
 	def = file.get_var()
 	next = file.get_var()
 	exp = file.get_var()
+	money = file.get_var()
 	init_pos = file.get_var()
 	dialogue = file.get_var()
 	objective = file.get_var()
@@ -155,49 +159,30 @@ func load_game():
 	story2 = file.get_var()
 	story3 = file.get_var()
 	story4 = file.get_var()
-	print(equip)
 
 func add_item(item):
 	for i in range(inventory.size()):
 		if inventory[i] != null && inventory[i]["type"] == item["type"] && inventory[i]["effect"] == item["effect"]:
 			inventory[i]["quantity"] += item["quantity"]
 			inventory_updated.emit()
-			print("Item Added", inventory)
 			return true
 		elif inventory[i] == null:
 			inventory[i] = item
 			inventory_updated.emit()
-			print("Item Added", inventory)
 			return true
 	return false
 
 func remove_item(item):
-	for i in range(inventory.size()):
-		if inventory[i] != null && inventory[i]["type"] == item["type"] && inventory[i]["effect"] == item["effect"]:
-			inventory[i]["quantity"] -= 1
-			if inventory[i]["quantity"] == 0:
-				inventory[i] = null
-			inventory_updated.emit()
+	for i in inventory.size():
+		if inventory[i] != null:
+			if inventory[i]["type"] == item["type"] && inventory[i]["effect"] == item["effect"]:
+				inventory[i]["quantity"] -= 1
+				if inventory[i]["quantity"] == 0:
+					inventory[i] = null
 			return true
 	return false
 
-func increase_inventory_size():
-	inventory_updated.emit()
-
 func set_player_reference(player):
 	player_node = player
-	
-func adjust_position(position):
-	var radius = 100
-	var nearby_items =get_tree().get_nodes_in_group("Items")
-	for item in nearby_items:
-		if item.global_position.distance_to(position) < radius:
-			var random_offset = Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
-			position += random_offset
-			break
-		return position
 
-func drop_item(item_data, drop_position):
-	var item_scene = load(item_data["scene_path"])
-	var item_interface = item_scene.instantiate()
 	

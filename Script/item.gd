@@ -1,9 +1,8 @@
-@tool
 extends Node2D
 
 @export var type = ""
 @export var item_name = ""
-@export var texture: Texture
+@export var texture = ""
 @export var effect = ""
 
 var scene_path: String = "res://Items/Items.tscn"
@@ -14,13 +13,9 @@ var player_in_range = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if !Engine.is_editor_hint():
-		icon_sprite.texture = texture
+	icon_sprite.texture = load(texture)
 
 func _process(_delta):
-	if Engine.is_editor_hint():
-		icon_sprite.texture = texture
-	
 	if player_in_range:
 		pickup_item()
 	

@@ -45,7 +45,7 @@ func _physics_process(_delta):
 			
 	if Global.equip != null:
 		if Global.equip["quantity"] != 0:
-			$CanvasLayer/SkillBox/Sprite2D.texture = Global.equip["texture"]
+			$CanvasLayer/SkillBox/Sprite2D.texture = load(Global.equip["texture"])
 			$CanvasLayer/SkillBox/ColorRect/Label.text = str(Global.equip["quantity"])
 		elif Global.equip["quantity"] == 0:
 			Global.equip == null
@@ -70,6 +70,12 @@ func _physics_process(_delta):
 					if current_dir == "Walk_Front":
 						$Animation.play("lightning_down")
 			$RegenTime.start()
+	if Global.equip != null:
+		$CanvasLayer/SkillBox/ColorRect/Label.text = str(Global.equip["quantity"])
+		$CanvasLayer/SkillBox/Sprite2D.texture = load(Global.equip["texture"])
+	elif Global.equip == null:
+		$CanvasLayer/SkillBox/ColorRect/Label.text = ""
+		$CanvasLayer/SkillBox/Sprite2D.texture = load("")
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -410,16 +416,17 @@ func apply_item_effect(item):
 			print("Item tidak meiliki effect")
 
 func _on_collision_projectile_area_body_entered(body):
-	$Animation.stop()
-	$Projectile.visible = false
 	if body.has_method("enemy"):
-		body.health = body.health - (Global.str/body.def) + Global.equip["quantity"]
-		body.damageCooldown.start()
-		body.run.start()
-		body.running = false
-		body.take_damage = true
-		body.modulate.a8 = 100
-		body.play_sfx()
-		if body.health <= 0:
-			transfer_exp(body.exp)
-			body.dead.start()
+		$Animation.stop()
+		$Projectile.visible = false
+		if Global.equip != null:
+			body.health = body.health - ((Global.str/body.def) + Global.equip["quantity"])
+			body.damageCooldown.start()
+			body.run.start()
+			body.running = false
+			body.take_damage = true
+			body.modulate.a8 = 100
+			body.play_sfx()
+			if body.health <= 0:
+				transfer_exp(body.exp)
+				body.dead.start()
