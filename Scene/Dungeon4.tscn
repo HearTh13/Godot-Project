@@ -32,6 +32,15 @@ layer_2/tile_data = PackedInt32Array(262162, 131072, 4, 524304, 4, 0, 524303, 4,
 [node name="Player" parent="." instance=ExtResource("3_riaui")]
 position = Vector2(349, 147)
 
+[node name="TextureRect" parent="Player/CanvasLayer" index="0"]
+offset_left = 545.0
+offset_top = 313.5
+offset_right = 625.0
+offset_bottom = 334.5
+
+[node name="Projectile" parent="Player" index="11"]
+hframes = 44
+
 [node name="Slime" parent="." node_paths=PackedStringArray("marker") instance=ExtResource("4_d2177")]
 position = Vector2(406, 98)
 marker = NodePath("../Slime1EndPoint")

@@ -109,7 +109,6 @@ func deal_with_damage():
 					player.transfer_exp(exp)
 					Global.money += money
 					$Dead.start()
-					
 
 func _on_damage_cooldown_timeout():
 	modulate.a8 = 255
@@ -132,7 +131,6 @@ func update_health():
 func _on_run_timeout():
 	running = true
 	
-
 func play_sfx():
 	$SFX.play()
 

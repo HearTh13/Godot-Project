@@ -5,8 +5,6 @@ var signBoard = null
 var floor = null
 var character = null
 
-var skill = 0
-
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 
@@ -26,9 +24,8 @@ func _ready():
 	Global.player_current_attack = false
 	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
 	$Animation/Dim.visible = false
-	$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = true
-	$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
-	$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	$Projectile.visible = false
+	$CollisionProjectileArea/CollisionProjectile.disabled = true
 
 func _physics_process(_delta):
 	if !$CanvasLayer/PauseMenu.visible:
@@ -47,7 +44,49 @@ func _physics_process(_delta):
 		
 		if inDialogueBox:
 			chat()
-			
+	
+	if Input.is_action_just_pressed("Skill 1"):
+		Global.skill = 0
+	elif Input.is_action_just_pressed("Skill 2"):
+		Global.skill = 1
+	elif Input.is_action_just_pressed("Skill 3"):
+		Global.skill = 2
+	
+	if Global.skill == 0:
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = true
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	elif Global.skill == 1:
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = true
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	elif Global.skill == 2:
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = true
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	
+	if Input.is_action_just_pressed("Projectile"):
+		if Global.equip[Global.skill] != null:
+			$RegenTime.stop()
+			if Global.equip[Global.skill]["effect"] == "Lightning Damage":
+				if Global.mana >= 3:
+					Global.mana -= 3
+					if current_dir == "Walk_Side":
+						if $AnimatedSprite2D.flip_h:
+							$Animation.play("lightning_right")
+						if !$AnimatedSprite2D.flip_h:
+							$Animation.play("lightning_left")
+					if current_dir == "Walk_Back":
+						$Animation.play("lightning_up")
+					if current_dir == "Walk_Front":
+						$Animation.play("lightning_down")
+			if Global.equip[Global.skill]["effect"] == "Explosive Damage":
+				if Global.mana >= 3:
+					Global.mana -= 3
+					$Animation.play("Explosion")
+			$RegenTime.start()
+		
+func _process(_delta):
 	if Global.equip[0] != null:
 		if Global.equip[0]["quantity"] != 0:
 			$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load(Global.equip[0]["texture"])
@@ -80,60 +119,7 @@ func _physics_process(_delta):
 	elif Global.equip[2] == null:
 		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load("")
 		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = ""
-	
-	if Input.is_action_just_pressed("Skill 1"):
-		skill = 0
-		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = true
-		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
-		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
-	elif Input.is_action_just_pressed("Skill 2"):
-		skill = 1
-		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
-		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = true
-		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
-	elif Input.is_action_just_pressed("Skill 3"):
-		skill = 2
-		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
-		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
-		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = true
-	
-	if Input.is_action_just_pressed("Projectile"):
-		if Global.equip[skill] != null:
-			$RegenTime.stop()
-			if Global.equip[skill]["effect"] == "Lightning Damage":
-				if Global.mana >= 3:
-					Global.mana -= 3
-					if current_dir == "Walk_Side":
-						if $AnimatedSprite2D.flip_h:
-							$Animation.play("lightning_right")
-						if !$AnimatedSprite2D.flip_h:
-							$Animation.play("lightning_left")
-					if current_dir == "Walk_Back":
-						$Animation.play("lightning_up")
-					if current_dir == "Walk_Front":
-						$Animation.play("lightning_down")
-			$RegenTime.start()
 		
-	if Global.equip[0] != null:
-		$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = str(Global.equip[0]["quantity"])
-		$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load(Global.equip[0]["texture"])
-	elif Global.equip[0] == null:
-		$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = ""
-		$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load("")
-	
-	if Global.equip[1] != null:
-		$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = str(Global.equip[1]["quantity"])
-		$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load(Global.equip[1]["texture"])
-	elif Global.equip[1] == null:
-		$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = ""
-		$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load("")
-	
-	if Global.equip[2] != null:
-		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = str(Global.equip[2]["quantity"])
-		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load(Global.equip[2]["texture"])
-	elif Global.equip[2] == null:
-		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = ""
-		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load("")
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -388,6 +374,17 @@ func chat():
 					"price": 50,
 					"scene_path": "res://Scene/Dungeon1.tscn"
 				}
+				
+				$CanvasLayer/TeacherInventory.inventory[2] = {
+					"quantity": 1,
+					"type": "Skill",
+					"name": "Fire Ring",
+					"texture": "res://Assets/FireRing.png",
+					"effect": "Explosive Damage",
+					"price": 50,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
 				$CanvasLayer/TeacherInventory.visible = true
 			if pos >= 3:
 				Engine.time_scale = 1
@@ -492,10 +489,11 @@ func apply_item_effect(item):
 
 func _on_collision_projectile_area_body_entered(body):
 	if body.has_method("enemy"):
-		$Animation.stop()
-		$Projectile.visible = false
+		if Global.equip[Global.skill]["effect"] == "Lightning Damage":
+			$Animation.stop()
+			$Projectile.visible = false
 		if Global.equip != null:
-			body.health = body.health - ((Global.str/body.def) + Global.equip[skill]["quantity"])
+			body.health = body.health - ((Global.str/body.def) + Global.equip[Global.skill]["quantity"])
 			body.damageCooldown.start()
 			body.run.start()
 			body.running = false
@@ -506,3 +504,10 @@ func _on_collision_projectile_area_body_entered(body):
 				transfer_exp(body.exp)
 				Global.money += body.money
 				body.dead.start()
+
+func _radius10():
+	$CollisionProjectileArea/CollisionProjectile.shape.set_radius(10)
+
+func _radius25():
+	$CollisionProjectileArea/CollisionProjectile.shape.set_radius(25)
+

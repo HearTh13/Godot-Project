@@ -10,6 +10,8 @@ var direction: Vector2
 var player_inattack_zone = false
 var take_damage = false
 
+var alive = true
+
 var max_health = 150
 var health = max_health
 var speed = 35
@@ -78,6 +80,7 @@ func deal_with_damage():
 				if health <= 0:
 					player.transfer_exp(exp)
 					Global.money += money
+					alive = false
 
 func play_sfx():
 	$SFX.play()
@@ -85,3 +88,4 @@ func play_sfx():
 func _on_damage_cooldown_timeout():
 	modulate.a8 = 255
 	take_damage = false
+	

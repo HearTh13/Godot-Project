@@ -834,6 +834,15 @@ layer_2/tile_data = PackedInt32Array(196616, 131076, 0, 262156, 65540, 0, 196620
 [node name="Player" parent="." instance=ExtResource("3_f3uq5")]
 position = Vector2(273, 172)
 
+[node name="TextureRect" parent="Player/CanvasLayer" index="0"]
+offset_left = 545.0
+offset_top = 313.5
+offset_right = 625.0
+offset_bottom = 334.5
+
+[node name="Projectile" parent="Player" index="11"]
+hframes = 44
+
 [node name="Dungeon2_Transfer" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon2_Transfer"]

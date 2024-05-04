@@ -46,7 +46,7 @@ func _on_item_button_pressed():
 			var child = get_parent().get_child(i)
 			if child != self:
 				child.item_button.disabled = !child.item_button.disabled
-		get_parent().get_parent().get_parent().unequip_button.disabled = !get_parent().get_parent().get_parent().unequip_button.disabled
+		get_parent().get_parent().get_parent().unequip_button.visible = !get_parent().get_parent().get_parent().unequip_button.visible
 
 func _on_item_button_mouse_exited():
 	details_panel.visible = false
@@ -84,26 +84,13 @@ func _on_use_button_pressed():
 					Global.player_node.apply_item_effect(item)
 					Global.remove_item(item)
 			usage_panel.visible = false
+			for i in get_parent().get_child_count():
+				var child = get_parent().get_child(i)
+				if child != self:
+					child.item_button.disabled = !child.item_button.disabled
+			get_parent().get_parent().get_parent().unequip_button.visible = !get_parent().get_parent().get_parent().unequip_button.visible
 		elif item["type"] == "Skill":
 			usage_panel2.visible = true
-			#if Global.equip == null:
-				#Global.equip = Global.inventory[index]
-				#Global.inventory[index] = null
-			#elif Global.equip != null:
-				#if Global.equip["name"] == Global.inventory[index]["name"]:
-					#Global.equip["quantity"] += Global.inventory[index]["quantity"]
-					#Global.inventory[index] = null
-				#elif Global.equip["name"] != Global.inventory[index]["name"]:
-					#var temp = Global.equip
-					#Global.equip = Global.inventory[index]
-					#Global.inventory[index] = temp
-		
-		
-		for i in get_parent().get_child_count():
-			var child = get_parent().get_child(i)
-			if child != self:
-				child.item_button.disabled = !child.item_button.disabled
-		get_parent().get_parent().get_parent().unequip_button.disabled = !get_parent().get_parent().get_parent().unequip_button.disabled
 
 func _on_equip_1_pressed():
 	if Global.equip[0] == null:
@@ -119,6 +106,11 @@ func _on_equip_1_pressed():
 			Global.inventory[index] = temp
 	usage_panel.visible = false
 	usage_panel2.visible = false
+	for i in get_parent().get_child_count():
+		var child = get_parent().get_child(i)
+		if child != self:
+			child.item_button.disabled = !child.item_button.disabled
+	get_parent().get_parent().get_parent().unequip_button.visible = !get_parent().get_parent().get_parent().unequip_button.visible
 
 func _on_equip_2_pressed():
 	if Global.equip[1] == null:
@@ -134,6 +126,11 @@ func _on_equip_2_pressed():
 			Global.inventory[index] = temp
 	usage_panel.visible = false
 	usage_panel2.visible = false
+	for i in get_parent().get_child_count():
+		var child = get_parent().get_child(i)
+		if child != self:
+			child.item_button.disabled = !child.item_button.disabled
+	get_parent().get_parent().get_parent().unequip_button.visible = !get_parent().get_parent().get_parent().unequip_button.visible
 
 func _on_equip_3_pressed():
 	if Global.equip[2] == null:
@@ -149,3 +146,8 @@ func _on_equip_3_pressed():
 			Global.inventory[index] = temp
 	usage_panel.visible = false
 	usage_panel2.visible = false
+	for i in get_parent().get_child_count():
+		var child = get_parent().get_child(i)
+		if child != self:
+			child.item_button.disabled = !child.item_button.disabled
+	get_parent().get_parent().get_parent().unequip_button.visible = !get_parent().get_parent().get_parent().unequip_button.visible

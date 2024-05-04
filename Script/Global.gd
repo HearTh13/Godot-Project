@@ -44,6 +44,8 @@ var scene
 var inventory = []
 var equip = []
 
+var skill
+
 signal inventory_updated
 
 var player_node: Node = null
@@ -99,6 +101,8 @@ func initial():
 	story4 = false
 	dialogueBox = false
 	
+	skill = 0
+	
 	inventory.resize(10)
 	equip.resize(3)
 
@@ -132,6 +136,7 @@ func save_game():
 	file.store_var(story3)
 	file.store_var(story4)
 	file.store_var(alive)
+	file.store_var(skill)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -163,6 +168,7 @@ func load_game():
 	story3 = file.get_var()
 	story4 = file.get_var()
 	alive = file.get_var()
+	skill = file.get_var()
 
 func add_item(item):
 	for i in range(inventory.size()):
