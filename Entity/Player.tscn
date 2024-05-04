@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=67 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://br28bw3xuw404" path="res://Assets/text_level_up.png" id="8_vmta0"]
 [ext_resource type="Texture2D" uid="uid://fc8e3e851n4u" path="res://Assets/lightning.png" id="9_s48hm"]
 [ext_resource type="Texture2D" uid="uid://civf050sgwy21" path="res://Assets/lightning_line_medium/lightning_line1a2.png" id="11_bcc5i"]
+[ext_resource type="PackedScene" uid="uid://dne6tf7niaahp" path="res://Interface/teacher_inventory.tscn" id="13_xumix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmsl6"]
 atlas = ExtResource("1_lk2m0")
@@ -966,6 +967,9 @@ offset_bottom = 135.0
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in accumsan dui. Pellentesque et dapibus mi, ut viverra erat. "
 label_settings = SubResource("LabelSettings_apn7v")
 autowrap_mode = 3
+
+[node name="TeacherInventory" parent="CanvasLayer" instance=ExtResource("13_xumix")]
+visible = false
 
 [node name="Projectile" type="Sprite2D" parent="."]
 visible = false

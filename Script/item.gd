@@ -4,6 +4,7 @@ extends Node2D
 @export var item_name = ""
 @export var texture = ""
 @export var effect = ""
+var price = 0
 
 var scene_path: String = "res://Items/Items.tscn"
 
@@ -26,6 +27,7 @@ func pickup_item():
 		"name": item_name,
 		"texture": texture,
 		"effect": effect,
+		"price": price,
 		"scene_path": scene_path
 	}
 	if Global.player_node:

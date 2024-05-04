@@ -178,5 +178,37 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lilwi")
 
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 11.0
+offset_right = 291.0
+offset_bottom = 51.0
+texture = ExtResource("1_hbgul")
+
+[node name="Label" type="Label" parent="TextureRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "G:"
+vertical_alignment = 1
+
+[node name="Number" type="Label" parent="TextureRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1234"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [connection signal="pressed" from="SkillTexture/VBoxContainer/Unequip" to="." method="_on_unequip_pressed"]
 [connection signal="pressed" from="SkillButton" to="." method="_on_skill_button_pressed"]

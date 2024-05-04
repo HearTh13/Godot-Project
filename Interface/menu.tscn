@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0kkbjfxf5qi" path="res://Assets/TitleBar.png" id="4_xhbei"]
 [ext_resource type="Texture2D" uid="uid://clgexky7cgn1s" path="res://Assets/TitleBarClicked.png" id="5_3my2g"]
 [ext_resource type="Texture2D" uid="uid://i0yg23b71sg4" path="res://Assets/TitleBarHover.png" id="5_k7uln"]
-[ext_resource type="AudioStream" uid="uid://bkb0pfoq26w6m" path="res://Assets/Music/Angel's Breath.ogg" id="11_2k4jn"]
+[ext_resource type="AudioStream" uid="uid://dp85yb2dln0hb" path="res://Assets/Music/Isekai Kodok.mp3" id="11_5fk4s"]
 [ext_resource type="AudioStream" uid="uid://dqjr4dds5ykty" path="res://Assets/Music/Button.mp3" id="12_gmi3n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5iuqi"]
@@ -171,7 +171,7 @@ offset_bottom = 31.0
 texture = ExtResource("4_jho7j")
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_2k4jn")
+stream = ExtResource("11_5fk4s")
 
 [node name="ButtonPressedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_gmi3n")

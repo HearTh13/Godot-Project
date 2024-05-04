@@ -10,7 +10,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	#print(inventory_slots.get_child_count())
 	for i in inventory_slots.get_child_count():
 		var slot = inventory_slots.get_child(i)
 		var item = Global.inventory[i]
@@ -18,7 +17,8 @@ func _process(delta):
 			slot.set_item(item)
 		elif item == null:
 			slot.set_empty()
-			
+	$TextureRect3/Number.text = str(Global.money)
+	
 #func _on_inventory_updated():
 	##clear_grid_container()
 	#for item in Global.inventory:
@@ -43,12 +43,20 @@ func _on_skill_button_pressed():
 			child.item_button.disabled = !child.item_button.disabled
 
 func _on_unequip_pressed():
+	var given = false
 	for i in Global.inventory.size():
 		var child = inventory_slots.get_child(i)
 		child.item_button.disabled = !child.item_button.disabled
-		if Global.inventory[i] == null:
-			Global.inventory[i] = Global.equip
-			Global.equip = null
-			
-	$SkillTexture.visible = false
+		if Global.inventory[i] != null && Global.inventory[i]["name"] == Global.equip["name"]:
+			Global.inventory[i]["quantity"] += Global.equip["quantity"]
+			given = true
+			$SkillTexture.visible = false
+			return
+	if !given:
+		for i in Global.inventory.size():
+			if Global.inventory[i] == null:
+				Global.inventory[i] = Global.equip
+				Global.equip = null
+				$SkillTexture.visible = false
+				return
 	

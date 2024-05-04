@@ -1,0 +1,14 @@
+extends Control
+
+@onready var container = $TextureRect/GridContainer
+@onready var money = $TextureRect3/Number
+var inventory = []
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	inventory.resize(10)
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	money.text = str(Global.money)

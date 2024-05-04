@@ -12,6 +12,7 @@ var speed = 35
 var str = 20
 var def = 2
 var exp = 5
+var money = 10
 
 var alive = true
 var running = true
@@ -106,6 +107,7 @@ func deal_with_damage():
 				play_sfx()
 				if health <= 0:
 					player.transfer_exp(exp)
+					Global.money += money
 					$Dead.start()
 					
 

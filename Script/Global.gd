@@ -50,14 +50,15 @@ var player_node: Node = null
 @onready var inventory_slot_scene = preload("res://Interface/inventory_slot.tscn")
 
 func pause_menu(dim):
-	if Input.is_action_just_pressed("Pause"):
-		if paused:
-			Engine.time_scale = 1
-			dim.visible = false
-		else:
-			Engine.time_scale = 0
-			dim.visible = true
-		paused = !paused
+	if !player_node.inDialogueBox:
+		if Input.is_action_just_pressed("Pause"):
+			if paused:
+				Engine.time_scale = 1
+				dim.visible = false
+			else:
+				Engine.time_scale = 0
+				dim.visible = true
+			paused = !paused
 
 func initial():
 	level = 1
@@ -129,6 +130,7 @@ func save_game():
 	file.store_var(story2)
 	file.store_var(story3)
 	file.store_var(story4)
+	file.store_var(alive)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -159,16 +161,16 @@ func load_game():
 	story2 = file.get_var()
 	story3 = file.get_var()
 	story4 = file.get_var()
+	alive = file.get_var()
 
 func add_item(item):
 	for i in range(inventory.size()):
-		if inventory[i] != null && inventory[i]["type"] == item["type"] && inventory[i]["effect"] == item["effect"]:
+		if inventory[i] != null && inventory[i]["name"] == item["name"]:
+			print("lol")
 			inventory[i]["quantity"] += item["quantity"]
-			inventory_updated.emit()
 			return true
 		elif inventory[i] == null:
 			inventory[i] = item
-			inventory_updated.emit()
 			return true
 	return false
 
@@ -184,5 +186,4 @@ func remove_item(item):
 
 func set_player_reference(player):
 	player_node = player
-
 	

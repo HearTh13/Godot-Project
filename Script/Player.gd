@@ -275,8 +275,6 @@ func play_sfx(path):
 
 func transfer_exp(exp):
 	Global.exp += exp
-	print(Global.exp)
-	print(Global.next)
 	if Global.exp >= Global.next:
 		Global.level += 1
 		if (Global.level % 2) == 0:
@@ -304,18 +302,40 @@ func save():
 			$Animation.play("text_saved")
 
 func chat():
-	if Input.is_action_just_pressed("Attack-OK"):
+	if Input.is_action_just_pressed("OK Button"):
 		if character.type == "teacher":
 			Global.dialogueBox = true
 			$"CanvasLayer/Dialogue Box".visible = true
 			if pos == 1:
 				Engine.time_scale = 0
 				$"CanvasLayer/Dialogue Box/Name".text = "Guru"
-				$"CanvasLayer/Dialogue Box/Text".text = "Duduk semuanya. Pelajaran akan dimulai!"
-			if pos >= 2:
+				$"CanvasLayer/Dialogue Box/Text".text = "Mau beli apa? Aku akan membantumu sebisaku."
+			if pos == 2:
+				$CanvasLayer/TeacherInventory.inventory[0] = {
+					"quantity": 1,
+					"type": "Consumables",
+					"name": "Potion",
+					"texture": "res://Assets/Potion.png",
+					"effect": "+30 HP",
+					"price": 10,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[1] = {
+					"quantity": 1,
+					"type": "Skill",
+					"name": "Lightning Bolt",
+					"texture": "res://Assets/lightning.png",
+					"effect": "Lightning Damage",
+					"price": 50,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				$CanvasLayer/TeacherInventory.visible = true
+			if pos >= 3:
 				Engine.time_scale = 1
 				pos = 0
 				Global.dialogueBox = false
+				$CanvasLayer/TeacherInventory.visible = false
 				$"CanvasLayer/Dialogue Box".visible = false
 		if character.type == "sign":
 			if character.text == 1:
@@ -411,9 +431,6 @@ func apply_item_effect(item):
 			Global.health += 30
 			if Global.health > Global.max_health:
 				Global.health = Global.max_health
-			print("HP +30")
-		_:
-			print("Item tidak meiliki effect")
 
 func _on_collision_projectile_area_body_entered(body):
 	if body.has_method("enemy"):
@@ -429,4 +446,5 @@ func _on_collision_projectile_area_body_entered(body):
 			body.play_sfx()
 			if body.health <= 0:
 				transfer_exp(body.exp)
+				Global.money += body.money
 				body.dead.start()

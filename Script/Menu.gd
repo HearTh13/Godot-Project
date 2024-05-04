@@ -26,6 +26,10 @@ func _process(_delta):
 		if pos <= 0:
 			pos = 3
 	menu()
+	if !FileAccess.file_exists("user://SaveData.dat"):
+		con.visible = false
+	else:
+		con.visible = true
 
 func _on_play_pressed():
 	if !fading:
@@ -42,8 +46,6 @@ func _on_continue_pressed():
 			Global.load_game()
 			fading = true
 			$Animation.play("fade")
-		else:
-			print("No Save Data")
 
 func _on_exit_pressed():
 	if !fading:

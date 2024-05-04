@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djhgpexy6x7y"
+path="res://.godot/imported/Dungeon Probably.mp3-eb70f1a9ce149e7e6c99d752334ee38b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Dungeon Probably.mp3"
+dest_files=["res://.godot/imported/Dungeon Probably.mp3-eb70f1a9ce149e7e6c99d752334ee38b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

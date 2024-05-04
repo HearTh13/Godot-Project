@@ -64,7 +64,7 @@ script = ExtResource("1_uqury")
 y_sort_enabled = true
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_xaspi")
-animation = &"default_right"
+animation = &"default_front"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(17, 24)

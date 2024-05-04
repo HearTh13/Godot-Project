@@ -13,6 +13,7 @@ var speed = 60
 var str = 250
 var def = 4
 var exp = 200
+var money = 500
 
 var player_inattack_zone = false
 var take_damage = false
@@ -37,7 +38,6 @@ func _process(_delta):
 	
 	deal_with_damage()
 	update_health()
-	print(alive)
 		
 func _physics_process(delta):
 	velocity = direction.normalized() * 40

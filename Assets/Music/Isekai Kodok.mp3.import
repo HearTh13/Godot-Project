@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dp85yb2dln0hb"
+path="res://.godot/imported/Isekai Kodok.mp3-867615c9ab9d0e6d59c388e4ad1933d9.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Isekai Kodok.mp3"
+dest_files=["res://.godot/imported/Isekai Kodok.mp3-867615c9ab9d0e6d59c388e4ad1933d9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

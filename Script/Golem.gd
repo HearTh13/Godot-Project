@@ -16,6 +16,7 @@ var speed = 35
 var str = 60
 var def = 3
 var exp = 60
+var money = 50
 
 func player_take_damage():
 	if player.enemy_attack_cooldown:
@@ -76,6 +77,7 @@ func deal_with_damage():
 				play_sfx()
 				if health <= 0:
 					player.transfer_exp(exp)
+					Global.money += money
 
 func play_sfx():
 	$SFX.play()
