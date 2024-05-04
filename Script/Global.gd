@@ -42,7 +42,7 @@ var dialogueBox = false
 var scene
 
 var inventory = []
-var equip = null
+var equip = []
 
 signal inventory_updated
 
@@ -90,7 +90,7 @@ func initial():
 	
 	boss = false
 	inventory = []
-	equip = null
+	equip = []
 	
 	open = false
 	open2 = false
@@ -100,6 +100,7 @@ func initial():
 	dialogueBox = false
 	
 	inventory.resize(10)
+	equip.resize(3)
 
 func save_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.WRITE)

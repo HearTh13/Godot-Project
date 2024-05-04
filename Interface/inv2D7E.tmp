@@ -220,6 +220,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [connection signal="pressed" from="SkillTexture/VBoxContainer/Unequip" to="." method="_on_unequip_pressed"]
-[connection signal="pressed" from="HBoxContainer/SkillButton1" to="." method="_on_skill_button_1_pressed"]
-[connection signal="pressed" from="HBoxContainer/SkillButton2" to="." method="_on_skill_button_2_pressed"]
-[connection signal="pressed" from="HBoxContainer/SkillButton3" to="." method="_on_skill_button_3_pressed"]
+[connection signal="pressed" from="HBoxContainer/SkillButton1" to="." method="_on_skill_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/SkillButton2" to="." method="_on_skill_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/SkillButton3" to="." method="_on_skill_button_pressed"]

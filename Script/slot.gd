@@ -8,6 +8,7 @@ extends Control
 @onready var item_type = $DetailsPanel/Type
 @onready var item_effect = $DetailsPanel/Effact
 @onready var usage_panel = $UsagePanel
+@onready var usage_panel2 = $UsagePanel2
 @onready var use_button = $UsagePanel/VBoxContainer/UseButton
 @onready var drop_button = $UsagePanel/VBoxContainer/DropButton
 
@@ -15,6 +16,9 @@ var item = null
 var index = 0
 
 func _ready():
+	usage_panel.visible = false
+	usage_panel2.visible = false
+	details_panel.visible = false
 	quantity_label.text = ""
 	icon.texture = load("")
 	for i in get_parent().get_child_count():
@@ -79,28 +83,69 @@ func _on_use_button_pressed():
 				if Global.player_node:
 					Global.player_node.apply_item_effect(item)
 					Global.remove_item(item)
+			usage_panel.visible = false
 		elif item["type"] == "Skill":
-			if Global.equip == null:
-				Global.equip = Global.inventory[index]
-				Global.inventory[index] = null
-			elif Global.equip != null:
-				if Global.equip["name"] == Global.inventory[index]["name"]:
-					Global.equip["quantity"] += Global.inventory[index]["quantity"]
-					Global.inventory[index] = null
-				elif Global.equip["name"] != Global.inventory[index]["name"]:
-					var temp = Global.equip
-					Global.equip = Global.inventory[index]
-					Global.inventory[index] = temp
-			
-			#if Global.equip != null && Global.equip["type"] == item["type"] && Global.equip["effect"] == item["effect"]:
-				#Global.equip["quantity"] += item["quantity"]
-			#elif Global.equip == null || Global.equip["type"] != item["type"] || Global.equip["effect"] != item["effect"]:
-				#Global.equip = item
-			#Global.remove_item(item)
-		usage_panel.visible = false
+			usage_panel2.visible = true
+			#if Global.equip == null:
+				#Global.equip = Global.inventory[index]
+				#Global.inventory[index] = null
+			#elif Global.equip != null:
+				#if Global.equip["name"] == Global.inventory[index]["name"]:
+					#Global.equip["quantity"] += Global.inventory[index]["quantity"]
+					#Global.inventory[index] = null
+				#elif Global.equip["name"] != Global.inventory[index]["name"]:
+					#var temp = Global.equip
+					#Global.equip = Global.inventory[index]
+					#Global.inventory[index] = temp
+		
 		
 		for i in get_parent().get_child_count():
 			var child = get_parent().get_child(i)
 			if child != self:
 				child.item_button.disabled = !child.item_button.disabled
 		get_parent().get_parent().get_parent().unequip_button.disabled = !get_parent().get_parent().get_parent().unequip_button.disabled
+
+func _on_equip_1_pressed():
+	if Global.equip[0] == null:
+		Global.equip[0] = Global.inventory[index]
+		Global.inventory[index] = null
+	elif Global.equip[0] != null:
+		if Global.equip[0]["name"] == Global.inventory[index]["name"]:
+			Global.equip[0]["quantity"] += Global.inventory[index]["quantity"]
+			Global.inventory[index] = null
+		elif Global.equip[0]["name"] != Global.inventory[index]["name"]:
+			var temp = Global.equip[0]
+			Global.equip[0] = Global.inventory[index]
+			Global.inventory[index] = temp
+	usage_panel.visible = false
+	usage_panel2.visible = false
+
+func _on_equip_2_pressed():
+	if Global.equip[1] == null:
+		Global.equip[1] = Global.inventory[index]
+		Global.inventory[index] = null
+	elif Global.equip[1] != null:
+		if Global.equip[1]["name"] == Global.inventory[index]["name"]:
+			Global.equip[1]["quantity"] += Global.inventory[index]["quantity"]
+			Global.inventory[index] = null
+		elif Global.equip[1]["name"] != Global.inventory[index]["name"]:
+			var temp = Global.equip[1]
+			Global.equip[1] = Global.inventory[index]
+			Global.inventory[index] = temp
+	usage_panel.visible = false
+	usage_panel2.visible = false
+
+func _on_equip_3_pressed():
+	if Global.equip[2] == null:
+		Global.equip[2] = Global.inventory[index]
+		Global.inventory[index] = null
+	elif Global.equip[2] != null:
+		if Global.equip[2]["name"] == Global.inventory[index]["name"]:
+			Global.equip[2]["quantity"] += Global.inventory[index]["quantity"]
+			Global.inventory[index] = null
+		elif Global.equip[2]["name"] != Global.inventory[index]["name"]:
+			var temp = Global.equip[2]
+			Global.equip[2] = Global.inventory[index]
+			Global.inventory[index] = temp
+	usage_panel.visible = false
+	usage_panel2.visible = false

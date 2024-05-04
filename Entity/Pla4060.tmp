@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://c8pnqpx6je86j"]
+[gd_scene load_steps=67 format=3 uid="uid://c8pnqpx6je86j"]
 
 [ext_resource type="Texture2D" uid="uid://cfubvppbjn5j3" path="res://Assets/Player.png" id="1_lk2m0"]
 [ext_resource type="Script" path="res://Script/Player.gd" id="2_7mqvl"]
@@ -772,23 +772,6 @@ font = ExtResource("6_mq1bx")
 font_size = 10
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdbgr"]
-draw_center = false
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.41303, 0.870226, 1, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_forv5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iajoq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3pdqu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxc1a"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_hrmrt"]
 font = ExtResource("6_mq1bx")
 
@@ -924,20 +907,6 @@ position = Vector2(9, 9)
 texture = ExtResource("9_s48hm")
 centered = false
 
-[node name="Equip" type="Button" parent="CanvasLayer/HBoxContainer/SkillBox1"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_sdbgr")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_forv5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_iajoq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3pdqu")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vxc1a")
-
 [node name="SkillBox2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_aqli7")
@@ -967,20 +936,6 @@ position = Vector2(9, 9)
 texture = ExtResource("9_s48hm")
 centered = false
 
-[node name="Equip" type="Button" parent="CanvasLayer/HBoxContainer/SkillBox2"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_sdbgr")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_forv5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_iajoq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3pdqu")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vxc1a")
-
 [node name="SkillBox3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_aqli7")
@@ -1009,20 +964,6 @@ vertical_alignment = 2
 position = Vector2(9, 9)
 texture = ExtResource("9_s48hm")
 centered = false
-
-[node name="Equip" type="Button" parent="CanvasLayer/HBoxContainer/SkillBox3"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_sdbgr")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_forv5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_iajoq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3pdqu")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vxc1a")
 
 [node name="SkillText" type="Label" parent="CanvasLayer"]
 anchors_preset = 7

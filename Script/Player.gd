@@ -5,6 +5,8 @@ var signBoard = null
 var floor = null
 var character = null
 
+var skill = 0
+
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 
@@ -24,6 +26,9 @@ func _ready():
 	Global.player_current_attack = false
 	Global.scene = "res://Scene/"+Global.current_scene+".tscn"
 	$Animation/Dim.visible = false
+	$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = true
+	$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
+	$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
 
 func _physics_process(_delta):
 	if !$CanvasLayer/PauseMenu.visible:
@@ -43,21 +48,59 @@ func _physics_process(_delta):
 		if inDialogueBox:
 			chat()
 			
-	if Global.equip != null:
-		if Global.equip["quantity"] != 0:
-			$CanvasLayer/SkillBox/Sprite2D.texture = load(Global.equip["texture"])
-			$CanvasLayer/SkillBox/ColorRect/Label.text = str(Global.equip["quantity"])
-		elif Global.equip["quantity"] == 0:
-			Global.equip == null
-		
-	elif Global.equip == null:
-		$CanvasLayer/SkillBox/Sprite2D.texture = load("")
-		$CanvasLayer/SkillBox/ColorRect/Label.text = ""
+	if Global.equip[0] != null:
+		if Global.equip[0]["quantity"] != 0:
+			$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load(Global.equip[0]["texture"])
+			$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = str(Global.equip[0]["quantity"])
+		elif Global.equip[0]["quantity"] == 0:
+			Global.equip[0] = null
+	
+	elif Global.equip[0] == null:
+		$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load("")
+		$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = ""
+	
+	if Global.equip[1] != null:
+		if Global.equip[1]["quantity"] != 0:
+			$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load(Global.equip[1]["texture"])
+			$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = str(Global.equip[1]["quantity"])
+		elif Global.equip[1]["quantity"] == 0:
+			Global.equip[1] = null
+	
+	elif Global.equip[1] == null:
+		$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load("")
+		$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = ""
+	
+	if Global.equip[2] != null:
+		if Global.equip[2]["quantity"] != 0:
+			$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load(Global.equip[2]["texture"])
+			$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = str(Global.equip[2]["quantity"])
+		elif Global.equip[2]["quantity"] == 0:
+			Global.equip[2] = null
+	
+	elif Global.equip[2] == null:
+		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load("")
+		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = ""
+	
+	if Input.is_action_just_pressed("Skill 1"):
+		skill = 0
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = true
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	elif Input.is_action_just_pressed("Skill 2"):
+		skill = 1
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = true
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+	elif Input.is_action_just_pressed("Skill 3"):
+		skill = 2
+		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = true
 	
 	if Input.is_action_just_pressed("Projectile"):
-		if Global.equip != null:
+		if Global.equip[skill] != null:
 			$RegenTime.stop()
-			if Global.equip["effect"] == "+Lt Damage":
+			if Global.equip[skill]["effect"] == "Lightning Damage":
 				if Global.mana >= 3:
 					Global.mana -= 3
 					if current_dir == "Walk_Side":
@@ -70,12 +113,27 @@ func _physics_process(_delta):
 					if current_dir == "Walk_Front":
 						$Animation.play("lightning_down")
 			$RegenTime.start()
-	if Global.equip != null:
-		$CanvasLayer/SkillBox/ColorRect/Label.text = str(Global.equip["quantity"])
-		$CanvasLayer/SkillBox/Sprite2D.texture = load(Global.equip["texture"])
-	elif Global.equip == null:
-		$CanvasLayer/SkillBox/ColorRect/Label.text = ""
-		$CanvasLayer/SkillBox/Sprite2D.texture = load("")
+		
+	if Global.equip[0] != null:
+		$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = str(Global.equip[0]["quantity"])
+		$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load(Global.equip[0]["texture"])
+	elif Global.equip[0] == null:
+		$CanvasLayer/HBoxContainer/SkillBox1/ColorRect/Label.text = ""
+		$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load("")
+	
+	if Global.equip[1] != null:
+		$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = str(Global.equip[1]["quantity"])
+		$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load(Global.equip[1]["texture"])
+	elif Global.equip[1] == null:
+		$CanvasLayer/HBoxContainer/SkillBox2/ColorRect/Label.text = ""
+		$CanvasLayer/HBoxContainer/SkillBox2/Sprite2D.texture = load("")
+	
+	if Global.equip[2] != null:
+		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = str(Global.equip[2]["quantity"])
+		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load(Global.equip[2]["texture"])
+	elif Global.equip[2] == null:
+		$CanvasLayer/HBoxContainer/SkillBox3/ColorRect/Label.text = ""
+		$CanvasLayer/HBoxContainer/SkillBox3/Sprite2D.texture = load("")
 
 func player_movement():
 	var movement = Input.get_vector("Left", "Right", "Up", "Down")
@@ -437,7 +495,7 @@ func _on_collision_projectile_area_body_entered(body):
 		$Animation.stop()
 		$Projectile.visible = false
 		if Global.equip != null:
-			body.health = body.health - ((Global.str/body.def) + Global.equip["quantity"])
+			body.health = body.health - ((Global.str/body.def) + Global.equip[skill]["quantity"])
 			body.damageCooldown.start()
 			body.run.start()
 			body.running = false

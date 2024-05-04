@@ -109,7 +109,6 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0aswh")
 
 [node name="DetailsPanel" type="TextureRect" parent="."]
-visible = false
 z_index = 2
 layout_mode = 0
 offset_top = 50.0
@@ -145,7 +144,6 @@ text = "+30 HP"
 label_settings = SubResource("LabelSettings_8p4q3")
 
 [node name="UsagePanel" type="TextureRect" parent="."]
-visible = false
 z_index = 2
 layout_mode = 0
 offset_top = -50.0
@@ -186,8 +184,62 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_4c8g5")
 text = "Drop
 "
 
+[node name="UsagePanel2" type="TextureRect" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 129.0
+offset_top = -70.0
+offset_right = 257.0
+texture = ExtResource("4_4t2uf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UsagePanel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.5
+offset_right = -4.0
+offset_bottom = -5.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Equip1" type="Button" parent="UsagePanel2/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_nvr2b")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_qilb2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgt8l")
+text = "Skill 1"
+
+[node name="Equip2" type="Button" parent="UsagePanel2/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_nvr2b")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_qilb2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgt8l")
+text = "Skill 2"
+
+[node name="Equip3" type="Button" parent="UsagePanel2/VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_nvr2b")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_hkbjr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4c8g5")
+text = "Skill 3"
+
 [connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
 [connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
 [connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
 [connection signal="pressed" from="UsagePanel/VBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
 [connection signal="pressed" from="UsagePanel/VBoxContainer/DropButton" to="." method="_on_drop_button_pressed"]
+[connection signal="pressed" from="UsagePanel2/VBoxContainer/Equip1" to="." method="_on_equip_1_pressed"]
+[connection signal="pressed" from="UsagePanel2/VBoxContainer/Equip2" to="." method="_on_equip_2_pressed"]
+[connection signal="pressed" from="UsagePanel2/VBoxContainer/Equip3" to="." method="_on_equip_3_pressed"]
