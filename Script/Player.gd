@@ -84,6 +84,26 @@ func _physics_process(_delta):
 				if Global.mana >= 3:
 					Global.mana -= 3
 					$Animation.play("Explosion")
+			if Global.equip[Global.skill]["effect"] == "Fire Breath":
+				if Global.mana >= 3:
+					Global.mana -= 3
+					if current_dir == "Walk_Side":
+						if $AnimatedSprite2D.flip_h:
+							$Animation.play("fire_breath_right")
+						if !$AnimatedSprite2D.flip_h:
+							$Animation.play("fire_breath_left")
+					if current_dir == "Walk_Back":
+						$Animation.play("fire_breath_up")
+					if current_dir == "Walk_Front":
+						$Animation.play("fire_breath_down")
+			if Global.equip[Global.skill]["effect"] == "Unleash Glacier":
+				if Global.mana >= 6:
+					Global.mana -= 6
+					$Animation.play("ice_glacier")
+			if Global.equip[Global.skill]["effect"] == "Heal HP":
+				if Global.mana >= 6:
+					Global.mana -= 6
+					$Animation.play("heal")
 			$RegenTime.start()
 		
 func _process(_delta):
@@ -361,7 +381,7 @@ func chat():
 					"name": "Potion",
 					"texture": "res://Assets/Potion.png",
 					"effect": "+30 HP",
-					"price": 10,
+					"price": 20,
 					"scene_path": "res://Scene/Dungeon1.tscn"
 				}
 				
@@ -382,6 +402,76 @@ func chat():
 					"texture": "res://Assets/FireRing.png",
 					"effect": "Explosive Damage",
 					"price": 50,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[3] = {
+					"quantity": 1,
+					"type": "Consumables",
+					"name": "Tonic",
+					"texture": "res://Assets/Tonic.png",
+					"effect": "+50 MP",
+					"price": 30,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[4] = {
+					"quantity": 1,
+					"type": "Consumables",
+					"name": "Mega Potion",
+					"texture": "res://Assets/Mega Potion.png",
+					"effect": "+150 HP",
+					"price": 100,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[5] = {
+					"quantity": 1,
+					"type": "Consumables",
+					"name": "Mega Tonic",
+					"texture": "res://Assets/Mega Tonic.png",
+					"effect": "+200 MP",
+					"price": 120,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[6] = {
+					"quantity": 1,
+					"type": "Consumables",
+					"name": "STR Boost",
+					"texture": "res://Assets/STR Boost.png",
+					"effect": "Attack +20",
+					"price": 1000,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[7] = {
+					"quantity": 1,
+					"type": "Skill",
+					"name": "Fire Breath",
+					"texture": "res://Assets/Fire Breath.png",
+					"effect": "Fire Breath",
+					"price": 50,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[8] = {
+					"quantity": 1,
+					"type": "Skill",
+					"name": "Ice Glacier",
+					"texture": "res://Assets/Ice Glacier.png",
+					"effect": "Unleash Glacier",
+					"price": 500,
+					"scene_path": "res://Scene/Dungeon1.tscn"
+				}
+				
+				$CanvasLayer/TeacherInventory.inventory[9] = {
+					"quantity": 1,
+					"type": "Skill",
+					"name": "Heal",
+					"texture": "res://Assets/Ice Glacier.png",
+					"effect": "Heal HP",
+					"price": 150,
 					"scene_path": "res://Scene/Dungeon1.tscn"
 				}
 				
@@ -486,6 +576,20 @@ func apply_item_effect(item):
 			Global.health += 30
 			if Global.health > Global.max_health:
 				Global.health = Global.max_health
+		"+50 MP":
+			Global.mana += 50
+			if Global.mana > Global.max_mana:
+				Global.mana = Global.max_mana
+		"+150 HP":
+			Global.health += 150
+			if Global.health > Global.max_health:
+				Global.health = Global.max_health
+		"+200 MP":
+			Global.mana += 200
+			if Global.mana > Global.max_mana:
+				Global.mana = Global.max_mana
+		"Attack +20":
+			Global.str += 20
 
 func _on_collision_projectile_area_body_entered(body):
 	if body.has_method("enemy"):
@@ -511,3 +615,7 @@ func _radius10():
 func _radius25():
 	$CollisionProjectileArea/CollisionProjectile.shape.set_radius(25)
 
+func _heal_player():
+	Global.health += (Global.str + Global.equip[Global.skill]["quantity"])
+	if Global.health > Global.max_health:
+		Global.health = Global.max_health

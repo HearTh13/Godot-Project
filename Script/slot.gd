@@ -25,15 +25,15 @@ func _ready():
 		var child = get_parent().get_child(i)
 		if child == self:
 			index = i
+	if index < 5:
+		details_panel.position.y = 50
+		usage_panel.position.y = -50
+	elif index > 4:
+		details_panel.position.y = -50
+		usage_panel.position.y = 50
 
 func _on_item_button_pressed():
 	if Global.inventory[index] != null:
-		if index < 6:
-			details_panel.position.y = 50
-			usage_panel.position.y = -50
-		elif index > 5:
-			details_panel.position.y = -50
-			usage_panel.position.y = 50
 			
 		if Global.inventory[index]["type"] == "Skill":
 			use_button.text = "Equip"

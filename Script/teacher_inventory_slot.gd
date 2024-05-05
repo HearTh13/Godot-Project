@@ -19,15 +19,15 @@ func _ready():
 		var child = get_parent().get_child(i)
 		if child == self:
 			index = i
+	if index < 5:
+		$DetailsPanel.position.y = 50
+		$UsagePanel.position.y = -25
+	elif index > 4:
+		$DetailsPanel.position.y = -60
+		$UsagePanel.position.y = 50
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if index < 6:
-		$DetailsPanel.position.y = 50
-		$UsagePanel.position.y = -25
-	elif index > 5:
-		$DetailsPanel.position.y = -25
-		$UsagePanel.position.y = 50
 	for i in par.get_child_count():
 		if par.get_child(i) == self:
 			if parent.inventory[i] != null:
