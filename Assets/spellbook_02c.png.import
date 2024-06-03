@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c26w8388j7uds"
-path="res://.godot/imported/hero_2.png-9fb651430cd4411c54af3952d689e3ee.ctex"
+uid="uid://c6cdbutx83m7j"
+path="res://.godot/imported/spellbook_02c.png-a8803ecd8d9ef7408264c0b3139a3b7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character/hero_2.png"
-dest_files=["res://.godot/imported/hero_2.png-9fb651430cd4411c54af3952d689e3ee.ctex"]
+source_file="res://Assets/spellbook_02c.png"
+dest_files=["res://.godot/imported/spellbook_02c.png-a8803ecd8d9ef7408264c0b3139a3b7f.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

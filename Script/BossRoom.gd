@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	$Player/BGM.stream = load("res://Assets/Music/Call of War.ogg")
+	$Player/BGM.stream = load("res://Assets/Music/Prison Break.mp3")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	$Player/CanvasLayer/GUI.visible = true

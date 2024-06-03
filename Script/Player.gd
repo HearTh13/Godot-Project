@@ -62,8 +62,8 @@ func _physics_process(_delta):
 		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
 	elif Global.skill == 2:
 		$CanvasLayer/HBoxContainer/SkillBox1/Equip.visible = false
-		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = true
-		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox2/Equip.visible = false
+		$CanvasLayer/HBoxContainer/SkillBox3/Equip.visible = true
 	
 	if Input.is_action_just_pressed("Projectile"):
 		if Global.equip[Global.skill] != null:
@@ -107,6 +107,8 @@ func _physics_process(_delta):
 			$RegenTime.start()
 		
 func _process(_delta):
+	print(Global.player_current_attack)
+	print($CollisionProjectileArea/CollisionProjectile.disabled)
 	if Global.equip[0] != null:
 		if Global.equip[0]["quantity"] != 0:
 			$CanvasLayer/HBoxContainer/SkillBox1/Sprite2D.texture = load(Global.equip[0]["texture"])
@@ -275,8 +277,10 @@ func _on_attack_counter_timeout():
 	
 func current_camera():
 	if Global.current_scene == "Dungeon1":
-		$Camera.limit_right = 640
-		$Camera.limit_bottom = 310
+		$Camera.limit_left = get_parent().find_child("ReferenceRect").position.x
+		$Camera.limit_top = get_parent().find_child("ReferenceRect").position.y
+		$Camera.limit_right = get_parent().find_child("ReferenceRect").size.x + get_parent().find_child("ReferenceRect").position.x
+		$Camera.limit_bottom = get_parent().find_child("ReferenceRect").size.y + get_parent().find_child("ReferenceRect").position.y
 	
 	elif Global.current_scene == "Dungeon2":
 		$Camera.limit_right = 640
@@ -469,7 +473,7 @@ func chat():
 					"quantity": 1,
 					"type": "Skill",
 					"name": "Heal",
-					"texture": "res://Assets/Ice Glacier.png",
+					"texture": "res://Assets/Heal.png",
 					"effect": "Heal HP",
 					"price": 150,
 					"scene_path": "res://Scene/Dungeon1.tscn"
@@ -593,21 +597,17 @@ func apply_item_effect(item):
 
 func _on_collision_projectile_area_body_entered(body):
 	if body.has_method("enemy"):
-		if Global.equip[Global.skill]["effect"] == "Lightning Damage":
-			$Animation.stop()
-			$Projectile.visible = false
-		if Global.equip != null:
-			body.health = body.health - ((Global.str/body.def) + Global.equip[Global.skill]["quantity"])
-			body.damageCooldown.start()
-			body.run.start()
-			body.running = false
-			body.take_damage = true
-			body.modulate.a8 = 100
-			body.play_sfx()
-			if body.health <= 0:
-				transfer_exp(body.exp)
-				Global.money += body.money
-				body.dead.start()
+		if !$CollisionProjectileArea/CollisionProjectile.disabled:
+			if Global.equip[Global.skill]["effect"] == "Lightning Damage":
+				$Animation.stop()
+				$CollisionProjectileArea/CollisionProjectile.disabled = true
+				$Projectile.visible = false
+			if Global.equip != null:
+				body.player_inattack_zone = true
+				Global.player_current_attack = true
+				body.deal_with_damage()
+				body.player_inattack_zone = false
+				Global.player_current_attack = false
 
 func _radius10():
 	$CollisionProjectileArea/CollisionProjectile.shape.set_radius(10)

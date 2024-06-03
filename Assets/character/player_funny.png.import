@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/player_funny.png-42937ece902221f2649e8e95b701
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

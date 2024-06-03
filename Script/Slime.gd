@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var marker: Marker2D
 @onready var animation = $AnimatedSprite2D
 
+var index = 0
+
 var player = null
 
 var max_health = 100
@@ -33,6 +35,7 @@ var endPosition
 func _ready():
 	startPosition = position
 	endPosition = marker.global_position
+	$Label.visible = false
 
 func _physics_process(delta):
 	if !Global.paused or !Global.dialogueBox or Global.alive:
@@ -108,6 +111,13 @@ func deal_with_damage():
 				if health <= 0:
 					player.transfer_exp(exp)
 					Global.money += money
+					if $Label.text != "" || index == 0:
+						var def = false
+						for text in Global.materi:
+							if text == $Label.text:
+								def = true
+						if !def:
+							Global.materi[index] = $Label.text
 					$Dead.start()
 
 func _on_damage_cooldown_timeout():

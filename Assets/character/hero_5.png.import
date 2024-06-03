@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/hero_5.png-6ae93f9cb60b18508ef60b8b565cd358.c
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/Menu.gd" id="1_cpxrv"]
 [ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="2_4xx7f"]
-[ext_resource type="Texture2D" uid="uid://bqiu2ytjs1fw3" path="res://Assets/DreamDiver Logo.png" id="2_mys5f"]
 [ext_resource type="Texture2D" uid="uid://b18ipt1racfst" path="res://Assets/Title Background.jpg" id="2_v046e"]
+[ext_resource type="Texture2D" uid="uid://cidtivjtbquor" path="res://Assets/Title Logo.png" id="3_cu2dl"]
 [ext_resource type="Texture2D" uid="uid://c4echbo6ssr6o" path="res://Assets/continue.png" id="3_kxg8e"]
 [ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="4_jho7j"]
 [ext_resource type="FontFile" uid="uid://clctmbqnt7im3" path="res://Assets/font/SuperLegendBoy-4w8Y.ttf" id="4_rvx7i"]
@@ -67,16 +67,20 @@ offset_bottom = 736.0
 texture = ExtResource("2_v046e")
 
 [node name="Menu" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 80.0
-offset_right = 1032.0
-offset_bottom = 568.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -349.0
+offset_right = 349.0
+offset_bottom = 698.0
+grow_horizontal = 2
 
 [node name="Logo" type="TextureRect" parent="Menu"]
+texture_filter = 2
 layout_mode = 2
-texture = ExtResource("2_mys5f")
-stretch_mode = 3
+texture = ExtResource("3_cu2dl")
+expand_mode = 5
 
 [node name="MenuButton" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -144,6 +148,27 @@ offset_right = 31.0
 offset_bottom = 31.0
 texture = ExtResource("3_kxg8e")
 
+[node name="TextureButton" type="TextureButton" parent="MenuButton/CenterRow/Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("4_xhbei")
+texture_pressed = ExtResource("5_3my2g")
+texture_hover = ExtResource("5_k7uln")
+texture_focused = ExtResource("5_k7uln")
+
+[node name="HowToLabel" type="Label" parent="MenuButton/CenterRow/Buttons/TextureButton"]
+layout_mode = 0
+offset_right = 962.0
+offset_bottom = 31.0
+text = "      How To Play"
+label_settings = SubResource("LabelSettings_5iuqi")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MenuButton/CenterRow/Buttons/TextureButton"]
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 31.0
+texture = ExtResource("3_kxg8e")
+
 [node name="Button" type="Button" parent="MenuButton/CenterRow/Buttons"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
@@ -192,7 +217,64 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="HowToScreen" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.596078)
+
+[node name="HowToLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_rvx7i")
+theme_override_font_sizes/normal_font_size = 26
+text = "								HOW TO PLAY
+
+- Tekan \"WASD\" atau Arrow Key untuk bergerak
+
+- Tekan \"Left Click\" atau \"Enter\" untuk menyerang.
+
+- Tekan \"Esc\" untuk membuka Menu,
+
+- Tekan \"Left Click\" untuk interact Item dan Skill yang ada di Menu Inventory
+
+- Tekan \"Enter\" untuk OK.
+
+- Tekan \"Esc\" untuk Batal.
+
+- Tekan \"Shift\" untuk lari/jalan lebih cepat
+
+- Tekan 1, 2, atau 3 untuk memilih Skill yang dipasang.
+
+- Tekan \"Q\" untuk menggunakan Skill"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -79.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 46.0
+grow_horizontal = 0
+text = "X Close"
+
 [connection signal="pressed" from="MenuButton/CenterRow/Buttons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButton/CenterRow/Buttons/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MenuButton/CenterRow/Buttons/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="MenuButton/CenterRow/Buttons/Exit" to="." method="_on_exit_pressed"]
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -11,6 +11,9 @@ func _ready():
 	Engine.time_scale = 1
 	pos = 0
 	fading = false
+	$HowToScreen.visible = false
+	$HowToLabel.visible = false
+	$Button.visible = false
 
 func _process(_delta):
 	if fading:
@@ -47,6 +50,11 @@ func _on_continue_pressed():
 			fading = true
 			$Animation.play("fade")
 
+func _on_texture_button_pressed():
+	$HowToScreen.visible = true
+	$HowToLabel.visible = true
+	$Button.visible = true
+
 func _on_exit_pressed():
 	if !fading:
 		get_tree().quit()
@@ -75,3 +83,8 @@ func _on_animation_animation_finished(_anim_name):
 			#get_tree().change_scene_to_file("res://Scene/BossRoom.tscn")
 		if Global.current_scene == "BossRoom1":
 			get_tree().change_scene_to_file("res://Scene/BossRoom1.tscn")
+
+func _on_button_pressed():
+	$HowToScreen.visible = false
+	$HowToLabel.visible = false
+	$Button.visible = false

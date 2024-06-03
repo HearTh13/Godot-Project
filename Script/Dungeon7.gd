@@ -7,24 +7,16 @@ var doorCol2
 var doorCol3
 
 func _ready():
-	$Player/BGM.stream = load("res://Assets/Music/Twinklerock Cave.ogg")
+	$Player/BGM.stream = load("res://Assets/Music/Lost in Pixels.mp3")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon7"
 	$Player/CanvasLayer/GUI.visible = false
-	
-	doorClose = $Door/Closed
-	doorOpen = $Door/Open
-	doorCol = $Door/Collision
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	change_scene()
 	Global.pause_menu($Player/CanvasLayer/PauseMenu)
-	if Global.story4:
-		doorOpen.visible = true
-		doorClose.visible = false
-		doorCol.disabled = true
 
 func change_scene():
 	if Global.transition:

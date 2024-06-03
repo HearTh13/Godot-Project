@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	$Player/BGM.stream = load("res://Assets/Music/Grassland Adventure.ogg")
+	$Player/BGM.stream = load("res://Assets/Music/Lost in Pixels.mp3")
 	$Player.position.x = Global.player_enter_posx
 	$Player.position.y = Global.player_enter_posy
 	Global.current_scene = "Dungeon4"

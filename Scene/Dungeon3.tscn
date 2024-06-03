@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://36td0mchomgw"]
+[gd_scene load_steps=9 format=3 uid="uid://36td0mchomgw"]
 
 [ext_resource type="Script" path="res://Script/Dungeon3.gd" id="1_l24qy"]
 [ext_resource type="TileSet" uid="uid://bourpaof5g2kp" path="res://Scene/TileMap1.tres" id="1_t8hru"]
 [ext_resource type="PackedScene" uid="uid://c8pnqpx6je86j" path="res://Entity/Player.tscn" id="3_dh7f5"]
 [ext_resource type="PackedScene" uid="uid://un8cp2uwrsdx" path="res://Entity/save_point.tscn" id="3_u3y30"]
 [ext_resource type="PackedScene" uid="uid://cai42h515rk0h" path="res://Entity/message.tscn" id="5_qeqh2"]
+[ext_resource type="PackedScene" uid="uid://pwml5qexebrb" path="res://Entity/teacher.tscn" id="6_vf1a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfhh6"]
 size = Vector2(37, 72)
@@ -36,6 +37,12 @@ position = Vector2(232, 133)
 [node name="Player" parent="." instance=ExtResource("3_dh7f5")]
 position = Vector2(349, 147)
 
+[node name="TextureRect" parent="Player/CanvasLayer" index="0"]
+offset_left = 6305.0
+offset_top = 3553.5
+offset_right = 6385.0
+offset_bottom = 3574.5
+
 [node name="GUI" parent="Player/CanvasLayer" index="1"]
 visible = false
 
@@ -56,6 +63,9 @@ position = Vector2(160, 128)
 
 [node name="Label" parent="Message" index="2"]
 text = "5"
+
+[node name="Teacher" parent="." instance=ExtResource("6_vf1a4")]
+position = Vector2(481, 124)
 
 [connection signal="body_entered" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_entered"]
 [connection signal="body_exited" from="Dungeon2_Transfer" to="." method="_on_dungeon_2_transfer_body_exited"]

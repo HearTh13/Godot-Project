@@ -12,6 +12,8 @@ var item
 var textSign
 var animation
 
+var image :Image
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Animation/ColorRect.visible = false
@@ -396,13 +398,13 @@ func dialog():
 			
 	elif dialogue == 7:
 		if pos == 0:
-			background.texture = load("res://Assets/Background/cave.png")
-			charA.texture = load("res://Assets/character/player_normal.png")
+			background.set_texture(load("res://Assets/Background/cave.png"))
+			charA.set_texture(load("res://Assets/character/player_normal.png"))
 			charB.texture = load("")
 			chara.text = "Suhi"
 			text.text = "Kau kalah...!"
 		if pos == 1:
-			charB.texture = load("res://Assets/character/kambing_hitam.png")
+			charB.set_texture(load("res://Assets/character/kambing_hitam.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Ugh... Sial...!"
 		if pos == 2:
@@ -412,55 +414,55 @@ func dialog():
 			chara.text = "Kambing Hitam"
 			text.text = "Kurasa tidak ada gunanya menggunakan topeng ini lagi."
 		if pos == 4:
-			charB.texture = load("res://Assets/character/hero.png")
+			charB.set_texture(load("res://Assets/character/hero.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "..."
 		if pos == 5:
-			charA.texture = load("res://Assets/character/player_surprised.png")
+			charA.set_texture(load("res://Assets/character/player_surprised.png"))
 			chara.text = "Suhi"
 			text.text = "...Kau... Manusia...?"
 		if pos == 6:
-			charA.texture = load("res://Assets/character/player_normal.png")
+			charA.set_texture(load("res://Assets/character/player_normal.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Ya, benar."
 		if pos == 7:
-			charA.texture = load("res://Assets/character/player_hurt.png")
+			charA.set_texture(load("res://Assets/character/player_hurt.png"))
 			chara.text = "Suhi"
 			text.text = "Tapi kenapa...?! Kenapa kau mau menghancurkan dunia nyata?!"
 		if pos == 8:
-			charA.texture = load("res://Assets/character/player_normal.png")
-			charB.texture = load("res://Assets/character/hero_2.png")
+			charA.set_texture(load("res://Assets/character/player_normal.png"))
+			charB.set_texture(load("res://Assets/character/hero_2.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Itu karena... Mimpiku adalah menikahi tuan putri kerajaan ini."
 		if pos == 9:
-			charA.Texture = load("res://Assets/character/player_surprised.png")
+			charA.set_texture(load("res://Assets/character/player_surprised.png"))
 			chara.text = "Suhi"
-			text.text = "M-menikahi..."
+			text.text = "M-menikahi...?!"
 		if pos == 10:
-			charA.Texture = load("res://Assets/character/player_normal.png")
+			charA.set_texture(load("res://Assets/character/player_normal.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Tapi mimpi itu sirna semenjak..."
 		if pos == 11:
-			charB.Texture = load("res://Assets/character/hero_3.png")
+			charB.set_texture(load("res://Assets/character/hero_3.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Sang putri punya simpanan..."
 		if pos == 12:
-			charA.Texture = load("res://Assets/character/player_funny.png")
+			charA.set_texture(load("res://Assets/character/player_funny.png"))
 			chara.text = "Suhi"
 			text.text = "A-Apa?!"
 		if pos == 13:
 			chara.text = "Kambing Hitam"
 			text.text = "Padahal aku pernah hampir menyelamatkannya... Tetapi... Dia lebih memilih penyihir itu daripada diriku..."
 		if pos == 14:
-			charA.texture = load("res://Assets/character/player_hurt.png")
+			charA.set_texture(load("res://Assets/character/player_hurt.png"))
 			chara.text = "Suhi"
 			text.text = "Dasar..."
 		if pos == 14:
-			charA.texture = load("res://Assets/character/player_hurt.png")
+			charA.set_texture(load("res://Assets/character/player_hurt.png"))
 			chara.text = "Suhi"
 			text.text = "Itu permasalahan sepele, tahu!"
 		if pos == 15:
-			charA.texture = load("res://Assets/character/player_normal.png")
+			charA.set_texture(load("res://Assets/character/player_normal.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Tapi..."
 		if pos == 16:
@@ -470,7 +472,7 @@ func dialog():
 			chara.text = "Suhi"
 			text.text = "Wanita di dunia ini banyak! Kenapa kau menyerah padahal kau masih bisa mendapatkan yang lain!"
 		if pos == 18:
-			charB.texture = load("res://Assets/character/hero_4.png")
+			charB.set_texture(load("res://Assets/character/hero_4.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "..."
 		if pos == 19:
@@ -489,7 +491,7 @@ func dialog():
 			chara.text = "Kambing Hitam"
 			text.text = "Tapi untuk kenang-kenangan..."
 		if pos == 24:
-			charB.texture = load("res://Assets/character/hero_5.png")
+			charB.set_texture(load("res://Assets/character/hero_5.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "Aku minta cium dong."
 		if pos == 25:
@@ -498,8 +500,8 @@ func dialog():
 			chara.text = ""
 			text.text = "Plak!"
 		if pos == 26:
-			charA.texture = load("res://Assets/character/player_happy.png")
-			charB.texture = load("res://Assets/character/hero_6.png")
+			charA.set_texture(load("res://Assets/character/player_happy.png"))
+			charB.set_texture(load("res://Assets/character/hero_6.png"))
 			chara.text = "Kambing Hitam"
 			text.text = "...."
 		if pos == 27:

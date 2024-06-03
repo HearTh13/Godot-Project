@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c26w8388j7uds"
-path="res://.godot/imported/hero_2.png-9fb651430cd4411c54af3952d689e3ee.ctex"
+uid="uid://cidtivjtbquor"
+path="res://.godot/imported/Title Logo.png-86489b15dae3dc180cd048b49601c73c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character/hero_2.png"
-dest_files=["res://.godot/imported/hero_2.png-9fb651430cd4411c54af3952d689e3ee.ctex"]
+source_file="res://Assets/Title Logo.png"
+dest_files=["res://.godot/imported/Title Logo.png-86489b15dae3dc180cd048b49601c73c.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

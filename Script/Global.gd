@@ -28,6 +28,8 @@ var dialogue
 var objective
 var boss
 
+var materi = []
+
 var floor = []
 var floorBlue = []
 var floorRed = []
@@ -91,6 +93,14 @@ func initial():
 	objective = "Selamatkan mereka!"
 	
 	boss = false
+	materi.resize(14)
+	materi[0] = "
+	
+	
+	
+	
+	
+	-Materi IPS-"
 	inventory = []
 	equip = []
 	
@@ -137,6 +147,7 @@ func save_game():
 	file.store_var(story4)
 	file.store_var(alive)
 	file.store_var(skill)
+	file.store_var(materi)
 
 func load_game():
 	var file = FileAccess.open("user://SaveData.dat", FileAccess.READ)
@@ -169,6 +180,7 @@ func load_game():
 	story4 = file.get_var()
 	alive = file.get_var()
 	skill = file.get_var()
+	materi = file.get_var()
 
 func add_item(item):
 	for i in range(inventory.size()):

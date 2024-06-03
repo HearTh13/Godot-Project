@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://o278gdok2yeb"]
+[gd_scene load_steps=20 format=3 uid="uid://o278gdok2yeb"]
 
 [ext_resource type="Texture2D" uid="uid://cv0kkbjfxf5qi" path="res://Assets/TitleBar.png" id="1_fatij"]
 [ext_resource type="Script" path="res://Script/pause_menu.gd" id="1_r6j8c"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dwehye5dlh081" path="res://Assets/exit.png" id="6_ol4gj"]
 [ext_resource type="Texture2D" uid="uid://ceu5qa1vya5y2" path="res://Assets/box.png" id="7_q2f6o"]
 [ext_resource type="PackedScene" uid="uid://cw44ax0nytipo" path="res://Interface/inventory.tscn" id="9_an0o2"]
+[ext_resource type="Texture2D" uid="uid://c6oj6xluocsnl" path="res://Assets/spellbook_02b.png" id="10_jn2cq"]
+[ext_resource type="Texture2D" uid="uid://c6cdbutx83m7j" path="res://Assets/spellbook_02c.png" id="11_h6cxx"]
+[ext_resource type="Texture2D" uid="uid://bjleqvvh4vmbv" path="res://Assets/spellbook_02e.png" id="12_sbvet"]
+[ext_resource type="Texture2D" uid="uid://3f0yb8lc4wux" path="res://Assets/spellbook_02d.png" id="13_uk4p2"]
+[ext_resource type="Texture2D" uid="uid://dhgo5lsci2o5x" path="res://Assets/play.png" id="14_8207i"]
+[ext_resource type="Texture2D" uid="uid://cackyd2sbooev" path="res://Assets/previous.png" id="15_mfxms"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_21v3i"]
 font = ExtResource("4_ndd2j")
@@ -154,5 +160,116 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 98.0
+grow_horizontal = 0
+texture_normal = ExtResource("10_jn2cq")
+texture_pressed = ExtResource("11_h6cxx")
+texture_hover = ExtResource("12_sbvet")
+texture_focused = ExtResource("13_uk4p2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 101.0
+offset_right = -42.0
+offset_bottom = 124.0
+grow_horizontal = 0
+text = "MATERI"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]
+
+
+
+
+
+-Materi IPS-"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -16.5
+offset_right = -25.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+icon = ExtResource("14_8207i")
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -16.5
+offset_right = 58.0
+offset_bottom = 16.5
+grow_vertical = 2
+icon = ExtResource("15_mfxms")
+
+[node name="Button3" type="Button" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 25
+text = "X Close"
+
 [connection signal="pressed" from="Horizontal/Vertical/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Horizontal/Vertical/Title" to="." method="_on_title_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

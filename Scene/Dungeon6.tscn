@@ -71,6 +71,12 @@ shape = SubResource("CircleShape2D_7jwkb")
 [node name="Player" parent="." instance=ExtResource("2_6e2qy")]
 position = Vector2(36, 174)
 
+[node name="TextureRect" parent="Player/CanvasLayer" index="0"]
+offset_left = 6881.0
+offset_top = 3877.5
+offset_right = 6961.0
+offset_bottom = 3898.5
+
 [node name="Message" parent="." instance=ExtResource("3_q833j")]
 y_sort_enabled = true
 position = Vector2(1248, 128)
